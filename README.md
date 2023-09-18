@@ -98,6 +98,13 @@ o Possibly utilize GPT
             <sub><b>Justin Kuruvilla</b></sub>
             </a>
         </td>
+        <td align="center">
+            <a href="https://github.com/douedra1">
+                <img src="https://avatars.githubusercontent.com/u/50376645?v=4" width="100;" alt="Ouedraogo"/>
+                <br />
+            <sub><b>Djakaridja Ouedraogo</b></sub>
+            </a>
+        </td>
     </tr>
 </table>
 
