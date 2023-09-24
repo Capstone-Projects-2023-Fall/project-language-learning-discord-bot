@@ -35,7 +35,10 @@ class Database:
 
     def insertUser(self, user):
         if self.isOk:
-            self.collection.insert_one(user)
+            try:
+                self.collection.insert_one(user)
+            except Exception as e:
+                print(e)
         else: 
             print("Cannot connect to database")
 
