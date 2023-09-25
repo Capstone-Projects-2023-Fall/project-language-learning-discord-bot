@@ -14,18 +14,18 @@ sidebar_position: 4
     * A stable connection is necessary for voice input/output; but for learning via text, it is not necessary.
 4. Starting setup for the bot includes just selecting a starter language to begin. 
     * This language can be changed at a later date if desired by sending "/changeLanguage".
-5. The full command list for the bot can be viewed by sending "/help" in to the chat while the bot is active.
+5. The full command list for the bot can be viewed by sending "/help" in the chat while the bot is active.
     * Viewing the command list will let you see all possible options to learn with the bot.
-6. To access a vocab quiz with the selected language, simply prompt the bot via sending "/startVocabQuiz". 
+6. To access a vocab quiz with the selected language, prompt the bot by sending "/startVocabQuiz". 
     * This will allow the user to select a level to start with; the higher the level number, the more difficult the words will be.
     * For example, level 1 might include "talkative", whereas level 7 might include "gregarious" by comparison.
     * After selecting the level, the bot will generate a practice test for the user to attempt.
-7. To access pronounciation practice, prompt the bot via sending "/startVoiceQuiz".
+7. To access pronounciation practice, prompt the bot by sending "/startVoiceQuiz".
     * To use this command, one must be in a voice channel on the server.
-    * Furthermore, the bot must have permissions to access the voice channel; this can be done by giving the bot the permission or making the voice channel visible to the bot.
+    * The bot must have permissions to access the voice channel; this can be done by giving the bot the permission or making the voice channel visible to the bot.
     * The bot will join the voice channel and transcribe the user's audio transmission.
     * The user will then be graded on their attempt.
-8. The language leaderboard can be checked via "/leaderboard".
+8. The language leaderboard can be checked by sending "/leaderboard".
     * This will display the current top aggregate scores of all users.
     * These scores are increased when completing vocab and voice quizzes with the highest possible scores.
     * To check an individual's scores across all quizzes, send "/myScores".
