@@ -1,6 +1,11 @@
 import os
 import discord
 from discord.ext import commands
+from dotenv import load_dotenv
+
+# Load environment variable from .env file first
+# When your project is deployed to a host environment like a virtual machine or Docker container where the .env file is not present, the environment variables defined in the host environment will be used instead
+load_dotenv()
 
 # Intents
 intents = discord.Intents.default()
