@@ -1,3 +1,16 @@
+---
+sidebar_position: 6
+---
+
+# Database Diagrams
+
+## Entity-Relation Diagram
+
+
+
+
+
+
 ```mermaid
 erDiagram
 Users {
