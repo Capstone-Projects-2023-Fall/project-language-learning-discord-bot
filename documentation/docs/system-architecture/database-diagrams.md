@@ -4,6 +4,7 @@ Users {
   String username PK
   String email
   Int totalScore
+  Int level
 }
 
 Languages {
@@ -28,11 +29,27 @@ Answers {
   Boolean isCorrect
 }
 
+Practices {
+  Int id PK
+  String name
+  Int Score
+}
+
+Sentences {
+  Int id PK
+  String sentences
+}
+
 Questions }|--|{ Answers : "has"
 Quizzes }|--|{ Questions : "has"
 Users }|--|{ Quizzes : "did"
 Users }|--|{ Languages : "select"
 Quizzes ||--|| Languages : "belong to"
+
+Users }|--|{ Practices : "did"
+Practices }|--|{ Sentences : "has"
+Practices ||--|| Languages : "belong to"
+
 
 
 ```
