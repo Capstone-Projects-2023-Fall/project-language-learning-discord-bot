@@ -1,7 +1,3 @@
----
-sidebar_position: 3
----
-
 # Class Diagram
 
 ![ClassDiagram drawio](https://github.com/Capstone-Projects-2023-Fall/project-language-learning-discord-bot/assets/74037708/97869cb6-9bb1-4085-a8b3-ad8cdddefbc9)
