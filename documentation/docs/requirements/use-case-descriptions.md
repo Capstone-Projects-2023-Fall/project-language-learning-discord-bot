@@ -62,3 +62,34 @@ As a user, I want to test my pronunciation skills in my chosen langauge.
 7: Bot provides feedback on pronunciation accuracy and areas for improvement.
 
 8: User review the feedback to understand their pronunciation accuracy and areas of improvement.
+
+## Use Case 4: Reviewing Personal Progress
+As a user, I want to track my progress.
+
+1: User sends the “!myScores” command to the bot.
+
+2: Bot fetches the user’s scores from the database.
+
+3: Bot presents the user with their scores for vocabulary quizzes, pronunciation tests, and over progress on Discord.
+
+## Use Case 5: Accessing Language Leaderboards
+As a user, I want to view the top performers for each language to gauge my progress against peers.
+
+1: User sends the “!leaderboard” command to the bot.
+
+2: Bot retrieves top aggregate scores for the currently selected language from the database.
+
+3:Bot displays the leaderboard to the user on Discord.
+
+## Use Case 6: Changing Preferred Language
+As a user, I want to change my current learning language to explore other languages.
+
+1: User sends the “!changeLanguage” command to the bot.
+
+2: Bot displays a list of available languages to the user on Discord.
+
+3: User selects a new language from the list.
+
+4: Bot updates the user’s preferred language in the database.
+
+5: Bot confirms the change to the user on Discord.
