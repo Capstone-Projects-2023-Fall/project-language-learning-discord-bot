@@ -150,41 +150,112 @@ sequenceDiagram
 
 **As a user, I want to track my progress.**
 
+```mermaid
+sequenceDiagram
+    actor U as User
+    participant D as Discord
+    participant B as Bot
+    participant DB as Database
+    
+    activate U
+    U->>D: Opens App
+    activate D
+    U->>D: Command for viewing personal scores
+    D-->>B: Request for personal scores
+    activate B
+    B->>DB: Retrieve user scores
+    DB-->>B: Sends user scores
+    B-->>D: Sends score details
+    D->>U: Display personal scoring
+    deactivate B
+    deactivate D
+    deactivate U
 
+```
 
-    1: User sends the “!myScores” command to the bot.
+    1: User opens the Discord app.
 
-    2: Bot fetches the user’s scores from the database.
+    2: User sends the “!myScores” command to the bot.
 
-    3: Bot presents the user with their scores for vocabulary quizzes, pronunciation tests, and over progress on Discord.
+    3: Bot fetches the user’s scores from the database.
+
+    4: Bot presents the user with their scores for vocabulary quizzes, pronunciation tests, and over progress on Discord.
 
 ## Use Case 5
 
 **As a user, I want to view the top performers for each language to gauge my progress against peers.**
 
+```mermaid
+sequenceDiagram
+    actor U as User
+    participant D as Discord
+    participant B as Bot
+    participant DB as Database
+    
+    activate U
+    U->>D: Opens App
+    activate D
+    U->>D: Command for viewing language leaderboard
+    D-->>B: Request for leaderboard information
+    activate B
+    B->>DB: Retrieve top aggregate scores for current language
+    DB-->>B: Sends top score information
+    B-->>D: Sends leaderboard information
+    D->>U: Displays leaderboard for current language
+    deactivate B
+    deactivate D
+    deactivate U
 
+```
 
-    1: User sends the “!leaderboard” command to the bot.
+    1: User opens the Discord app.
 
-    2: Bot retrieves top aggregate scores for the currently selected language from the database.
+    2: User sends the “!leaderboard” command to the bot.
 
-    3: Bot displays the leaderboard to the user on Discord.
+    3: Bot retrieves top aggregate scores for the currently selected language from the database.
+
+    4: Bot displays the leaderboard to the user on Discord.
 
 ## Use Case 6
 
 **As a user, I want to change my current learning language to explore other languages.**
 
+```mermaid
+sequenceDiagram
+actor U as User
+    participant D as Discord
+    participant B as Bot
+    participant DB as Database
+    activate U
+    U->>D: Opens App
+    activate D
+    U->>D: Sends Command to change current language
+    D-->>B: Request for language change
+    activate B
+    B-->>D: Sends available language info
+    D->>U: Displays list of available languages
+    U->>D: Command to select a new language from list
+    D-->>B: Language selection received
+    B->>DB: Update language preference
+    B-->>D: Acknowledge in selected language
+    D->>U: Display acknowledgment
+    deactivate B
+    deactivate D
+    deactivate U
 
+```
 
-    1: User sends the “!changeLanguage” command to the bot.
+    1: User opens the Discord app.
 
-    2: Bot displays a list of available languages to the user on Discord.
+    2: User sends the “!changeLanguage” command to the bot.
 
-    3: User selects a new language from the list.
+    3: Bot displays a list of available languages to the user on Discord.
+
+    4: User selects a new language from the list.
  
-    4: Bot updates the user’s preferred language in the database.
+    5: Bot updates the user’s preferred language in the database.
 
-    5: Bot confirms the change to the user on Discord.
+    6: Bot confirms the change to the user on Discord.
 
 
 
