@@ -76,6 +76,7 @@ Practices ||--|| Languages : "belong to"
 	email: "tun70473@temple.edu",
 	totalScore: 10,
 	level: 1,
+	language: "Spanish",
 	quizzes: [
 		{
 			_id: "1",
@@ -98,6 +99,7 @@ Practices ||--|| Languages : "belong to"
 {
 	_id: "1",
 	name: "Practice 1",
+	language: "Spanish",
 	sentences: [
 		{
 			sentence: "Cat has four legs"
@@ -112,6 +114,7 @@ Practices ||--|| Languages : "belong to"
 {
 	_id: "1",
 	name: "Quizz 1",
+	language: "Spanish",
 	questions: [
 		{
 			question: "How many planets are there in the solar system?"
