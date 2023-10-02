@@ -100,7 +100,7 @@ sequenceDiagram
 
 ## Use Case 3
 
-**As a user, I want to test my pronunciation skills in my chosen langauge.**
+**As a user, I want to test my pronunciation skills in my chosen language.**
 
 ```mermaid
 sequenceDiagram
@@ -150,9 +150,7 @@ sequenceDiagram
 
 **As a user, I want to track my progress.**
 
-```mermaid
 
-```
 
     1: User sends the “!myScores” command to the bot.
 
@@ -164,9 +162,7 @@ sequenceDiagram
 
 **As a user, I want to view the top performers for each language to gauge my progress against peers.**
 
-```mermaid
 
-```
 
     1: User sends the “!leaderboard” command to the bot.
 
@@ -178,9 +174,7 @@ sequenceDiagram
 
 **As a user, I want to change my current learning language to explore other languages.**
 
-```mermaid
 
-```
 
     1: User sends the “!changeLanguage” command to the bot.
 
