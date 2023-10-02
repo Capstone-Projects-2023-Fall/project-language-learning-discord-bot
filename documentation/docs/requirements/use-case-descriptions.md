@@ -66,30 +66,36 @@ As a user, I want to test my pronunciation skills in my chosen langauge.
 ## Use Case 4: Reviewing Personal Progress
 As a user, I want to track my progress.
 
-1: User sends the “!myScores” command to the bot.
+1: User opens the Discord App.
 
-2: Bot fetches the user’s scores from the database.
+2: User sends the “!myScores” command to the bot.
 
-3: Bot presents the user with their scores for vocabulary quizzes, pronunciation tests, and over progress on Discord.
+3: Bot fetches the user’s scores from the database.
+
+4: Bot presents the user with their scores for vocabulary quizzes, pronunciation tests, and over progress on Discord.
 
 ## Use Case 5: Accessing Language Leaderboards
 As a user, I want to view the top performers for each language to gauge my progress against peers.
 
-1: User sends the “!leaderboard” command to the bot.
+1: User opens the Discord App.
 
-2: Bot retrieves top aggregate scores for the currently selected language from the database.
+2: User sends the “!leaderboard” command to the bot.
 
-3:Bot displays the leaderboard to the user on Discord.
+3: Bot retrieves top aggregate scores for the currently selected language from the database.
+
+4:Bot displays the leaderboard to the user on Discord.
 
 ## Use Case 6: Changing Preferred Language
 As a user, I want to change my current learning language to explore other languages.
 
-1: User sends the “!changeLanguage” command to the bot.
+1: User opens the Discord App.
 
-2: Bot displays a list of available languages to the user on Discord.
+2: User sends the “!changeLanguage” command to the bot.
 
-3: User selects a new language from the list.
+3: Bot displays a list of available languages to the user on Discord.
 
-4: Bot updates the user’s preferred language in the database.
+4: User selects a new language from the list.
 
-5: Bot confirms the change to the user on Discord.
+5: Bot updates the user’s preferred language in the database.
+
+6: Bot confirms the change to the user on Discord.
