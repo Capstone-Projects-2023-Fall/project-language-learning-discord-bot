@@ -2,7 +2,7 @@
 
 ## Use Case 1
 
-**As a user, it is important that I can create an account so that I can maintain my pet’s growth and my task progress.**
+**As a user, it is important that I can create an account so that I can maintain my personal growth with a specific language.**
 
 ```mermaid
 sequenceDiagram
