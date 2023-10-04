@@ -6,8 +6,14 @@ from pymongo.server_api import ServerApi
 load_dotenv()
 
 
-class Database:
-    def __init__(self):
+class Database(object):
+    def __new__(cls):
+        if not hasattr(cls, 'instance'):
+            cls.instance = super(Database, cls).__new__(cls)
+            cls.instance.initDb()
+        return cls.instance
+
+    def initDb(self):
         uri = os.environ['MONGO_DB_URI']
         # Create a new client and connect to the server
         self.client = MongoClient(uri, server_api=ServerApi('1'))
@@ -16,7 +22,7 @@ class Database:
             self.client.admin.command('ping')
             print("Pinged your deployment. You successfully connected to MongoDB!")
             self.db = self.client["mydatabase"]
-            self.collection = self.db["users"]
+            self.userCollection = self.db["users"]
             self.isOk = True
         except Exception as e:
             self.isOk = False
@@ -26,7 +32,7 @@ class Database:
         if self.isOk:
             try:
                 query = {"_id": username}
-                return self.collection.find_one(query)
+                return self.userCollection.find_one(query)
             except Exception as e:
                 print(e)
 
@@ -36,11 +42,29 @@ class Database:
     def insertUser(self, user):
         if self.isOk:
             try:
-                self.collection.insert_one(user)
+                self.userCollection.insert_one(user)
             except Exception as e:
                 print(e)
         else: 
             print("Cannot connect to database")
+
+    def changeUserLanguage(self, username, language): 
+        dbuser = self.findUser(username)
+        if dbuser is not None:
+            query = {"_id": username}
+            newValue = {"$set": {
+                    "language": language
+                }
+            }
+            self.userCollection.update_one(query, newValue)
+        else:
+            print("Insert new user")
+            user = {
+                "_id": username,
+                "language": language
+            }
+            self.insertUser(user)
+
 
     
 
