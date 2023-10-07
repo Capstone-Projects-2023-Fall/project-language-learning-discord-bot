@@ -23,6 +23,7 @@ class Database(object):
             print("Pinged your deployment. You successfully connected to MongoDB!")
             self.db = self.client["mydatabase"]
             self.userCollection = self.db["users"]
+            self.quizCollection = self.db["quizzes"]
             self.isOk = True
         except Exception as e:
             self.isOk = False
@@ -64,6 +65,18 @@ class Database(object):
                 "language": language
             }
             self.insertUser(user)
+
+    def getQuizzes(self, language):
+        if self.isOk:
+            try:
+                query = {"language": language}
+                return self.quizCollection.find(query)
+            except Exception as e:
+                print(e)
+
+        else:
+            print("Cannot connect to database")
+
 
 
     
