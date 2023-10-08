@@ -65,6 +65,60 @@ Design Document - Part II API
             - Parameters: self, username, language
             - Returns: none
 
+        - getQuizzees(): void
+            - Method to collect all quizzes from the user specified language
+            - Pre-conditions: None
+            - Parameters: self, language
+            - Returns: quizzes
+
+        - getRandomQuiz(): void
+            - Method to get a random quiz from the array
+            - Pre-conditions: None
+            - Parameters: self, language
+            - Returns: quizzes[index]
+
+        - updateUserQuiz(): void
+            - Method to update the user quiz status in their dbuser database
+            - Pre-conditions: None
+            - Parameters: self, username, quiz
+            - Returns: none
+
+## VocabQuiz
+    Class Purpose: To generate a customized 
+    
+    Data Fields: None
+
+    Methods:
+        - __init__(): void
+            - Constructor to create bot object
+            - Pre-conditions: None
+            - Parameters: self, ctx, user, quiz
+            - Returns: None
+
+        - get_question(): void
+            - Method to collect all questions and their respective answers from the user
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: True or False
+
+        - button_callback_true(): void
+            - Method to test to if user has selected the correct answer their quiz and if so then display their results
+            - Pre-conditions: None
+            - Parameters: interaction
+            - Returns: none
+
+        - button_callback_false(): void
+            - Method to test to if user has selected the wrong answer their quiz and if so then display their results
+            - Pre-conditions: None
+            - Parameters: interaction
+            - Returns: none
+
+        - get_quiz_info(): void
+            - Method to collect final quiz data and store it in user's database
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: none
+
 ## JoinVoice
     Class Purpose: To allow the discord bot to enter into the voice channel of the current user
     
@@ -129,4 +183,28 @@ Design Document - Part II API
             - To change the default language in the user's current datbase entry
             - Pre-conditions: None
             - Parameters: self, ctx, userprompt: str
+            - Returns: None
+
+## StartVocabQuiz
+    Class Purpose: To start the vocab quiz practice for a user in a text channel
+
+    Data Fields: None
+
+    Methods:
+        - __init__(): void
+            - Constructor to create bot object
+            - Pre-conditions: None
+            - Parameters: self, bot
+            - Returns: None
+
+        - on_ready(): void
+            - To display a debug message to Cogs to confirm it's working
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: None
+
+        - startVocabQuiz(): void
+            - Method to find the user in the database and start process of associating all vocab quiz content to them on completion
+            - Pre-conditions: None
+            - Parameters: self, ctx
             - Returns: None
