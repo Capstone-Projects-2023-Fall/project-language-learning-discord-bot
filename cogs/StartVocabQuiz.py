@@ -19,25 +19,26 @@ class StartVocabQuiz(commands.Cog):
 
     @commands.command()
     async def startVocabQuiz(self, ctx):
-        myview = discord.ui.View()
-        button = discord.ui.Button(label="Eight")
-        async def calback(interaction):
-            print("button pressed", interaction)
-            await interaction.response.send_message("Your select the right answer")
-            await ctx.send("How many planet are in the solar system?", view=myview)
-
-        button.callback = calback
-        myview.add_item(button)
-        dbuser = database.findUser(str(ctx.message.author))
+        username = str(ctx.message.author)
+        dbuser = database.findUser(username=username)
         print("user", dbuser)
-        if dbuser is not None and dbuser[constant.USER_LANGUAGE] is not None:
-            await ctx.send(f"Start vocabulary for {dbuser[constant.USER_LANGUAGE]} quiz")
+        if dbuser is not None and constant.USER_LANGUAGE in dbuser:
+            language = dbuser[constant.USER_LANGUAGE]
+            await ctx.send(f"Start vocabulary for {language} quiz")
+            quiz = database.getRandomQuiz(language)
+            vocabQuiz = vocabquiz.VocabQuiz(ctx=ctx,user=username, quiz=quiz)
+            hasQuestion, question, view = vocabQuiz.get_question()
+            if (hasQuestion):
+                await ctx.send(question, view=view)
+            else:
+                quizInfo = vocabQuiz.get_quiz_info()
+                database.updateUserQuiz(username=username,quiz=quizInfo)
+                await ctx.send(f"You finished the quiz! Your score is {quiz[constant.QUIZ_SCORE]}")
+                
+
         else: 
             await ctx.send(f"Please use command !changeLanguage [language] to select your language")
             
-        await ctx.send("How many planet are in the solar system?", view=myview)
-
-
 async def setup(bot):
     await bot.add_cog(StartVocabQuiz(bot))
     print("StartVocabQuiz.py added")
