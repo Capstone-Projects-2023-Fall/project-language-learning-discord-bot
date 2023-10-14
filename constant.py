@@ -13,3 +13,5 @@ QUIZ_ISCORRECT = "isCorrect"
 QUIZ_SCORE = "score"
 QUIZ_NAME = "name"
 QUIZ_SCORE = "score"
+
+COLLECTION_ID = "_id"

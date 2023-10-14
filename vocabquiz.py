@@ -62,7 +62,7 @@ class VocabQuiz(object):
     def get_quiz_info(self):
         score = 10 * self.numOfCorrectAnswer
         return {
-            "_id": self.quiz["_id"],
+            constant.COLLECTION_ID: self.quiz[constant.COLLECTION_ID],
             constant.QUIZ_NAME: self.quiz[constant.QUIZ_NAME],
             constant.QUIZ_SCORE: score
         }
