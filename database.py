@@ -34,7 +34,7 @@ class Database(object):
     def findUser(self, username):
         if self.isOk:
             try:
-                query = {"_id": username}
+                query = {constant.COLLECTION_ID: username}
                 return self.userCollection.find_one(query)
             except Exception as e:
                 print(e)
@@ -54,24 +54,24 @@ class Database(object):
     def changeUserLanguage(self, username, language): 
         dbuser = self.findUser(username)
         if dbuser is not None:
-            query = {"_id": username}
+            query = {constant.COLLECTION_ID: username}
             newValue = {"$set": {
-                    "language": language
+                    constant.USER_LANGUAGE: language
                 }
             }
             self.userCollection.update_one(query, newValue)
         else:
             print("Insert new user")
             user = {
-                "_id": username,
-                "language": language
+                constant.COLLECTION_ID: username,
+                constant.USER_LANGUAGE: language
             }
             self.insertUser(user)
 
     def getQuizzes(self, language):
         if self.isOk:
             try:
-                query = {"language": language}
+                query = {constant.USER_LANGUAGE: language}
                 cursor = self.quizCollection.find(query)
                 quizzes = []
                 for quiz in cursor:
@@ -86,8 +86,11 @@ class Database(object):
         if self.isOk:
             quizzes = self.getQuizzes(language)
             quizCount = len(quizzes)
-            index = random.randrange(0, quizCount)
-            return quizzes[index]
+            if quizCount == 0:
+                return None
+            else:
+                index = random.randrange(0, quizCount)
+                return quizzes[index]
         else:
             print("Cannot connect to database")
 
@@ -100,7 +103,7 @@ class Database(object):
                 if constant.USER_TOTALSCORE  in dbuser:
                     score += dbuser[constant.USER_TOTALSCORE]
 
-                query = {"_id": username}
+                query = {constant.COLLECTION_ID: username}
                 newValue = {"$set": {
                         constant.USER_TOTALSCORE: score
                     }
