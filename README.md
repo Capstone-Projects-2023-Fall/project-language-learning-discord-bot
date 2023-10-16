@@ -44,19 +44,7 @@ o Server or Cloud Hosting
 
 o Possibly utilize GPT
 
-## [Language Learning Discord Bot](https://capstone-projects-2023-fall.github.io/project-language-learning-discord-bot/) GitHub Stats
 
-### Number of opened pull requests made by each team member
-
-![Language Learning Discord Bot pull requests](https://courses.ianapplebaum.com/api/pull-requests/Capstone-Projects-2023-Fall/project-language-learning-discord-bot)
-
-### Number of code reviews made by each team member
-
-![Language Learning Discord Bot reviews](https://courses.ianapplebaum.com/api/reviews/Capstone-Projects-2023-Fall/project-language-learning-discord-bot)
-
-### Number of commits made by each team member
-
-![Language Learning Discord Bot commits](https://courses.ianapplebaum.com/api/commits/Capstone-Projects-2023-Fall/project-language-learning-discord-bot)
 
 ## Collaborators
 
