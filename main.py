@@ -33,7 +33,7 @@ async def on_ready():
 
     # Send a message to a specific channel when the bot comes online
     channel_id = 1154069544629960925  # Replace with specific channel ID
-    channel = bot.get_channel(channel_id)
+    channel = bot.get_channel(1154069544629960925)
 
     if channel:
         await channel.send("Hello, I'm now online!")
@@ -70,5 +70,5 @@ async def setup_hook():
 async def main():
     async with bot:
         await setup_hook()
-        await bot.start(os.environ['BOT_TOKEN'])
+        await bot.start('MTE0ODY5ODc2MzY1MzgxMjI3OA.GW_K2G.yWDIksTnIrCHwYhLadV-dgl3mQ_CGEIpZxcCAA')
 asyncio.run(main())

@@ -16,7 +16,7 @@ class Database(object):
         return cls.instance
 
     def initDb(self):
-        uri = os.environ['MONGO_DB_URI']
+        uri = os.environ.get('mongodb+srv://tun70473:admin123456@cluster0.to7hrib.mongodb.net/?retryWrites=true&w=majoriy', 'Your default connection string if needed')
         # Create a new client and connect to the server
         self.client = MongoClient(uri, server_api=ServerApi('1'))
         self.isOk = False
