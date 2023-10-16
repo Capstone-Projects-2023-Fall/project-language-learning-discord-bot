@@ -4,6 +4,7 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 import random
 import constant
+import certifi
 
 load_dotenv()
 
@@ -18,7 +19,7 @@ class Database(object):
     def initDb(self):
         uri = os.environ['MONGO_DB_URI']
         # Create a new client and connect to the server
-        self.client = MongoClient(uri, server_api=ServerApi('1'))
+        self.client = MongoClient(uri, server_api=ServerApi('1'), tlsCAFile=certifi.where())
         self.isOk = False
         try:
             self.client.admin.command('ping')
