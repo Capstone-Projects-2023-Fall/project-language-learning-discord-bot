@@ -55,19 +55,28 @@ async def test_ping(bot):
 @pytest.mark.asyncio
 async def test_startVoiceQuiz_notinvc(bot):
     await dpytest.message("!startVoiceQuiz")
+
+    assert not bot.voice_clients
     assert dpytest.verify().message().content("You need to be in a voice channel to use this command.")
 
 @pytest.mark.asyncio
 async def test_startVoiceQuiz_invc(bot):
-    # Fake context : where member is in a voice channel
-    ctx = dpytest.FakeContext(author=dpytest.FakeMember(voice=dpytest.FakeVoiceChannel()))
-    await dpytest.message("!startVoiceQuiz", ctx=ctx)
+    guild = bot.guilds[0]
+    voice_channel = guild.voice_channels[0]
+    member = guild.members[0]
+
+    await member.move_to(voice_channel)
+    await dpytest.message("!startVoiceQuiz")
     
-    assert dpytest.verify().message().content(f"Bot has joined {ctx.author.voice.channel.name}.")
+    assert bot.voice_clients
 
 """
 # Unused test provided from:
 # https://dpytest.readthedocs.io/en/latest/tutorials/using_pytest.html
+
+# Help with testing for voice cog was found via dpytest github:
+# https://github.com/CraftSpider/dpytest/blob/master/tests/test_voice.py
+
 @pytest.mark.asyncio
 async def test_echo(bot):
     await dpytest.message("!echo Hello world")
