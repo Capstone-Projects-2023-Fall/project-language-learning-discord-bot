@@ -105,10 +105,23 @@ class Database(object):
                     score += dbuser[constant.USER_TOTALSCORE]
 
                 query = {constant.COLLECTION_ID: username}
-                newValue = {"$set": {
-                        constant.USER_TOTALSCORE: score
+                newValue = {}
+                if constant.USER_QUIZZES in dbuser:
+                    dbquizzes = dbuser[constant.USER_QUIZZES]
+                    dbquizzes.append(quiz)
+                    newValue = {"$set": {
+                            constant.USER_TOTALSCORE: score,
+                            constant.USER_QUIZZES: dbquizzes
+                        }
                     }
-                }
+                else:
+                    newValue = {"$set": {
+                            constant.USER_TOTALSCORE: score,
+                            constant.USER_QUIZZES: [quiz]
+                        }
+                    }
+
+                    
                 self.userCollection.update_one(query, newValue)
         else:
             print("Cannot connect to database")
