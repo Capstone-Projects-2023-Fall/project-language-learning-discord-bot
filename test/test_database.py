@@ -1,6 +1,7 @@
 import unittest
 import database
 import constant
+from datetime import datetime
 
 class TestDatabase(unittest.TestCase):
 
@@ -65,10 +66,12 @@ class TestDatabase(unittest.TestCase):
 
     def test_updateUserQuiz(self):
         dbquiz = self.database.getRandomQuiz(language="Spanish")
+        now = datetime.now()
         quizInfo = {
             constant.COLLECTION_ID: dbquiz[constant.COLLECTION_ID],
             constant.QUIZ_NAME: dbquiz[constant.QUIZ_NAME],
-            constant.QUIZ_SCORE: 20
+            constant.QUIZ_SCORE: 20,
+            constant.USER_TOOKON: now.strftime(constant.DATE_FORMAT)
         }
         self.database.updateUserQuiz(username="user1", quiz=quizInfo)
         dbuser = self.database.findUser(username="user1")
