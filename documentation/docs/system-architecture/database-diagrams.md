@@ -15,6 +15,7 @@ sidebar_position: 6
 erDiagram
 Users {
   String username PK
+  String language_id FK
   String email
   Int totalScore
   Int level
@@ -25,6 +26,15 @@ Languages {
   String name
 }
 
+UserQuiz {
+  Int id PK
+  String username FK
+  Int quiz_id FK
+  Date took_on
+  Int score
+
+}
+
 Quizzes {
   Int id PK
   String name
@@ -33,11 +43,14 @@ Quizzes {
 
 Questions {
   Int id PK
+  String language_id FK
+  Int quizz_id FK
   String question
 }
 
 Answers {
   Int id PK
+  Int question_id FK
   String answer
   Boolean isCorrect
 }
@@ -48,20 +61,31 @@ Practices {
   Int Score
 }
 
+UserPractice {
+  Int id PK
+  String username FK
+  Int practice_id FK
+  Date took_on
+  Int score
+}
+
 Sentences {
   Int id PK
+  Int practice_id FK
   String sentences
 }
 
-Questions }|--|{ Answers : "has"
-Quizzes }|--|{ Questions : "has"
-Users }|--|{ Quizzes : "did"
-Users }|--|{ Languages : "select"
-Quizzes ||--|| Languages : "belong to"
+Questions ||--|{ Answers : ""
+Quizzes ||--|{ Questions : ""
+Users ||--|{ UserQuiz : ""
+Quizzes ||--|{ UserQuiz : ""
+Users }|--|| Languages : ""
+Quizzes }|--|| Languages : ""
 
-Users }|--|{ Practices : "did"
-Practices }|--|{ Sentences : "has"
-Practices ||--|| Languages : "belong to"
+Users ||--|{ UserPractice : ""
+Practices ||--|{ UserPractice : ""
+Practices ||--|{ Sentences : ""
+Practices }|--|| Languages : ""
 
 
 
@@ -76,6 +100,7 @@ Practices ||--|| Languages : "belong to"
 	email: "tun70473@temple.edu",
 	totalScore: 10,
 	level: 1,
+	language: "Spanish",
 	quizzes: [
 		{
 			_id: "1",
@@ -98,6 +123,7 @@ Practices ||--|| Languages : "belong to"
 {
 	_id: "1",
 	name: "Practice 1",
+	language: "Spanish",
 	sentences: [
 		{
 			sentence: "Cat has four legs"
@@ -112,6 +138,7 @@ Practices ||--|| Languages : "belong to"
 {
 	_id: "1",
 	name: "Quizz 1",
+	language: "Spanish",
 	questions: [
 		{
 			question: "How many planets are there in the solar system?"

@@ -6,36 +6,205 @@ description: What should be in this section.
 Design Document - Part II API
 =============================
 
-**Purpose**
+## Main
+    Class Purpose: The Main class will start and initalize the bot with it's default parameters.
 
-This Design Document gives the complete design of the software implementation. This information should be in structured comments (e.g. Javadoc) in the source files. We encourage the use of a documentation generation tool to generate a draft of your API that you can augment to include the following details.
+    Data Fields: None
 
-**Requirements**
+    Methods:
+      - on_ready(): void
+          - Inital bot event when bot enters discord server with assigned displayed message.
+          - Pre-conditions: None
+          - Parameters: None
+          - Returns: None
 
-In addition to the general documentation requirements the Design Document - Part II API will contain:
+      - setup_hook(): void
+          - Loads all the cogs (external commands organized in classes).
+          - Pre-conditions: None
+          - Parameters: None
+          - Returns: None
 
-General review of the software architecture for each module specified in Design Document - Part I Architecture. Please include your class diagram as an important reference.
+      - main(): void
+          - Runs the bot with above methods
+          - Pre-conditions: None
+          - Parameters: None
+          - Returns: None
+## Database
+    Class Purpose: To create a database of users with data about their performance within a specific langauge.
 
-**For each class define the data fields, methods.**
+    Data Fields: None
 
-The purpose of the class.
+    Methods:
+        - __new__(): void
+            - Creates a new instance of a user in the database
+            - Pre-conditions: None
+            - Parameters: cls
+            - Returns: cls.instance
 
-The purpose of each data field.
+        - initDb(): void
+            - Initalizes the Mongo DB and replies to user if database was successful or not in starting sequence
+            - Pre-conditions: none
+            - Parameters: self
+            - Returns: none
 
-The purpose of each method
+        - findUser(): void
+            - Command to find a username of current user within database
+            - Pre-conditions: None
+            - Parameters: self, username
+            - Returns: self.userCollection.find_one(query), displays the user if it was found
 
-Pre-conditions if any.
+        - insertUser(): void
+            - Command to insert a user into the Mongo database
+            - Pre-conditions: None
+            - Parameters: self, user
+            - Returns: none
 
-Post-conditions if any.
+        - changeUserLangauge(): void
+            - Command to change user language
+            - Pre-conditions: None
+            - Parameters: self, username, language
+            - Returns: none
 
-Parameters and data types
+        - getQuizzees(): void
+            - Method to collect all quizzes from the user specified language
+            - Pre-conditions: None
+            - Parameters: self, language
+            - Returns: quizzes
 
-Return value and output variables
+        - getRandomQuiz(): void
+            - Method to get a random quiz from the array
+            - Pre-conditions: None
+            - Parameters: self, language
+            - Returns: quizzes[index]
 
-Exceptions thrown\* (PLEASE see note below for details).
+        - updateUserQuiz(): void
+            - Method to update the user quiz status in their dbuser database
+            - Pre-conditions: None
+            - Parameters: self, username, quiz
+            - Returns: none
 
-An example of an auto-generated and then augmented API specification is here ([Fiscal Design Document 2\_API.docx](https://templeu.instructure.com/courses/106563/files/16928898?wrap=1 "Fiscal Design Document 2_API.docx") )
+## VocabQuiz
+    Class Purpose: To generate a customized 
+    
+    Data Fields: None
 
-This group developed their API documentation by hand ([Design Document Part 2 API-1\_MovieMatch.docx](https://templeu.instructure.com/courses/106563/files/16928899?wrap=1 "Design Document Part 2 API-1_MovieMatch.docx") )
+    Methods:
+        - __init__(): void
+            - Constructor to create bot object
+            - Pre-conditions: None
+            - Parameters: self, ctx, user, quiz
+            - Returns: None
 
-\*At the top level, or where appropriate, all exceptions should be caught and an error message that is meaningful to the user generated. It is not OK to say ("xxxx has encountered a problem and will now close (OK?)". Error messages and recovery procedures should be documented in the User’s Manual.
+        - get_question(): void
+            - Method to collect all questions and their respective answers from the user
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: True or False
+
+        - button_callback_true(): void
+            - Method to test to if user has selected the correct answer their quiz and if so then display their results
+            - Pre-conditions: None
+            - Parameters: interaction
+            - Returns: none
+
+        - button_callback_false(): void
+            - Method to test to if user has selected the wrong answer their quiz and if so then display their results
+            - Pre-conditions: None
+            - Parameters: interaction
+            - Returns: none
+
+        - get_quiz_info(): void
+            - Method to collect final quiz data and store it in user's database
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: none
+
+## JoinVoice
+    Class Purpose: To allow the discord bot to enter into the voice channel of the current user
+    
+    Data Fields: None
+
+    Methods:
+        - __init__(): void
+            - Constructor to create bot object
+            - Pre-conditions: None
+            - Parameters: None
+            - Returns: None
+
+        - startVoiceQuiz(): void
+            - Command to start Voice Quiz for the specific user in said voice channel
+            - Pre-conditions: None
+            - Parameters: self, ctx
+            - Returns: None
+
+## HelpCommand
+    Class Purpose: To allow the user to use the /help command
+
+    Data Fields: None
+
+    Methods:
+        - __init__(): void
+            - Constructor to create bot object
+            - Pre-conditions: None
+            - Parameters: self, bot
+            - Returns: None
+
+        - on_ready(): void
+            - To display a debug message to Cogs to confirm it's working
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: None
+
+        - help(): void
+            - To display to the user the contents of the help command
+            - Pre-conditions: None
+            - Parameters: self, ctx
+            - Returns: None
+
+## ChangeLanguage
+    Class Purpose: To allow the user to change it's current learning language to any other on the "constant.py" file (either Spanish or French).
+
+    Data Fields: None
+
+    Methods:
+        - __init__(): void
+            - Constructor to create bot object
+            - Pre-conditions: None
+            - Parameters: self, bot
+            - Returns: None
+
+        - on_ready(): void
+            - To display a debug message to Cogs to confirm it's working
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: None
+
+        - changeLanguage(): void
+            - To change the default language in the user's current datbase entry
+            - Pre-conditions: None
+            - Parameters: self, ctx, userprompt: str
+            - Returns: None
+
+## StartVocabQuiz
+    Class Purpose: To start the vocab quiz practice for a user in a text channel
+
+    Data Fields: None
+
+    Methods:
+        - __init__(): void
+            - Constructor to create bot object
+            - Pre-conditions: None
+            - Parameters: self, bot
+            - Returns: None
+
+        - on_ready(): void
+            - To display a debug message to Cogs to confirm it's working
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: None
+
+        - startVocabQuiz(): void
+            - Method to find the user in the database and start process of associating all vocab quiz content to them on completion
+            - Pre-conditions: None
+            - Parameters: self, ctx
+            - Returns: None
