@@ -23,10 +23,6 @@ class TestDatabase(unittest.TestCase):
         self.database.quizCollection.insert_one(quiz1)
         self.database.quizCollection.insert_one(quiz2)
 
-
-        
-
-
     def test_findUser_not_found(self):
         dbuser = self.database.findUser('notfound')
         self.assertIsNone(dbuser)
