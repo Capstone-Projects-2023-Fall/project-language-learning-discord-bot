@@ -67,7 +67,8 @@ class VocabQuiz(object):
             constant.COLLECTION_ID: self.quiz[constant.COLLECTION_ID],
             constant.QUIZ_NAME: self.quiz[constant.QUIZ_NAME],
             constant.QUIZ_SCORE: score,
-            constant.USER_TOOKON: now.strftime(constant.DATE_FORMAT)
+            constant.USER_TOOKON: now.strftime(constant.DATE_FORMAT),
+            constant.USER_LANGUAGE: self.quiz[constant.USER_LANGUAGE]
         }
 
 
