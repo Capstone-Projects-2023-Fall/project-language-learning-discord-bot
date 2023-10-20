@@ -19,10 +19,7 @@ class SpeechToText(object):
         audio_file= open(path + filename, "rb")
         transcript = openai.Audio.transcribe("whisper-1", audio_file)
         return transcript["text"]
-    
-s2t = SpeechToText()
-text = s2t.speech_to_text("cuantos-anos-tienes.mp3")
-print(text)
+
 
     
         
