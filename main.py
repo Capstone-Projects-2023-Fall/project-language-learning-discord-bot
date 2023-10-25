@@ -58,16 +58,11 @@ async def on_ready():
 #         await message.channel.send('Hello! This is the content of help command')
 
 # Loads all the cogs (external commands organized in classes)
-async def setup_hook():
+def setup_hook():
     for filename in os.listdir('./cogs'):
         if filename.endswith('.py'):
-            await bot.load_extension(f'cogs.{filename[:-3]}')
+            bot.load_extension(f'cogs.{filename[:-3]}')
             print(f"Loaded Cog: {filename[:-3]}")
+setup_hook()
+bot.run(os.environ['BOT_TOKEN'])
 
-
-# Run the bot
-async def main():
-    async with bot:
-        await setup_hook()
-        await bot.start(os.environ['BOT_TOKEN'])
-asyncio.run(main())

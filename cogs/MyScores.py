@@ -34,6 +34,6 @@ class MyScores(commands.Cog):
             scoreEmbed.add_field(name=quiz[constant.QUIZ_NAME], value=f"Language: {quiz[constant.USER_LANGUAGE]} score: {quiz[constant.QUIZ_SCORE]} took on: {quiz[constant.USER_TOOKON]}", inline=False)
         await ctx.send(embed=scoreEmbed)
 
-async def setup(bot):
-    await bot.add_cog(MyScores(bot))
+def setup(bot):
+    bot.add_cog(MyScores(bot))
     print("MyScores.py added")
