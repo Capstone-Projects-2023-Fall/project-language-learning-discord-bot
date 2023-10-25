@@ -30,6 +30,6 @@ class JoinVoice(commands.Cog):
         else:
             await ctx.send("The bot is not in a voice channel.")
 
-async def setup(bot):
-    await bot.add_cog(JoinVoice(bot))
+def setup(bot):
+    bot.add_cog(JoinVoice(bot))
     print("JoinVoice.py added")

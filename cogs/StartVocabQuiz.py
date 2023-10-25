@@ -39,6 +39,6 @@ class StartVocabQuiz(commands.Cog):
             error_embed = discord.Embed(title="Language Not Selected", description=f"Please use command !changeLanguage [language] to select your language", color=0xFF0000)
             await ctx.send(embed=error_embed)
 
-async def setup(bot):
-    await bot.add_cog(StartVocabQuiz(bot))
+def setup(bot):
+    bot.add_cog(StartVocabQuiz(bot))
     print("StartVocabQuiz.py added")
