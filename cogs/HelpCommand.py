@@ -22,8 +22,8 @@ class HelpCommand(commands.Cog):
 
         await ctx.send(embed=helpEmbed)
 
-async def setup(bot):
+def setup(bot):
     bot.remove_command('help')
-    await bot.add_cog(HelpCommand(bot))
+    bot.add_cog(HelpCommand(bot))
     print("HelpCommand.py added")
 

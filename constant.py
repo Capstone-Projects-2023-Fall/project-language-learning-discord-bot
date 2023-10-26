@@ -3,6 +3,8 @@ LANGUAGES = ["Spanish", "French"]
 # User
 USER_LANGUAGE = "language"
 USER_TOTALSCORE = "totalScore"
+USER_QUIZZES = "quizzes"
+USER_TOOKON = "tookOn"
 
 # Quiz
 QUIZ_QUESTIONS = "questions"
@@ -15,3 +17,5 @@ QUIZ_NAME = "name"
 QUIZ_SCORE = "score"
 
 COLLECTION_ID = "_id"
+
+DATE_FORMAT = "%d/%m/%Y %H:%M:%S"

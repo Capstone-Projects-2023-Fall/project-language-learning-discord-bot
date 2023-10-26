@@ -21,24 +21,24 @@ class StartVocabQuiz(commands.Cog):
     async def startVocabQuiz(self, ctx):
         username = str(ctx.message.author)
         dbuser = database.findUser(username=username)
-        print("user", dbuser)
         if dbuser is not None and constant.USER_LANGUAGE in dbuser:
             language = dbuser[constant.USER_LANGUAGE]
-            await ctx.send(f"Start vocabulary for {language} quiz")
+            quiz_embed = discord.Embed(title=f"Vocabulary Quiz - {language}", description=f"Get ready to test your vocabulary!", color=0xB6D7A8)
+            await ctx.send(embed=quiz_embed)
             quiz = database.getRandomQuiz(language)
             vocabQuiz = vocabquiz.VocabQuiz(ctx=ctx,user=username, quiz=quiz)
             hasQuestion, question, view = vocabQuiz.get_question()
-            if (hasQuestion):
+            if hasQuestion:
                 await ctx.send(question, view=view)
             else:
                 quizInfo = vocabQuiz.get_quiz_info()
                 database.updateUserQuiz(username=username,quiz=quizInfo)
-                await ctx.send(f"You finished the quiz! Your score is {quiz[constant.QUIZ_SCORE]}")
-                
+                result_embed = discord.Embed(title="Quiz Completed!", description=f"You finished the quiz! Your score is {quiz[constant.QUIZ_SCORE]}", color=0xB6D7A8)
+                await ctx.send(embed=result_embed)
+        else:
+            error_embed = discord.Embed(title="Language Not Selected", description=f"Please use command !changeLanguage [language] to select your language", color=0xFF0000)
+            await ctx.send(embed=error_embed)
 
-        else: 
-            await ctx.send(f"Please use command !changeLanguage [language] to select your language")
-            
-async def setup(bot):
-    await bot.add_cog(StartVocabQuiz(bot))
+def setup(bot):
+    bot.add_cog(StartVocabQuiz(bot))
     print("StartVocabQuiz.py added")

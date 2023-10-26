@@ -2,6 +2,7 @@ import discord
 import constant
 import database
 from database import Database
+from datetime import datetime
 
 database = Database()
 
@@ -61,10 +62,13 @@ class VocabQuiz(object):
     
     def get_quiz_info(self):
         score = 10 * self.numOfCorrectAnswer
+        now = datetime.now()
         return {
             constant.COLLECTION_ID: self.quiz[constant.COLLECTION_ID],
             constant.QUIZ_NAME: self.quiz[constant.QUIZ_NAME],
-            constant.QUIZ_SCORE: score
+            constant.QUIZ_SCORE: score,
+            constant.USER_TOOKON: now.strftime(constant.DATE_FORMAT),
+            constant.USER_LANGUAGE: self.quiz[constant.USER_LANGUAGE]
         }
 
 

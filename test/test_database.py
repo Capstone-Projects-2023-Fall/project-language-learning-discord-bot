@@ -1,6 +1,7 @@
 import unittest
 import database
 import constant
+from datetime import datetime
 
 class TestDatabase(unittest.TestCase):
 
@@ -22,10 +23,6 @@ class TestDatabase(unittest.TestCase):
         quiz2 = {"name":"Practice 2","language":"Spanish","questions":[{"question":"How to say bad?","answers":[{"answer":"por favor","isCorrect":"false"},{"answer":"mal","isCorrect":"true"},{"answer":"favor","isCorrect":"false"}]},{"question":"How to say as always?","answers":[{"answer":"como siempre","isCorrect":"true"},{"answer":"por","isCorrect":"false"},{"answer":"gracias","isCorrect":"false"}]}]}
         self.database.quizCollection.insert_one(quiz1)
         self.database.quizCollection.insert_one(quiz2)
-
-
-        
-
 
     def test_findUser_not_found(self):
         dbuser = self.database.findUser('notfound')
@@ -69,10 +66,12 @@ class TestDatabase(unittest.TestCase):
 
     def test_updateUserQuiz(self):
         dbquiz = self.database.getRandomQuiz(language="Spanish")
+        now = datetime.now()
         quizInfo = {
             constant.COLLECTION_ID: dbquiz[constant.COLLECTION_ID],
             constant.QUIZ_NAME: dbquiz[constant.QUIZ_NAME],
-            constant.QUIZ_SCORE: 20
+            constant.QUIZ_SCORE: 20,
+            constant.USER_TOOKON: now.strftime(constant.DATE_FORMAT)
         }
         self.database.updateUserQuiz(username="user1", quiz=quizInfo)
         dbuser = self.database.findUser(username="user1")
