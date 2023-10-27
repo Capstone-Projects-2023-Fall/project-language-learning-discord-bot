@@ -35,7 +35,7 @@ Design Document - Part II API
     Data Fields: None
 
     Methods:
-        - __new__(): void
+        - __new__():
             - Creates a new instance of a user in the database
             - Pre-conditions: None
             - Parameters: cls
@@ -47,7 +47,7 @@ Design Document - Part II API
             - Parameters: self
             - Returns: none
 
-        - findUser(): void
+        - findUser():
             - Command to find a username of current user within database
             - Pre-conditions: None
             - Parameters: self, username
@@ -65,26 +65,26 @@ Design Document - Part II API
             - Parameters: self, username, language
             - Returns: none
 
-        - getQuizzees(): void
+        - getQuizes():
             - Method to collect all quizzes from the user specified language
             - Pre-conditions: None
             - Parameters: self, language
             - Returns: quizzes
 
-        - getRandomQuiz(): void
+        - getRandomQuiz():
             - Method to get a random quiz from the array
             - Pre-conditions: None
             - Parameters: self, language
             - Returns: quizzes[index]
 
-        - updateUserQuiz(): void
+        - updateUserQuiz():
             - Method to update the user quiz status in their dbuser database
             - Pre-conditions: None
             - Parameters: self, username, quiz
             - Returns: none
 
 ## VocabQuiz
-    Class Purpose: To generate a customized 
+    Class Purpose: To generate a customized vocab quiz for the user based on their selected language
     
     Data Fields: None
 
@@ -95,7 +95,7 @@ Design Document - Part II API
             - Parameters: self, ctx, user, quiz
             - Returns: None
 
-        - get_question(): void
+        - get_question():
             - Method to collect all questions and their respective answers from the user
             - Pre-conditions: None
             - Parameters: self
