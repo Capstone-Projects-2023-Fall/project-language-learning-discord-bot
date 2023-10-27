@@ -23,6 +23,10 @@ class TestDatabase(unittest.TestCase):
         quiz2 = {"name":"Practice 2","language":"Spanish","questions":[{"question":"How to say bad?","answers":[{"answer":"por favor","isCorrect":"false"},{"answer":"mal","isCorrect":"true"},{"answer":"favor","isCorrect":"false"}]},{"question":"How to say as always?","answers":[{"answer":"como siempre","isCorrect":"true"},{"answer":"por","isCorrect":"false"},{"answer":"gracias","isCorrect":"false"}]}]}
         self.database.quizCollection.insert_one(quiz1)
         self.database.quizCollection.insert_one(quiz2)
+        practice1 = {"name": "Practice 1","language": "Spanish","sentences": [{"sentence": "Cat has four legs"},{"sentence": "Chicken has two legs"}]}
+        practice2 = {"name": "Practice 2","language": "Spanish","sentences": [{"sentence": "Today is hot"},{"sentence": "The sun is yellow"}]}
+        self.database.practiceCollection.insert_one(practice1)
+        self.database.practiceCollection.insert_one(practice2)
 
     def test_findUser_not_found(self):
         dbuser = self.database.findUser('notfound')
@@ -77,6 +81,22 @@ class TestDatabase(unittest.TestCase):
         dbuser = self.database.findUser(username="user1")
         self.assertEqual(dbuser[constant.COLLECTION_ID], "user1")
         self.assertEqual(dbuser[constant.USER_TOTALSCORE], 20)
+
+    def test_getPractices_no_record(self):
+        dbpractices= self.database.getPractices("a_language")
+        self.assertEqual(len(dbpractices), 0)
+    
+    def test_getPractices_has_record(self):
+        dbpractices = self.database.getPractices("Spanish")
+        self.assertEqual(len(dbpractices), 2)
+
+    def test_getRandomPractice_no_record(self):
+        dbpractice = self.database.getRandomPractice(language="a_language")
+        self.assertIsNone(dbpractice)
+
+    def test_getRandomPractice_has_record(self): 
+        dbpractice = self.database.getRandomPractice(language="Spanish")
+        self.assertIsNotNone(dbpractice)
 
 
 
