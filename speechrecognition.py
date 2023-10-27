@@ -20,20 +20,17 @@ class SpeechToText(object):
         path = "audios/"
         #audio_file= open(path + filename, "rb")
         if language == "English":
-            with sr.AudioFile(path + filename) as source:
-                audio_data = self.r.record(source)
-                text = self.r.recognize_google(audio_data)
-                return text
+            try:
+                with sr.AudioFile(path + filename) as source:
+                    audio_data = self.r.record(source)
+                    text = self.r.recognize_google(audio_data)
+                    return text
+            except:
+                return "Can not recognize the audio."
         else: 
             audio_file= open(path + filename, "rb")
             transcript = openai.Audio.transcribe("whisper-1", audio_file)
         return transcript["text"]
-
-
-    
-s2t = SpeechToText()
-text = s2t.speech_to_text(filename="how-are-you.wav", language="English")
-print(text)
 
 
 
