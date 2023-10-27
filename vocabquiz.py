@@ -51,7 +51,7 @@ class VocabQuiz(object):
             for answer in answers:
                 button = discord.ui.Button(label=answer[constant.QUIZ_ANSWER])
                 isCorrect = answer[constant.QUIZ_ISCORRECT]
-                if (isCorrect):
+                if isCorrect == 'true':
                     button.callback = button_callback_true
                 else: 
                     button.callback = button_callback_false
