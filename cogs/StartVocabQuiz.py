@@ -8,7 +8,6 @@ import json
 
 database = Database()
 
-
 class StartVocabQuiz(commands.Cog):
     def __init__(self, bot):
         self.bot = bot

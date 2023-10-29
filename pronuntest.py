@@ -9,9 +9,6 @@ database = Database()
 
 connections = {}
 
-
-
-
 class PronunTest(object):    
     def __init__(self, ctx, user, practice): 
         self.ctx = ctx
