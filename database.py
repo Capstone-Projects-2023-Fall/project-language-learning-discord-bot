@@ -125,7 +125,6 @@ class Database(object):
     def updateUserQuiz(self, username, quiz):
         if self.isOk:
             dbuser = self.findUser(username)
-            print(dbuser)
             if dbuser is not None:
                 score = quiz[constant.QUIZ_SCORE]
                 if constant.USER_TOTALSCORE  in dbuser:
