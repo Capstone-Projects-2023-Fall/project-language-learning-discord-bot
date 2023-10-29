@@ -24,7 +24,8 @@ async def once_done(sink: discord.sinks, channel: discord.TextChannel, *args):  
     await channel.send(f"finished recording audio for: {', '.join(recorded_users)}.", files=files)  # Send a message with the accumulated files.
     await channel.send(f"You say: {text}")
 
-
+# This cog handles manually recording what the user says and generating a .wav 
+# file. As of 10/29/2023, this is unused by itself.
 
 class Record(commands.Cog):
     def __init__(self, bot):
