@@ -19,7 +19,7 @@ async def once_done(sink: discord.sinks, channel: discord.TextChannel, *args):  
             # Copy the BytesIO stream to the output file
             outfile.write(audio.file.getbuffer())
         s2t = SpeechToText()
-        text = s2t.speech_to_text(filename="temp.wav", language="English")
+        text = s2t.speech_to_text(filename="temp.wav", language="n/a")
         print(text)
     await channel.send(f"finished recording audio for: {', '.join(recorded_users)}.", files=files)  # Send a message with the accumulated files.
     await channel.send(f"You say: {text}")
