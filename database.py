@@ -27,6 +27,7 @@ class Database(object):
             self.db = self.client["mydatabase"]
             self.userCollection = self.db["users"]
             self.quizCollection = self.db["quizzes"]
+            self.practiceCollection = self.db["pratices"]
             self.isOk = True
         except Exception as e:
             self.isOk = False
@@ -82,6 +83,20 @@ class Database(object):
                 print(e)
         else:
             print("Cannot connect to database")
+    
+    def getPractices(self, language):
+        if self.isOk:
+            try:
+                query = {constant.USER_LANGUAGE: language}
+                cursor = self.practiceCollection.find(query)
+                practices = []
+                for practice in cursor:
+                    practices.append(practice)
+                return practices
+            except Exception as e:
+                print(e)
+        else:
+            print("Cannot connect to database")
 
     def getRandomQuiz(self, language): 
         if self.isOk:
@@ -92,6 +107,18 @@ class Database(object):
             else:
                 index = random.randrange(0, quizCount)
                 return quizzes[index]
+        else:
+            print("Cannot connect to database")
+    
+    def getRandomPractice(self, language): 
+        if self.isOk:
+            practices = self.getPractices(language)
+            practiceCount = len(practices)
+            if practiceCount == 0:
+                return None
+            else:
+                index = random.randrange(0, practiceCount)
+                return practices[index]
         else:
             print("Cannot connect to database")
 
