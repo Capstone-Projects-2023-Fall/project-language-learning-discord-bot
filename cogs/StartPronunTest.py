@@ -27,7 +27,7 @@ class StartPronunTest(commands.Cog):
             quiz_embed = discord.Embed(title=f"Pronun test - {language}", description=f"Get ready to test your pronunciation!", color=0xB6D7A8)
             await ctx.send(embed=quiz_embed)
             practice = database.getRandomPractice(language)
-            pronunTest = pronuntest.PronunTest(ctx=ctx, user=dbuser, practice=practice)
+            pronunTest = pronuntest.PronunTest(ctx=ctx, user=username, practice=practice)
             hasQuestion, sentence, view = pronunTest.get_question()
             if hasQuestion:
                 await ctx.send(sentence, view=view)

@@ -17,7 +17,6 @@ class VocabQuiz(object):
         self.numOfQuestion = len(self.questions)
 
     def get_question(self):
-        print(f"get_question called: {self.numOfFinishQuestion}")
         if self.numOfFinishQuestion < self.numOfQuestion:
             question = self.questions[self.numOfFinishQuestion]
             answers = question[constant.QUIZ_ANSWERS]

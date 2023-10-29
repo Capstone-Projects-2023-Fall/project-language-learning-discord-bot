@@ -8,7 +8,6 @@ class MatchResult(object):
             match = MatchResult.match_word(expected_word, actual_words)
             if match:
                 number_correct+=1
-        print("Number correct",number_correct)
         return number_correct / len(expected_words)
 
     @staticmethod

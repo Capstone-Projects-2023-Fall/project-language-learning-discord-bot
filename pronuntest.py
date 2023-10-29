@@ -24,7 +24,6 @@ class PronunTest(object):
         self.currentScore = 0
 
     def get_question(self):
-        print(f"get_question called: {self.numOfFinishQuestion}")
         if self.numOfFinishQuestion < self.numOfSentences:
             sentence = self.sentences[self.numOfFinishQuestion]
             self.currentSentence = sentence["sentence"]
@@ -80,7 +79,6 @@ class PronunTest(object):
                 outfile.write(audio.file.getbuffer())
             s2t = SpeechToText()
             text = s2t.speech_to_text(filename="temp.wav", language="n/a")
-            print(text)
         #await channel.send(f"finished recording audio for: {', '.join(recorded_users)}.", files=files)  # Send a message with the accumulated files.
         await channel.send(f"You say: {text}")
         self.numOfFinishQuestion += 1
@@ -95,8 +93,6 @@ class PronunTest(object):
             await self.ctx.send(sentence, view=view)
         else:
             practice_info = self.get_quiz_info()
-            print(practice_info)
-            print("user", self.user)
             database.updateUserQuiz(username=self.user,quiz=practice_info)
             await self.ctx.send(f"You finished the quiz! Your score is: {practice_info[constant.QUIZ_SCORE]}")
 
