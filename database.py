@@ -152,6 +152,11 @@ class Database(object):
         else:
             print("Cannot connect to database")
 
+    def get_all_users(self):
+        user_documents = self.userCollection.find()
+        users = [(doc[constant.COLLECTION_ID], doc[constant.USER_TOTALSCORE]) for doc in user_documents]
+        return users
+
 
 
     
