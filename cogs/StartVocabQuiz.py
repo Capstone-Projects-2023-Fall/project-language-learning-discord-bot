@@ -8,14 +8,13 @@ import json
 
 database = Database()
 
-
 class StartVocabQuiz(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print("StartVocabQuiz command is active")
+        print("StartVocabQuiz command is online.")
 
     @commands.command()
     async def startVocabQuiz(self, ctx):
