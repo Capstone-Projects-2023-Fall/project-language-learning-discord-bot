@@ -61,6 +61,6 @@ class Record(commands.Cog):
 
 def setup(bot):
     bot.add_cog(Record(bot))
-    print("JoinVoice.py added")
+    print("Record.py added")
 
 

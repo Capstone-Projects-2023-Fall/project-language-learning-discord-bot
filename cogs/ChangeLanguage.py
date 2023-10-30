@@ -12,7 +12,7 @@ class ChangeLanguage(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print("ChangeLanguage.py is active")
+        print("ChangeLanguage.py is online.")
 
     @commands.command()
     async def changeLanguage(self, ctx, userprompt: str):

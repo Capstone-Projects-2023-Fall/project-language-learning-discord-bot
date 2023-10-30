@@ -18,12 +18,14 @@ class PronunTest(object):
         self.sentences = practice["sentences"]
         self.numOfSentences = len(self.sentences)
         self.currentSentence = ""
+        self.currentAnswer = ""
         self.currentScore = 0
 
     def get_question(self):
         if self.numOfFinishQuestion < self.numOfSentences:
             sentence = self.sentences[self.numOfFinishQuestion]
             self.currentSentence = sentence["sentence"]
+            self.currentAnswer = sentence["answer"]
             # return answer
             view = discord.ui.View()
 
@@ -48,13 +50,13 @@ class PronunTest(object):
                 )
                 await interaction.response.send_message("Start recording!")
 
-                stopbutton = discord.ui.Button(label="stop")
+                stopbutton = discord.ui.Button(label="Stop")
                 stopbutton.callback = button_stop_callback
                 view = discord.ui.View()
                 view.add_item(stopbutton)
                 await self.ctx.send(view=view)
                 
-            button = discord.ui.Button(label="Tap to say")
+            button = discord.ui.Button(label="Press to Record")
             button.callback = button_record_callback
             view.add_item(button)
                         
@@ -77,10 +79,10 @@ class PronunTest(object):
             s2t = SpeechToText()
             text = s2t.speech_to_text(filename="temp.wav", language="n/a")
         #await channel.send(f"finished recording audio for: {', '.join(recorded_users)}.", files=files)  # Send a message with the accumulated files.
-        await channel.send(f"You say: {text}")
+        await channel.send(f"You said: {text}")
         self.numOfFinishQuestion += 1
         # score
-        percent = MatchResult.match_sentence(self.currentSentence, text)
+        percent = MatchResult.match_sentence(self.currentAnswer, text)
         score = int(percent * 10)
         self.currentScore += score
         await channel.send(f"Your score: {score}")

@@ -14,7 +14,7 @@ class StartVocabQuiz(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print("StartVocabQuiz command is active")
+        print("StartVocabQuiz command is online.")
 
     @commands.command()
     async def startVocabQuiz(self, ctx):
