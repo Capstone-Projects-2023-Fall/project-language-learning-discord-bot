@@ -9,23 +9,25 @@ Design Document - Part II API
 ## Main
     Class Purpose: The Main class will start and initialize the bot with its default parameters.
 
-    Data Fields: None
+    Data Fields:
+      - bot: An instance of the Discord Bot
+      - database: An instance of the Database class
 
     Methods:
       - on_ready(): void
-          - Initial bot event when bot enters discord server with assigned displayed message.
+          - An event handler called when the Discord bot is ready. It prints a message to the console and sends a message to a specific channel.
           - Pre-conditions: None
           - Parameters: None
-          - Returns: None
+          - Returns: Prints "Hello, I'm now online!" string if the channel is active for the bot to enter.
 
       - setup_hook(): void
-          - Loads all the cogs (external commands organized in classes).
+          - A method that loads external commands (cogs) from the 'cogs' directory.
           - Pre-conditions: None
           - Parameters: None
-          - Returns: None
+          - Returns: Prints string of cog commands to the console.
 
       - main(): void
-          - Runs the bot with the above methods
+          - The main entry point for the bot, where it sets up the bot, loads cogs, and starts the bot using asyncio.
           - Pre-conditions: None
           - Parameters: None
           - Returns: None
