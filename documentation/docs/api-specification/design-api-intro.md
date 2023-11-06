@@ -191,23 +191,30 @@ Design Document - Part II API
 ## StartVocabQuiz
     Class Purpose: To start the vocab quiz practice for a user in a text channel
 
-    Data Fields: None
+    Data Fields:
+        - database: An instance of the Database class
 
     Methods:
-        - __init__(): void
-            - Constructor to create bot object
+        - __init__(self, bot):
+            - Initializes the cog with a reference to the bot.
             - Pre-conditions: None
             - Parameters: self, bot
-            - Returns: None
+            - Returns: An active instance of the bot
 
-        - on_ready(): void
-            - To display a debug message to Cogs to confirm it's working
+        - on_ready(self):
+            - An event handler called when the cog is ready.
             - Pre-conditions: None
             - Parameters: self
-            - Returns: None
+            - Returns: A success message to the console
 
-        - startVocabQuiz(): void
-            - Method to find the user in the database and start the process of associating all vocab quiz content to them on completion
+        - startVocabQuiz(self, ctx):
+            - A command that starts a vocabulary quiz.
             - Pre-conditions: None
             - Parameters: self, ctx
-            - Returns: None
+            - Returns: Sends a vocab quiz formatted to the Discord UI for the user to complete
+
+        - setup(bot):
+            - Internal method for setting up the cog.
+            - Pre-conditions: None
+            - Parameters: bot
+            - Returns: Prints a success message to the console and adds feature to the cogs command archive
