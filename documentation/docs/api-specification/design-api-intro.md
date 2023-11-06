@@ -275,6 +275,37 @@ Design Document - Part II API
             - Parameters: bot
             - Returns: Prints a success message to the console and adds the feature to the cogs command archive
 
+## StartVoiceQuiz
+    Class Purpose: To start the voice quiz practice for a user in a voice channel
+
+    Data Fields:
+        - database: An instance of the Database class
+
+    Methods:
+        - __init__(self, bot):
+            - Initializes the cog with a reference to the bot.
+            - Pre-conditions: None
+            - Parameters: self, bot
+            - Returns: An active instance of the bot
+
+        - on_ready(self):
+            - An event handler called when the cog is ready.
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: A success message to the console
+
+        - startVoiceQuiz(self, ctx):
+            - A command that starts a voice quiz.
+            - Pre-conditions: None
+            - Parameters: self, ctx
+            - Returns: Sends a voice quiz formatted to the Discord UI for the user to complete
+
+        - setup(bot):
+            - Internal method for setting up the cog.
+            - Pre-conditions: None
+            - Parameters: bot
+            - Returns: Prints a success message to the console and adds the feature to the cogs command archive
+
 ## Constant
     Class Purpose: Display all attributes that are considered constants throughout the entire codespace
 
