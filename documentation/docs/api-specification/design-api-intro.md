@@ -390,3 +390,39 @@ Design Document - Part II API
             - Pre-conditions: None
             - Parameters: self
             - Returns: a successful test case
+
+## Test_HelpCommand
+    Class Purpose: To test the different attributes of the help command
+
+    Data Fields: None
+    
+    Methods:
+        - ping(self, ctx):
+            - To ping the bot to display a help command (in a testing context)
+            - Pre-conditions: None
+            - Parameters: self, ctx
+            - Returns: Display successful in console
+
+        - echo(self, ctx, text: str):
+            - To echo or repeat the current ping to the console
+            - Pre-conditions: None
+            - Parameters: self, ctx, text: str
+            - Returns: Send successful echo test to the console 
+
+        - bot():
+            - An initializer method to set a simple instance of the bot and then teardown its global default message
+            - Pre-conditions: None
+            - Parameters: None
+            - Returns: None
+
+        - test_ping(bot):
+            - To ping the bot to display a help command (in a testing context)
+            - Pre-conditions: None
+            - Parameters: bot
+            - Returns: Display successful in console
+
+        - test_echo(bot):
+            - To echo or repeat the current ping to the bot
+            - Pre-conditions: None
+            - Parameters: bot
+            - Returns: Send successful echo test to the bot
