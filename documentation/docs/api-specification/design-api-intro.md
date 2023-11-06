@@ -218,3 +218,24 @@ Design Document - Part II API
             - Pre-conditions: None
             - Parameters: bot
             - Returns: Prints a success message to the console and adds feature to the cogs command archive
+
+## Constant
+    Class Purpose: Display all attributes that are considered constants throughout the entire codespace
+
+    Data Fields:
+        - LANGUAGE: What languages are available to the user
+        - USER_LANGUAGE: What the user-selected language is
+        - USER_TOTALSCORE: What the user's score is
+        - USER_QUIZZES: The database array of all the quizzes
+        - USER_TOOKON: The user's specific token
+        - QUIZ_QUESTIONS: The database array of all the quiz questions
+        - QUIZ_QUESTION: The array index of a specific question within a quiz
+        - QUIZ_ANSWERS: The database array of all the quiz answers
+        - QUIZ_ANSWER: The array index of a specific answer within a quiz
+        - QUIZ_ISCORRECT: A boolean on whether a quiz answer was true or false
+        - QUIZ_SCORE: An integer on what the user score was after a quiz is completed
+        - QUIZ_NAME: The string name of a specific quiz
+        - COLLECTION_ID: The integer ID of a specific user
+        - DATE_FORMAT = "%d/%m/%Y %H:%M:%S": The string date format for date-based instances
+
+    Methods: none
