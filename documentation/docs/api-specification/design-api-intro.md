@@ -288,3 +288,105 @@ Design Document - Part II API
             - Pre-conditions: None
             - Parameters: self
             - Returns: returns a full index of the current quiz
+
+## Test_Database
+    Class Purpose: To test the different attributes of the database
+
+    Data Fields: None
+    
+    Methods:
+        - setUp(self): 
+            - Sets up the database with testing values
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: a successful test case
+
+        - test_findUser_not_found(self):
+            - A method to test if a user is not found
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: a successful test case
+
+        - test_findUser_found(self):
+            - A method to test if a user is found
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: a successful test case
+
+        - test_insertUser(self):
+            - A method to test if a user can be inserted into the database
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: a successful test case
+
+        - test_changeLanguage(self):
+            - A method to test if a set language can be changed
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: a successful test case
+
+        - test_getQuizzes_no_record(self):
+            - A method to test if there are no records for a specific quiz
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: a successful test case
+
+        - test_getQuizzes_has_record(self): 
+            - A method to test if there are records for a specific quiz
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: a successful test case
+
+        - test_getRandomQuiz_no_record(self):
+            - A method to test if there are no records for a random quiz
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: a successful test case
+
+        - test_getRandomQuiz_has_record(self):
+            - A method to test if there are records for a random quiz
+            - Pre-conditions: None
+            - Parameters: self, sink: discord.sinks, channel: discord.TextChannel, *args
+            - Returns: a successful test case
+            
+        - test_updateUserQuiz(self):
+            - A method to test if you can update a user-given quiz
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: a successful test case
+
+        - test_updateUserQuiz_raise_exception(self):
+            - A method to test if you can update a user-given quiz with an added exception by modification 
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: a successful test case
+
+        - test_getPractices_no_record(self):
+            - A method to test if there are no records from a given practice
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: a successful test case
+
+        - test_getPractices_has_record(self):
+            - A method to test if there are records from a given practice
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: a successful test case
+
+        - test_getRandomPractice_no_record(self):
+            - A method to test if there are no records from a random practice
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: a successful test case
+
+        - test_getRandomPractice_has_record(self): 
+            - A method to test if there are records from a random practice
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: a successful test case
+
+        - test_readUser_throw_exception(self):
+            - A method to test if a exception can be thrown when reading a user
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: a successful test case
