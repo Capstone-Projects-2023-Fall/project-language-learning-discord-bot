@@ -426,3 +426,21 @@ Design Document - Part II API
             - Pre-conditions: None
             - Parameters: bot
             - Returns: Send successful echo test to the bot
+
+## Test_Match
+    Class Purpose: To test the attributes of the pronunciation test input
+    
+    Data Fields: None
+
+    Methods:
+        - test_score(self):
+            - Tests a given sentence score between two strings
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: A successful score between the two strings
+
+        - test_score_exactmatch(self):
+            - Tests a given sentence score between two exact strings
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: A successful score between the two exact strings
