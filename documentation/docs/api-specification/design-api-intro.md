@@ -217,7 +217,7 @@ Design Document - Part II API
             - Internal method for setting up the cog.
             - Pre-conditions: None
             - Parameters: bot
-            - Returns: Prints a success message to the console and adds feature to the cogs command archive
+            - Returns: Prints a success message to the console and adds the feature to the cogs command archive
 
 ## Constant
     Class Purpose: Display all attributes that are considered constants throughout the entire codespace
@@ -239,3 +239,52 @@ Design Document - Part II API
         - DATE_FORMAT = "%d/%m/%Y %H:%M:%S": The string date format for date-based instances
 
     Methods: none
+
+## MatchResult
+    Class Purpose: To calculate the number of correct words that a user said during a given pronunciation quiz
+
+    Data Fields: None
+
+    Methods:
+        - match_sentence(expected_sentence,actual_sentence):
+            - Calculates the # of correct words in a given pronunciation quiz
+            - Pre-conditions: None
+            - Parameters: expected_sentence, actual_sentence
+            - Returns: The number of correct words said by the user divided by the length of the expected words in the given phrase
+
+        - match_word(word, words):
+            - A method that sends a boolean if the word is a match or not
+            - Pre-conditions: None
+            - Parameters: word, words
+            - Returns: True if the user said word is a match
+
+## PronounTest
+    Class Purpose: To scan the waveform and parse the user voice input into comparable strings 
+
+    Data Fields:
+        - database: An instance of the Database class
+
+    Methods:
+        - __init__(self, ctx, user, practice):
+            - Initializes the cog with a reference to the bot.
+            - Pre-conditions: None
+            - Parameters: self, ctx, user, practice
+            - Returns: a setup instance of the bot with pre-assigned values aka "self"
+
+        - get_question(self):
+            - A method that collects a question response from the user's voice input
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: True, the current sentence that the bot displayed for the user and displaying it on the Discord UI
+
+        - once_done(self, sink: discord.sinks, channel: discord.TextChannel, *args):
+            - A method to scan for user input during a pronunciation quiz to present the next question to the user.
+            - Pre-conditions: None
+            - Parameters: self, sink: discord.sinks, channel: discord.TextChannel, *args
+            - Returns: Sends the next question to the user on the Discord UI
+
+        - get_quiz_info(self):
+            - A method to collect all the info for the current quiz
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: returns a full index of the current quiz
