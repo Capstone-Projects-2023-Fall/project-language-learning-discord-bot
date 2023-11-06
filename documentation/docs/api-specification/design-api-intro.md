@@ -109,35 +109,23 @@ Design Document - Part II API
     Data Fields: None
 
     Methods:
-        - __init__(): void
-            - Constructor to create bot object
+        - __init__(self, ctx, user, quiz):
+            - Initializes the quiz with context, user, and quiz data.
             - Pre-conditions: None
             - Parameters: self, ctx, user, quiz
             - Returns: None
 
-        - get_question():
-            - Method to collect all questions and their respective answers from the user
+        - get_question(self):
+            - Gets a quiz question
             - Pre-conditions: None
             - Parameters: self
-            - Returns: True or False
+            - Returns: True, the ID # of the quiz, and the display of it in the discord UI
 
-        - button_callback_true(): void
-            - Method to test if the user has selected the correct answer to their quiz and if so then display their results
-            - Pre-conditions: None
-            - Parameters: interaction
-            - Returns: none
-
-        - button_callback_false(): void
-            - Method to test if the user has selected the wrong answer on their quiz and if so then display their results
-            - Pre-conditions: None
-            - Parameters: interaction
-            - Returns: none
-
-        - get_quiz_info(): void
-            - Method to collect final quiz data and store it in the user's database
+        - get_quiz_info(self):
+            - Gets quiz information including score.
             - Pre-conditions: None
             - Parameters: self
-            - Returns: none
+            - Returns: Quiz ID #, Quiz Name, Quiz Score, User Token, User Language
 
 ## JoinVoice
     Class Purpose: To allow the discord bot to enter into the voice channel of the current user
