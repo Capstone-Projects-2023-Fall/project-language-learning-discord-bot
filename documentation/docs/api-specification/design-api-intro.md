@@ -188,6 +188,31 @@ Design Document - Part II API
             - Parameters: bot
             - Returns: Prints a success message to the console and adds feature to the cogs command archive
 
+## Leaderboard
+    Class Purpose: To display the top user scores on a given server
+
+    Data Fields:
+        - database: An instance of the Database class
+
+    Methods:
+        - __init__(self, bot):
+            - Initializes the cog with a reference to the bot.
+            - Pre-conditions: None
+            - Parameters: self, bot
+            - Returns: An active instance of the bot
+
+        - leaderboard(self, ctx):
+            - Displays a leaderboard trophy next to the user with the highest score
+            - Pre-conditions: None
+            - Parameters: self, ctx
+            - Returns: A displayed image to the Discord UI indicating the highest scored user
+
+        - setup(bot):
+            - Internal method for setting up the cog.
+            - Pre-conditions: None
+            - Parameters: bot
+            - Returns: Prints a success message to the console and adds feature to the cogs command archive
+
 ## ChangeLanguage
     Class Purpose: To allow the user to change its current learning language to any other on the "constant.py" file (either Spanish or French).
 
