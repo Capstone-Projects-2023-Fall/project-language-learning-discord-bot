@@ -386,7 +386,7 @@ Design Document - Part II API
             - Returns: a successful test case
 
         - test_readUser_throw_exception(self):
-            - A method to test if a exception can be thrown when reading a user
+            - A method to test if an exception can be thrown when reading a user
             - Pre-conditions: None
             - Parameters: self
             - Returns: a successful test case
