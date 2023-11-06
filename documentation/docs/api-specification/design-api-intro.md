@@ -127,6 +127,30 @@ Design Document - Part II API
             - Parameters: self
             - Returns: Quiz ID #, Quiz Name, Quiz Score, User Token, User Language
 
+## SpeechRecognition
+    Class Purpose: To show the user and display the result in a text channel and to be interpreted by other functions
+    
+    Data Fields: None
+
+    Methods:
+        - __new__(cls):
+            - Initializes a new instance of the user voice input to be generated
+            - Pre-conditions: None
+            - Parameters: cls
+            - Returns: A successfully developed user instance
+
+        - initAPI(self) -> None:
+            - Initializes OpenAI to start analyzing user voice input
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: A successful call for the recognizer within OpenAI to start
+
+        - speech_to_text(self, filename, language):
+            - Converts the waveform speech into text
+            - Pre-conditions: None
+            - Parameters: self, filename, language
+            - Returns: An array with a transcript of the user voice text
+
 ## HelpCommand
     Class Purpose: To allow the user to use the /help command
 
