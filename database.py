@@ -195,6 +195,8 @@ class Database(object):
                     self.userCollection.update_one(query, newValue)
                 else:
                     raise EntityNotFoundExcepton(f"Cannot find user with username: {username}")
+            except EntityNotFoundExcepton as e:
+                raise e
             except Exception as e:
                 print(e)
                 raise DatabaseProcessingException(e)

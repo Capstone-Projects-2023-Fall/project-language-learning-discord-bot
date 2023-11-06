@@ -84,6 +84,21 @@ class TestDatabase(unittest.TestCase):
         self.assertEqual(dbuser[constant.COLLECTION_ID], "user1")
         self.assertEqual(dbuser[constant.USER_TOTALSCORE], 20)
 
+    def test_updateUserQuiz_raise_exception(self):
+        dbquiz = self.database.getRandomQuiz(language="Spanish")
+        now = datetime.now()
+        quizInfo = {
+            constant.COLLECTION_ID: dbquiz[constant.COLLECTION_ID],
+            constant.QUIZ_NAME: dbquiz[constant.QUIZ_NAME],
+            constant.QUIZ_SCORE: 20,
+            constant.USER_TOOKON: now.strftime(constant.DATE_FORMAT)
+        }
+        try:
+            self.database.updateUserQuiz(username="a_user", quiz=quizInfo)
+            self.failUnlessRaises()
+        except database.EntityNotFoundExcepton:
+            print("Expect EntityNotFoundException.")
+
     def test_getPractices_no_record(self):
         dbpractices= self.database.getPractices("a_language")
         self.assertEqual(len(dbpractices), 0)
