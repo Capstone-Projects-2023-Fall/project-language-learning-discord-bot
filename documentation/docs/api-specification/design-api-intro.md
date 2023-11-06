@@ -157,6 +157,37 @@ Design Document - Part II API
             - Parameters: bot
             - Returns: Prints a success message to the console and adds feature to the cogs command archive
 
+## MyScores
+    Class Purpose: To display the user scores of everyone on a server
+
+    Data Fields:
+        - database: An instance of the Database class
+
+    Methods:
+        - __init__(self, bot):
+            - Initializes the cog with a reference to the bot.
+            - Pre-conditions: None
+            - Parameters: self, bot
+            - Returns: An active instance of the bot
+
+        - on_ready(self):
+            - An event handler called when the cog is ready.
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: A success message to the console
+
+        - myScores(self, ctx):
+            - A command that allows the bot to display in the Discord Chat the scores of all users
+            - Pre-conditions: None
+            - Parameters: self, ctx, userprompt: str
+            - Returns: A successful call to the database to display user scores
+
+        - setup(bot):
+            - Internal method for setting up the cog.
+            - Pre-conditions: None
+            - Parameters: bot
+            - Returns: Prints a success message to the console and adds feature to the cogs command archive
+
 ## ChangeLanguage
     Class Purpose: To allow the user to change its current learning language to any other on the "constant.py" file (either Spanish or French).
 
