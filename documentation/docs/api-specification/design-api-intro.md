@@ -127,71 +127,66 @@ Design Document - Part II API
             - Parameters: self
             - Returns: Quiz ID #, Quiz Name, Quiz Score, User Token, User Language
 
-## JoinVoice
-    Class Purpose: To allow the discord bot to enter into the voice channel of the current user
-    
-    Data Fields: None
-
-    Methods:
-        - __init__(): void
-            - Constructor to create bot object
-            - Pre-conditions: None
-            - Parameters: None
-            - Returns: None
-
-        - startVoiceQuiz(): void
-            - Command to start Voice Quiz for the specific user in said voice channel
-            - Pre-conditions: None
-            - Parameters: self, ctx
-            - Returns: None
-
 ## HelpCommand
     Class Purpose: To allow the user to use the /help command
 
     Data Fields: None
 
     Methods:
-        - __init__(): void
-            - Constructor to create bot object
+        - __init__(self, bot):
+            - Initializes the cog with a reference to the bot.
             - Pre-conditions: None
             - Parameters: self, bot
-            - Returns: None
+            - Returns: Sends an instance of the bot to the user
 
-        - on_ready(): void
-            - To display a debug message to Cogs to confirm it's working
+        - on_ready(self):
+            - An event handler called when the cog is ready.
             - Pre-conditions: None
             - Parameters: self
-            - Returns: None
+            - Returns: Prints a success message to the console
 
-        - help(): void
-            - To display to the user the contents of the help command
+        - help(self, ctx):
+            - A command that displays help information as an embedded message in Discord.
             - Pre-conditions: None
             - Parameters: self, ctx
-            - Returns: None
+            - Returns: Displays all text for the user in the Discord Chat
+
+        - setup(bot):
+            - Internal method for setting up the cog.
+            - Pre-conditions: None
+            - Parameters: bot
+            - Returns: Prints a success message to the console and adds feature to the cogs command archive
 
 ## ChangeLanguage
     Class Purpose: To allow the user to change its current learning language to any other on the "constant.py" file (either Spanish or French).
 
-    Data Fields: None
+    Data Fields:
+        - database: An instance of the Database class
 
     Methods:
-        - __init__(): void
-            - Constructor to create bot object
+        - __init__(self, bot):
+            - Initializes the cog with a reference to the bot.
             - Pre-conditions: None
             - Parameters: self, bot
-            - Returns: None
+            - Returns: An active instance of the bot
 
-        - on_ready(): void
-            - To display a debug message to Cogs to confirm it's working
+        - on_ready(self):
+            - An event handler called when the cog is ready.
             - Pre-conditions: None
             - Parameters: self
-            - Returns: None
+            - Returns: A success message to the console
 
-        - changeLanguage(): void
-            - To change the default language in the user's current database entry
+        - changeLanguage(self, ctx, userprompt: str):
+            - A command that allows the user to change languages.
             - Pre-conditions: None
             - Parameters: self, ctx, userprompt: str
-            - Returns: None
+            - Returns: A successful call to the database to alter language
+
+        - setup(bot):
+            - Internal method for setting up the cog.
+            - Pre-conditions: None
+            - Parameters: bot
+            - Returns: Prints a success message to the console and adds feature to the cogs command archive
 
 ## StartVocabQuiz
     Class Purpose: To start the vocab quiz practice for a user in a text channel
