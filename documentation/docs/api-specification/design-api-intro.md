@@ -444,3 +444,81 @@ Design Document - Part II API
             - Pre-conditions: None
             - Parameters: self
             - Returns: A successful score between the two exact strings
+
+## Test_Voice
+    Class Purpose: To test the attributes of the user voice input
+    
+    Data Fields: None
+
+    Methods:
+        - ping(self, ctx):
+            - To ping the bot to start the voice test command
+            - Pre-conditions: None
+            - Parameters: self, ctx
+            - Returns: Display successful in console
+
+        - startVoiceQuiz(self, ctx):
+            - To move to the user voice channel and begin the procedure
+            - Pre-conditions: None
+            - Parameters: self, ctx
+            - Returns: Display a successful message to the user saying "Bot has joined (channel here)"
+
+        - bot():
+            - An initializer method to set a simple instance of the bot and then teardown its global default message
+            - Pre-conditions: None
+            - Parameters: None
+            - Returns: None
+
+        - test_ping(bot):
+            - To ping the bot to start the voice command
+            - Pre-conditions: None
+            - Parameters: bot
+            - Returns: Display successful in console
+
+        - test_startVoiceQuiz_notinvc(bot):
+            - To test if the user is not in a voice channel to be recorded
+            - Pre-conditions: None
+            - Parameters: bot
+            - Returns: Display successful in the console that the user isn't in a channel
+
+        - test_startVoiceQuiz_invc(bot):
+            - To test if the user is in a voice channel to be recorded
+            - Pre-conditions: None
+            - Parameters: bot
+            - Returns: Display successful in the console that the user is in a channel
+
+## Record
+    Class Purpose: To record the user voice input and store it as a .wav file in the current instance
+    
+    Data Fields: None
+
+    Methods:
+        - once_done(sink: discord.sinks, channel: discord.TextChannel, *args):
+            - A method to verify that voice input from the user is all collected
+            - Pre-conditions: None
+            - Parameters: sink: discord.sinks, channel: discord.TextChannel, *args
+            - Returns: Successful print message to the discord UI saying that message has been recorded and verified
+
+        - __init__(self, bot):
+            - Initializes the cog with a reference to the bot.
+            - Pre-conditions: None
+            - Parameters: self, ctx
+            - Returns: a setup instance of the bot with pre-assigned values aka "self"
+
+        - record(self, ctx):
+            - Records the user voice as an input to be analyzed and collected
+            - Pre-conditions: None
+            - Parameters: self, ctx
+            - Returns: A successful print message saying that the bot has started recording
+
+        - stop(self, ctx):
+            - To stop the recording and send it to other functions to be analyzed
+            - Pre-conditions: None
+            - Parameters: self, ctx
+            - Returns: Sends successful response call to once_done() method above for verification
+
+        - setup(bot):
+            - Internal method for setting up the cog.
+            - Pre-conditions: None
+            - Parameters: bot
+            - Returns: Prints a success message to the console and adds the feature to the cogs command archive
