@@ -3,7 +3,7 @@ sidebar_position: 1
 description: Documentation
 ---
 
-Design Document - Part II API
+Classes
 =============================
 
 ## Main
