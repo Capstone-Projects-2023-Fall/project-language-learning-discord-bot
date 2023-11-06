@@ -51,8 +51,10 @@ class Database(object):
             try:
                 query = {constant.COLLECTION_ID: username}
                 result = self.userCollection.find_one(query)
-                if result == None:
+                if result is None:
                     raise EntityNotFoundExcepton(f"Cannot read user with username: {username}")
+            except EntityNotFoundExcepton as e:
+                raise e
             except Exception as e:
                 print(e)
                 raise DatabaseProcessingException(e)

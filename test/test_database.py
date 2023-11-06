@@ -11,9 +11,11 @@ class TestDatabase(unittest.TestCase):
         self.database.db = self.database.client["testdatabase"]
         self.database.userCollection = self.database.db["users"]
         self.database.quizCollection = self.database.db["quizzes"]
+        self.database.practiceCollection = self.database.db["pratices"]
         # delete all data
         self.database.userCollection.delete_many({})
         self.database.quizCollection.delete_many({})
+        self.database.practiceCollection.delete_many({})
         # import data for testing
         user1 = {
                     "_id": "user1"
@@ -97,6 +99,15 @@ class TestDatabase(unittest.TestCase):
     def test_getRandomPractice_has_record(self): 
         dbpractice = self.database.getRandomPractice(language="Spanish")
         self.assertIsNotNone(dbpractice)
+
+    def test_readUser_throw_exception(self): 
+        try:
+            self.database.readUser("a_user")
+            self.failUnlessRaises()
+        except database.EntityNotFoundExcepton as e:
+            print("Expect EntityNotFoundException.")
+            
+
 
 
 
