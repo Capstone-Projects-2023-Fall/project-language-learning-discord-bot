@@ -37,53 +37,71 @@ Design Document - Part II API
     Data Fields: None
 
     Methods:
-        - __new__():
-            - Creates a new instance of a user in the database
+        - __new__(cls):
+            - Ensures that only one instance of the Database class is created.
             - Pre-conditions: None
             - Parameters: cls
-            - Returns: cls.instance
+            - Returns: An instance of the database via cls.instance
 
-        - initDb(): void
-            - Initializes the Mongo DB and replies to the user if the database was successful or not in the starting sequence
+        - initDb(self):
+            - Initializes the database connection and sets up the client, database, and collections.
             - Pre-conditions: none
             - Parameters: self
-            - Returns: none
+            - Returns: Prints a success string if the client successfully to the MongoDB
 
-        - findUser():
-            - Command to find a username of the current user within the database
+        - findUser(self, username):
+            - Finds a user in the database based on the username.
             - Pre-conditions: None
             - Parameters: self, username
             - Returns: self.userCollection.find_one(query), displays the user if it was found
 
-        - insertUser(): void
-            - Command to insert a user into the Mongo database
+        - insertUser(self, user): void
+            - Inserts a user into the database.
             - Pre-conditions: None
             - Parameters: self, user
-            - Returns: none
+            - Returns: A successful call of inserting a user into the database
 
-        - changeUserLangauge(): void
-            - Command to change user language
+        - changeUserLangauge(self, username, language):
+            - Updates the user's language preference in the user collection.
             - Pre-conditions: None
             - Parameters: self, username, language
-            - Returns: none
+            - Returns: A successful call of changing the language of a user based on their collection ID
 
-        - getQuizes():
-            - Method to collect all quizzes from the user-specified language
+        - getQuizzes(self, language):
+            - Retrieves quizzes based on the specified language.
             - Pre-conditions: None
             - Parameters: self, language
-            - Returns: quizzes
+            - Returns: An array of the quizzes
 
-        - getRandomQuiz():
-            - Method to get a random quiz from the array
+        - getPractices(self, language):
+            - Retrieves practices based on the specified language.
             - Pre-conditions: None
             - Parameters: self, language
-            - Returns: quizzes[index]
+            - Returns: An array of practice activities
 
-        - updateUserQuiz():
-            - Method to update the user quiz status in their dbuser database
+        - getRandomQuiz(self, language):
+            - Selects and returns a random quiz for the specified language.
+            - Pre-conditions: None
+            - Parameters: self, language
+            - Returns: The specific index (quizzes[index]) of the requested quiz
+
+        - getRandomPractice(self, language):
+            - Selects and returns a random practice for the specified language.
+            - Pre-conditions: None
+            - Parameters: self, language
+            - Returns: The specific index (practices[index]) of the requested practice activity
+
+        - updateUserQuiz(self, username, quiz):
+            - Updates the user's quiz score in the user collection.
             - Pre-conditions: None
             - Parameters: self, username, quiz
-            - Returns: none
+            - Returns: A successful call to the database when a specific user score is updated
+
+        - get_all_users(self):
+            - Selects and returns all of the users regardless of language
+            - Pre-conditions: None
+            - Parameters: self
+            - Returns: The array of all users
 
 ## VocabQuiz
     Class Purpose: To generate a customized vocab quiz for the user based on their selected language
