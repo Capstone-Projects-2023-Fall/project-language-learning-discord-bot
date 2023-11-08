@@ -6,6 +6,9 @@ import database
 from database import Database
 import asyncio
 
+# Global variable to store the user ID of the person who wants to stop the bot
+pending_termination_author_id = None
+
 # Load environment variable from .env file first
 # When your project is deployed to a host environment like a virtual machine or Docker container where the .env file is not present, the environment variables defined in the host environment will be used instead
 load_dotenv()
@@ -64,5 +67,23 @@ def setup_hook():
             bot.load_extension(f'cogs.{filename[:-3]}')
             print(f"Loaded Cog: {filename[:-3]}")
 setup_hook()
+@bot.command(name='terminate')
+@commands.has_role('Admin')  # Checks if the user (developer) has the specific role
+async def stop(ctx):
+    global pending_termination_author_id
+    pending_termination_author_id = ctx.author.id  # Set the ID of the person who wants to stop the bot
+    await ctx.send(f"Bot stop requested by {ctx.author.mention}. Please confirm with `!confirm`.")
+
+@bot.command(name='confirm')
+async def confirm(ctx):
+    global pending_termination_author_id
+    # Check if the user confirming is the one who requested termination
+    if ctx.author.id == pending_termination_author_id:
+        await ctx.send("Termination confirmed. Shutting down...")
+        pending_termination_author_id = None  # Reset the pending termination
+        await bot.close()
+    else:
+        await ctx.send("You did not initiate a termination request.")
+
 bot.run(os.environ['BOT_TOKEN'])
 
