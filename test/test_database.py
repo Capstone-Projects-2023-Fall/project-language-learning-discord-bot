@@ -143,6 +143,19 @@ class TestDatabase(unittest.TestCase):
             self.failUnlessRaises()
         except database.EntityNotFoundExcepton as e:
             print("Expect EntityNotFoundException.")
+
+    def test_readUserProgress_user_has_no_languare(self):
+        try:
+            self.database.readUserProgress("user1")
+            self.failUnlessRaises()
+        except database.DatabaseProcessingException as e:
+            print("Expect EntityNotFoundException.")
+
+    def test_readUserProgress_has_record(self): 
+        # update language
+        self.database.changeUserLanguage(username="user1", language="Spanish")
+        dbprogress = self.database.readUserProgress("user1")
+        self.assertIsNotNone(dbprogress)
             
 
 
