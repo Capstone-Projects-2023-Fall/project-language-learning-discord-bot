@@ -151,6 +151,7 @@ class Database(object):
                 result = self.progressCollection.find_one(query)
                 if result is None:
                     raise EntityNotFoundExcepton("Cannot get a Progress")
+                return result
             except EntityNotFoundExcepton as e:
                 raise e
             except Exception as e:

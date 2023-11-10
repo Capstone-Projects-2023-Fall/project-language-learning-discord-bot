@@ -31,6 +31,8 @@ class TestDatabase(unittest.TestCase):
         practice2 = {"name": "Practice 2","language": "Spanish","sentences": [{"sentence": "Today is hot"},{"sentence": "The sun is yellow"}]}
         self.database.practiceCollection.insert_one(practice1)
         self.database.practiceCollection.insert_one(practice2)
+        progress1 = {"language": "Spanish","progress": [{"name": "Unit 1","title": "From basic sentences, greet people","lessons": [{  "id": "0s0","name": "Practice voice 1","type": "practice","isDone": "false"}]}]}
+        self.database.progressCollection.insert_one(progress1)
 
     def test_findUser_not_found(self):
         dbuser = self.database.findUser('notfound')
@@ -130,6 +132,10 @@ class TestDatabase(unittest.TestCase):
             self.failUnlessRaises()
         except database.EntityNotFoundExcepton as e:
             print("Expect EntityNotFoundException.")
+
+    def test_readProgress_has_record(self):
+        dbprogress = self.database.readProgress("Spanish")
+        self.assertIsNotNone(dbprogress)
             
 
 
