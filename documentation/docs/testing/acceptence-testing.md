@@ -155,7 +155,6 @@ Enter the command "!leaderboard" into the chat.
 After inviting the bot to a discord server, wait a few moments without practice any quizzes. (reminder interval maybe shortened for testing)
 </td>
           <td>The bot will send you a notification to practice in your selected language.</td>
-        </tr>
         <tr>
       </tbody>
     </table>
