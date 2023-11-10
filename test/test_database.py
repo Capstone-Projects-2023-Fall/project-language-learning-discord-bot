@@ -12,10 +12,12 @@ class TestDatabase(unittest.TestCase):
         self.database.userCollection = self.database.db["users"]
         self.database.quizCollection = self.database.db["quizzes"]
         self.database.practiceCollection = self.database.db["pratices"]
+        self.database.progressCollection = self.database.db["progresses"]
         # delete all data
         self.database.userCollection.delete_many({})
         self.database.quizCollection.delete_many({})
         self.database.practiceCollection.delete_many({})
+        self.database.progressCollection.delete_many({})
         # import data for testing
         user1 = {
                     "_id": "user1"
@@ -118,6 +120,13 @@ class TestDatabase(unittest.TestCase):
     def test_readUser_throw_exception(self): 
         try:
             self.database.readUser("a_user")
+            self.failUnlessRaises()
+        except database.EntityNotFoundExcepton as e:
+            print("Expect EntityNotFoundException.")
+
+    def test_readProgress_throw_exception(self):
+        try:
+            self.database.readProgress("a_languare")
             self.failUnlessRaises()
         except database.EntityNotFoundExcepton as e:
             print("Expect EntityNotFoundException.")
