@@ -40,6 +40,7 @@ class Database(object):
             self.userCollection = self.db["users"]
             self.quizCollection = self.db["quizzes"]
             self.practiceCollection = self.db["pratices"]
+            self.progressCollection = self.db["progresses"]
             self.isOk = True
         except Exception as e:
             self.isOk = False
@@ -142,6 +143,22 @@ class Database(object):
                 raise DatabaseProcessingException(e)
         else:
             raise DatabaseConnectionException("Cannot connect to database.")
+        
+    def readProgress(self, language):
+        if self.isOk:
+            try:
+                query = {"language": language}
+                result = self.progressCollection.find_one(query)
+                if result is None:
+                    raise EntityNotFoundExcepton("Cannot get a Progress")
+                return result
+            except EntityNotFoundExcepton as e:
+                raise e
+            except Exception as e:
+                print(e)
+                raise DatabaseProcessingException(e)
+        else:
+            raise DatabaseConnectionException("Cannot connect to database.")
 
     def getRandomQuiz(self, language): 
         if self.isOk:
@@ -196,6 +213,53 @@ class Database(object):
                 else:
                     raise EntityNotFoundExcepton(f"Cannot find user with username: {username}")
             except EntityNotFoundExcepton as e:
+                raise e
+            except Exception as e:
+                print(e)
+                raise DatabaseProcessingException(e)
+        else:
+            raise DatabaseConnectionException("Cannot connect to database.")
+        
+    def readUserProgress(self, username):
+        if self.isOk:
+            try:
+                dbuser = self.findUser(username)
+                progress = None
+                newValue = None
+                query = {constant.COLLECTION_ID: username}
+                if dbuser is not None:
+                    language = None
+                    if "language" in dbuser:
+                        language = dbuser["language"]
+                    else:
+                        raise DatabaseProcessingException("User have not select a language")
+                    dbprogress = self.readProgress(language)
+                    if "progresses" in dbuser:
+                        dbprogresses = dbuser["progresses"]
+                        for item in dbprogresses:
+                            if item["language"] == language:
+                                progress = item
+                                break
+                        if progress is None:
+                            dbprogresses.append(dbprogress)
+                            newValue = {"$set": {
+                                    "progresses": dbprogresses
+                                }
+                            }
+                            progress = dbprogress
+                    else:
+                        newValue = {"$set": {
+                                "progresses": [dbprogress]
+                            }
+                        }
+                        progress = dbprogress
+                    self.userCollection.update_one(query, newValue)
+                    return progress
+                else:
+                    raise EntityNotFoundExcepton(f"Cannot read user with username: {username}")
+            except EntityNotFoundExcepton as e:
+                raise e
+            except DatabaseProcessingException as e:
                 raise e
             except Exception as e:
                 print(e)

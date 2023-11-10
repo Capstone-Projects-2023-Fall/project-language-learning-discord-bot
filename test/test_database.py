@@ -12,10 +12,12 @@ class TestDatabase(unittest.TestCase):
         self.database.userCollection = self.database.db["users"]
         self.database.quizCollection = self.database.db["quizzes"]
         self.database.practiceCollection = self.database.db["pratices"]
+        self.database.progressCollection = self.database.db["progresses"]
         # delete all data
         self.database.userCollection.delete_many({})
         self.database.quizCollection.delete_many({})
         self.database.practiceCollection.delete_many({})
+        self.database.progressCollection.delete_many({})
         # import data for testing
         user1 = {
                     "_id": "user1"
@@ -29,6 +31,8 @@ class TestDatabase(unittest.TestCase):
         practice2 = {"name": "Practice 2","language": "Spanish","sentences": [{"sentence": "Today is hot"},{"sentence": "The sun is yellow"}]}
         self.database.practiceCollection.insert_one(practice1)
         self.database.practiceCollection.insert_one(practice2)
+        progress1 = {"language": "Spanish","progress": [{"name": "Unit 1","title": "From basic sentences, greet people","lessons": [{  "id": "0s0","name": "Practice voice 1","type": "practice","isDone": "false"}]}]}
+        self.database.progressCollection.insert_one(progress1)
 
     def test_findUser_not_found(self):
         dbuser = self.database.findUser('notfound')
@@ -121,6 +125,37 @@ class TestDatabase(unittest.TestCase):
             self.failUnlessRaises()
         except database.EntityNotFoundExcepton as e:
             print("Expect EntityNotFoundException.")
+
+    def test_readProgress_throw_exception(self):
+        try:
+            self.database.readProgress("a_languare")
+            self.failUnlessRaises()
+        except database.EntityNotFoundExcepton as e:
+            print("Expect EntityNotFoundException.")
+
+    def test_readProgress_has_record(self):
+        dbprogress = self.database.readProgress("Spanish")
+        self.assertIsNotNone(dbprogress)
+
+    def test_readUserProgress_throw_exception(self):
+        try:
+            self.database.readUserProgress("a_user")
+            self.failUnlessRaises()
+        except database.EntityNotFoundExcepton as e:
+            print("Expect EntityNotFoundException.")
+
+    def test_readUserProgress_user_has_no_languare(self):
+        try:
+            self.database.readUserProgress("user1")
+            self.failUnlessRaises()
+        except database.DatabaseProcessingException as e:
+            print("Expect EntityNotFoundException.")
+
+    def test_readUserProgress_has_record(self): 
+        # update language
+        self.database.changeUserLanguage(username="user1", language="Spanish")
+        dbprogress = self.database.readUserProgress("user1")
+        self.assertIsNotNone(dbprogress)
             
 
 
