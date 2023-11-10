@@ -220,15 +220,20 @@ class Database(object):
         else:
             raise DatabaseConnectionException("Cannot connect to database.")
         
-    def readUserProgress(self, username, language):
+    def readUserProgress(self, username):
         if self.isOk:
             try:
                 dbuser = self.findUser(username)
-                dbprogress = self.readProgress(language)
                 progress = None
                 newValue = None
                 query = {constant.COLLECTION_ID: username}
                 if dbuser is not None:
+                    language = None
+                    if "language" in dbuser:
+                        language = dbuser["language"]
+                    else:
+                        raise DatabaseProcessingException("User have not select a language")
+                    dbprogress = self.readProgress(language)
                     if "progresses" in dbuser:
                         dbprogresses = dbuser["progresses"]
                         for item in dbprogresses:
@@ -252,6 +257,10 @@ class Database(object):
                     return progress
                 else:
                     raise EntityNotFoundExcepton(f"Cannot read user with username: {username}")
+            except EntityNotFoundExcepton as e:
+                raise e
+            except DatabaseProcessingException as e:
+                raise e
             except Exception as e:
                 print(e)
                 raise DatabaseProcessingException(e)

@@ -136,6 +136,13 @@ class TestDatabase(unittest.TestCase):
     def test_readProgress_has_record(self):
         dbprogress = self.database.readProgress("Spanish")
         self.assertIsNotNone(dbprogress)
+
+    def test_readUserProgress_throw_exception(self):
+        try:
+            self.database.readUserProgress("a_user")
+            self.failUnlessRaises()
+        except database.EntityNotFoundExcepton as e:
+            print("Expect EntityNotFoundException.")
             
 
 
