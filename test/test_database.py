@@ -11,9 +11,13 @@ class TestDatabase(unittest.TestCase):
         self.database.db = self.database.client["testdatabase"]
         self.database.userCollection = self.database.db["users"]
         self.database.quizCollection = self.database.db["quizzes"]
+        self.database.practiceCollection = self.database.db["pratices"]
+        self.database.progressCollection = self.database.db["progresses"]
         # delete all data
         self.database.userCollection.delete_many({})
         self.database.quizCollection.delete_many({})
+        self.database.practiceCollection.delete_many({})
+        self.database.progressCollection.delete_many({})
         # import data for testing
         user1 = {
                     "_id": "user1"
@@ -27,6 +31,8 @@ class TestDatabase(unittest.TestCase):
         practice2 = {"name": "Practice 2","language": "Spanish","sentences": [{"sentence": "Today is hot"},{"sentence": "The sun is yellow"}]}
         self.database.practiceCollection.insert_one(practice1)
         self.database.practiceCollection.insert_one(practice2)
+        progress1 = {"language": "Spanish","progress": [{"name": "Unit 1","title": "From basic sentences, greet people","lessons": [{  "id": "0s0","name": "Practice voice 1","type": "practice","isDone": "false"}]}]}
+        self.database.progressCollection.insert_one(progress1)
 
     def test_findUser_not_found(self):
         dbuser = self.database.findUser('notfound')
@@ -82,6 +88,21 @@ class TestDatabase(unittest.TestCase):
         self.assertEqual(dbuser[constant.COLLECTION_ID], "user1")
         self.assertEqual(dbuser[constant.USER_TOTALSCORE], 20)
 
+    def test_updateUserQuiz_raise_exception(self):
+        dbquiz = self.database.getRandomQuiz(language="Spanish")
+        now = datetime.now()
+        quizInfo = {
+            constant.COLLECTION_ID: dbquiz[constant.COLLECTION_ID],
+            constant.QUIZ_NAME: dbquiz[constant.QUIZ_NAME],
+            constant.QUIZ_SCORE: 20,
+            constant.USER_TOOKON: now.strftime(constant.DATE_FORMAT)
+        }
+        try:
+            self.database.updateUserQuiz(username="a_user", quiz=quizInfo)
+            self.failUnlessRaises()
+        except database.EntityNotFoundExcepton:
+            print("Expect EntityNotFoundException.")
+
     def test_getPractices_no_record(self):
         dbpractices= self.database.getPractices("a_language")
         self.assertEqual(len(dbpractices), 0)
@@ -97,6 +118,46 @@ class TestDatabase(unittest.TestCase):
     def test_getRandomPractice_has_record(self): 
         dbpractice = self.database.getRandomPractice(language="Spanish")
         self.assertIsNotNone(dbpractice)
+
+    def test_readUser_throw_exception(self): 
+        try:
+            self.database.readUser("a_user")
+            self.failUnlessRaises()
+        except database.EntityNotFoundExcepton as e:
+            print("Expect EntityNotFoundException.")
+
+    def test_readProgress_throw_exception(self):
+        try:
+            self.database.readProgress("a_languare")
+            self.failUnlessRaises()
+        except database.EntityNotFoundExcepton as e:
+            print("Expect EntityNotFoundException.")
+
+    def test_readProgress_has_record(self):
+        dbprogress = self.database.readProgress("Spanish")
+        self.assertIsNotNone(dbprogress)
+
+    def test_readUserProgress_throw_exception(self):
+        try:
+            self.database.readUserProgress("a_user")
+            self.failUnlessRaises()
+        except database.EntityNotFoundExcepton as e:
+            print("Expect EntityNotFoundException.")
+
+    def test_readUserProgress_user_has_no_languare(self):
+        try:
+            self.database.readUserProgress("user1")
+            self.failUnlessRaises()
+        except database.DatabaseProcessingException as e:
+            print("Expect EntityNotFoundException.")
+
+    def test_readUserProgress_has_record(self): 
+        # update language
+        self.database.changeUserLanguage(username="user1", language="Spanish")
+        dbprogress = self.database.readUserProgress("user1")
+        self.assertIsNotNone(dbprogress)
+            
+
 
 
 

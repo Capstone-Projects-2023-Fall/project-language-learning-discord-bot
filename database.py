@@ -8,6 +8,18 @@ import certifi
 
 load_dotenv()
 
+class DatabaseConnectionException(Exception):
+    "Raised when cannot connect to database"
+    pass
+
+class DatabaseProcessingException(Exception):
+    "Raised when having error while process"
+    pass
+
+class EntityNotFoundExcepton(Exception):
+    "Raised when cannot find object by id"
+    pass
+
 
 class Database(object):
     def __new__(cls):
@@ -28,10 +40,29 @@ class Database(object):
             self.userCollection = self.db["users"]
             self.quizCollection = self.db["quizzes"]
             self.practiceCollection = self.db["pratices"]
+            self.progressCollection = self.db["progresses"]
             self.isOk = True
         except Exception as e:
             self.isOk = False
             print(e)
+
+    
+    def readUser(self, username):
+        if self.isOk:
+            try:
+                query = {constant.COLLECTION_ID: username}
+                result = self.userCollection.find_one(query)
+                if result is None:
+                    raise EntityNotFoundExcepton(f"Cannot read user with username: {username}")
+            except EntityNotFoundExcepton as e:
+                raise e
+            except Exception as e:
+                print(e)
+                raise DatabaseProcessingException(e)
+
+        else:
+            raise DatabaseConnectionException("Cannot connect to database.")
+
 
     def findUser(self, username):
         if self.isOk:
@@ -40,35 +71,48 @@ class Database(object):
                 return self.userCollection.find_one(query)
             except Exception as e:
                 print(e)
+                raise DatabaseProcessingException(e)
 
         else:
-            print("Cannot connect to database")
+            raise DatabaseConnectionException("Cannot connect to database.")
+            
 
     def insertUser(self, user):
         if self.isOk:
             try:
-                self.userCollection.insert_one(user)
+                x = self.userCollection.insert_one(user)
+                dbuser = self.readUser(x.inserted_id)
+                return dbuser
             except Exception as e:
                 print(e)
+                raise DatabaseProcessingException(e)
         else: 
-            print("Cannot connect to database")
+            raise DatabaseConnectionException("Cannot connect to database.")
 
     def changeUserLanguage(self, username, language): 
-        dbuser = self.findUser(username)
-        if dbuser is not None:
-            query = {constant.COLLECTION_ID: username}
-            newValue = {"$set": {
-                    constant.USER_LANGUAGE: language
-                }
-            }
-            self.userCollection.update_one(query, newValue)
+        if self.isOk:
+            try: 
+                dbuser = self.findUser(username)
+                if dbuser is not None:
+                    query = {constant.COLLECTION_ID: username}
+                    newValue = {"$set": {
+                            constant.USER_LANGUAGE: language
+                        }
+                    }
+                    self.userCollection.update_one(query, newValue)
+                    return self.readUser(username=username)
+                else:
+                    print("Insert new user")
+                    user = {
+                        constant.COLLECTION_ID: username,
+                        constant.USER_LANGUAGE: language
+                    }
+                    return self.insertUser(user)
+            except Exception as e:
+                print(e)
+                raise DatabaseProcessingException(e)
         else:
-            print("Insert new user")
-            user = {
-                constant.COLLECTION_ID: username,
-                constant.USER_LANGUAGE: language
-            }
-            self.insertUser(user)
+            raise DatabaseConnectionException("Cannot connect to database.")
 
     def getQuizzes(self, language):
         if self.isOk:
@@ -81,8 +125,9 @@ class Database(object):
                 return quizzes
             except Exception as e:
                 print(e)
+                raise DatabaseProcessingException(e)
         else:
-            print("Cannot connect to database")
+            raise DatabaseConnectionException("Cannot connect to database.")
     
     def getPractices(self, language):
         if self.isOk:
@@ -95,8 +140,25 @@ class Database(object):
                 return practices
             except Exception as e:
                 print(e)
+                raise DatabaseProcessingException(e)
         else:
-            print("Cannot connect to database")
+            raise DatabaseConnectionException("Cannot connect to database.")
+        
+    def readProgress(self, language):
+        if self.isOk:
+            try:
+                query = {"language": language}
+                result = self.progressCollection.find_one(query)
+                if result is None:
+                    raise EntityNotFoundExcepton("Cannot get a Progress")
+                return result
+            except EntityNotFoundExcepton as e:
+                raise e
+            except Exception as e:
+                print(e)
+                raise DatabaseProcessingException(e)
+        else:
+            raise DatabaseConnectionException("Cannot connect to database.")
 
     def getRandomQuiz(self, language): 
         if self.isOk:
@@ -108,7 +170,7 @@ class Database(object):
                 index = random.randrange(0, quizCount)
                 return quizzes[index]
         else:
-            print("Cannot connect to database")
+            raise DatabaseConnectionException("Cannot connect to database.")
     
     def getRandomPractice(self, language): 
         if self.isOk:
@@ -120,37 +182,90 @@ class Database(object):
                 index = random.randrange(0, practiceCount)
                 return practices[index]
         else:
-            print("Cannot connect to database")
+            raise DatabaseConnectionException("Cannot connect to database.")
 
     def updateUserQuiz(self, username, quiz):
         if self.isOk:
-            dbuser = self.findUser(username)
-            if dbuser is not None:
-                score = quiz[constant.QUIZ_SCORE]
-                if constant.USER_TOTALSCORE  in dbuser:
-                    score += dbuser[constant.USER_TOTALSCORE]
+            try:
+                dbuser = self.findUser(username)
+                if dbuser is not None:
+                    score = quiz[constant.QUIZ_SCORE]
+                    if constant.USER_TOTALSCORE  in dbuser:
+                        score += dbuser[constant.USER_TOTALSCORE]
 
-                query = {constant.COLLECTION_ID: username}
-                newValue = {}
-                if constant.USER_QUIZZES in dbuser:
-                    dbquizzes = dbuser[constant.USER_QUIZZES]
-                    dbquizzes.append(quiz)
-                    newValue = {"$set": {
-                            constant.USER_TOTALSCORE: score,
-                            constant.USER_QUIZZES: dbquizzes
+                    query = {constant.COLLECTION_ID: username}
+                    newValue = {}
+                    if constant.USER_QUIZZES in dbuser:
+                        dbquizzes = dbuser[constant.USER_QUIZZES]
+                        dbquizzes.append(quiz)
+                        newValue = {"$set": {
+                                constant.USER_TOTALSCORE: score,
+                                constant.USER_QUIZZES: dbquizzes
+                            }
                         }
-                    }
+                    else:
+                        newValue = {"$set": {
+                                constant.USER_TOTALSCORE: score,
+                                constant.USER_QUIZZES: [quiz]
+                            }
+                        }
+                    self.userCollection.update_one(query, newValue)
                 else:
-                    newValue = {"$set": {
-                            constant.USER_TOTALSCORE: score,
-                            constant.USER_QUIZZES: [quiz]
-                        }
-                    }
-
-                    
-                self.userCollection.update_one(query, newValue)
+                    raise EntityNotFoundExcepton(f"Cannot find user with username: {username}")
+            except EntityNotFoundExcepton as e:
+                raise e
+            except Exception as e:
+                print(e)
+                raise DatabaseProcessingException(e)
         else:
-            print("Cannot connect to database")
+            raise DatabaseConnectionException("Cannot connect to database.")
+        
+    def readUserProgress(self, username):
+        if self.isOk:
+            try:
+                dbuser = self.findUser(username)
+                progress = None
+                newValue = None
+                query = {constant.COLLECTION_ID: username}
+                if dbuser is not None:
+                    language = None
+                    if "language" in dbuser:
+                        language = dbuser["language"]
+                    else:
+                        raise DatabaseProcessingException("User have not select a language")
+                    dbprogress = self.readProgress(language)
+                    if "progresses" in dbuser:
+                        dbprogresses = dbuser["progresses"]
+                        for item in dbprogresses:
+                            if item["language"] == language:
+                                progress = item
+                                break
+                        if progress is None:
+                            dbprogresses.append(dbprogress)
+                            newValue = {"$set": {
+                                    "progresses": dbprogresses
+                                }
+                            }
+                            progress = dbprogress
+                    else:
+                        newValue = {"$set": {
+                                "progresses": [dbprogress]
+                            }
+                        }
+                        progress = dbprogress
+                    self.userCollection.update_one(query, newValue)
+                    return progress
+                else:
+                    raise EntityNotFoundExcepton(f"Cannot read user with username: {username}")
+            except EntityNotFoundExcepton as e:
+                raise e
+            except DatabaseProcessingException as e:
+                raise e
+            except Exception as e:
+                print(e)
+                raise DatabaseProcessingException(e)
+        else:
+            raise DatabaseConnectionException("Cannot connect to database.")
 
     def get_all_users(self):
         user_documents = self.userCollection.find()

@@ -134,10 +134,10 @@ Practices }|--|| Languages : ""
 	]
 }
 
-# Quizz document
+# Quiz document
 {
 	_id: "1",
-	name: "Quizz 1",
+	name: "Quiz 1",
 	language: "Spanish",
 	questions: [
 		{
