@@ -7,7 +7,7 @@ from datetime import datetime
 database = Database()
 
 class VocabQuiz(object):    
-    def __init__(self, ctx, user, quiz): 
+    def __init__(self, ctx, user, quiz, progressId=""): 
         self.ctx = ctx
         self.quiz = quiz
         self.numOfFinishQuestion = 0
@@ -15,6 +15,7 @@ class VocabQuiz(object):
         self.user = user
         self.questions = quiz[constant.QUIZ_QUESTIONS]
         self.numOfQuestion = len(self.questions)
+        self.progressId = progressId
 
     def get_question(self):
         if self.numOfFinishQuestion < self.numOfQuestion:
@@ -67,7 +68,8 @@ class VocabQuiz(object):
             constant.QUIZ_NAME: self.quiz[constant.QUIZ_NAME],
             constant.QUIZ_SCORE: score,
             constant.USER_TOOKON: now.strftime(constant.DATE_FORMAT),
-            constant.USER_LANGUAGE: self.quiz[constant.USER_LANGUAGE]
+            constant.USER_LANGUAGE: self.quiz[constant.USER_LANGUAGE],
+            "progress_id": self.progressId
         }
 
 

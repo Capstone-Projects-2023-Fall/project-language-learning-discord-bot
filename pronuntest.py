@@ -10,7 +10,7 @@ database = Database()
 connections = {}
 
 class PronunTest(object):    
-    def __init__(self, ctx, user, practice): 
+    def __init__(self, ctx, user, practice, progressId = ""): 
         self.ctx = ctx
         self.practice = practice
         self.numOfFinishQuestion = 0
@@ -20,6 +20,7 @@ class PronunTest(object):
         self.currentSentence = ""
         self.currentAnswer = ""
         self.currentScore = 0
+        self.progressId = progressId
 
     def get_question(self):
         if self.numOfFinishQuestion < self.numOfSentences:
@@ -103,7 +104,8 @@ class PronunTest(object):
             constant.QUIZ_NAME: self.practice["name"],
             constant.QUIZ_SCORE: score,
             constant.USER_TOOKON: now.strftime(constant.DATE_FORMAT),
-            constant.USER_LANGUAGE: self.practice[constant.USER_LANGUAGE]
+            constant.USER_LANGUAGE: self.practice[constant.USER_LANGUAGE],
+            "progress_id": self.progressId
         }
 
 

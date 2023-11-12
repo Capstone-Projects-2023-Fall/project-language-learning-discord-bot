@@ -64,13 +64,13 @@ class MyProgress(commands.Cog):
                         await interaction.response.send_message("Start practice!")
                         if practice_type == "quiz":
                             quiz = database.getRandomQuiz(language)
-                            vocabQuiz = vocabquiz.VocabQuiz(ctx=ctx,user=username, quiz=quiz)
+                            vocabQuiz = vocabquiz.VocabQuiz(ctx=ctx,user=username, quiz=quiz, progressId=practice_id)
                             hasQuestion, question, view = vocabQuiz.get_question()
                             if hasQuestion:
                                 await ctx.send(question, view=view)
                         elif practice_type == "practice":
                             practice = database.getRandomPractice(language)
-                            pronunTest = pronuntest.PronunTest(ctx=ctx, user=username, practice=practice)
+                            pronunTest = pronuntest.PronunTest(ctx=ctx, user=username, practice=practice, progressId=practice_id)
                             hasQuestion, sentence, view = pronunTest.get_question()
                             if hasQuestion:
                                 await ctx.send(f"How do you say: {sentence}", view=view)
