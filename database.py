@@ -246,14 +246,15 @@ class Database(object):
                                     "progresses": dbprogresses
                                 }
                             }
+                            self.userCollection.update_one(query, newValue)
                             progress = dbprogress
                     else:
                         newValue = {"$set": {
                                 "progresses": [dbprogress]
                             }
                         }
+                        self.userCollection.update_one(query, newValue)
                         progress = dbprogress
-                    self.userCollection.update_one(query, newValue)
                     return progress
                 else:
                     raise EntityNotFoundExcepton(f"Cannot read user with username: {username}")
