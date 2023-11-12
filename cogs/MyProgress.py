@@ -38,11 +38,11 @@ class MyProgress(commands.Cog):
                 )
                 dblessons = dbunit["lessons"]
                 done_count = 0
-                
-                for index,dblesson in enumerate(dblessons):
+                index = 0
+                for dblesson in dblessons:
                     if dblesson["isDone"] == True: 
                         done_count += 1
-                    if practice_shown == False and dblesson["isDone"] == False:
+                    if practice_id == "" and dblesson["isDone"] == False:
                         practice_id = dblesson["id"]
                         practice_type = dblesson["type"]
 
@@ -54,6 +54,7 @@ class MyProgress(commands.Cog):
                         value=f"{dblesson['name']}                           {done}",
                         inline=False
                     )
+                    index +=1
                 # mark done
                 if done_count == len(dblessons):
                     embed.set_thumbnail(url="attachment://trophy.png")

@@ -225,7 +225,7 @@ class Database(object):
                             for item in dbprogress["progress"]:
                                 print("item", item)
                                 dblessons = item["lessons"]
-                                for index,dblesson in enumerate(dblessons):
+                                for dblesson in dblessons:
                                     if dblesson["id"] == quiz["progress_id"]:
                                         dblesson["isDone"] = True
                                         newValue = {"$set": {
