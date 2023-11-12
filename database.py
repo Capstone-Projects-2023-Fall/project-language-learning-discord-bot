@@ -203,13 +203,36 @@ class Database(object):
                                 constant.USER_QUIZZES: dbquizzes
                             }
                         }
+                        self.userCollection.update_one(query, newValue)
                     else:
                         newValue = {"$set": {
                                 constant.USER_TOTALSCORE: score,
                                 constant.USER_QUIZZES: [quiz]
                             }
                         }
-                    self.userCollection.update_one(query, newValue)
+                        self.userCollection.update_one(query, newValue)
+                    # update progress if available
+                    if quiz["progress_id"] != "" and "progresses" in dbuser:
+                        language = dbuser["language"]
+                        dbprogress = None
+                        dbprocesses = dbuser["progresses"]
+                        for item in dbprocesses:
+                            if item["language"] == language:
+                                dbprogress = item
+                                break
+                        print("dbprogress", dbprogress)
+                        if dbprogress is not None:
+                            for item in dbprogress["progress"]:
+                                print("item", item)
+                                dblessons = item["lessons"]
+                                for dblesson in dblessons:
+                                    if dblesson["id"] == quiz["progress_id"]:
+                                        dblesson["isDone"] = True
+                                        newValue = {"$set": {
+                                                "progresses": dbprocesses
+                                            }
+                                        }
+                                        self.userCollection.update_one(query, newValue)
                 else:
                     raise EntityNotFoundExcepton(f"Cannot find user with username: {username}")
             except EntityNotFoundExcepton as e:
@@ -246,14 +269,15 @@ class Database(object):
                                     "progresses": dbprogresses
                                 }
                             }
+                            self.userCollection.update_one(query, newValue)
                             progress = dbprogress
                     else:
                         newValue = {"$set": {
                                 "progresses": [dbprogress]
                             }
                         }
+                        self.userCollection.update_one(query, newValue)
                         progress = dbprogress
-                    self.userCollection.update_one(query, newValue)
                     return progress
                 else:
                     raise EntityNotFoundExcepton(f"Cannot read user with username: {username}")
