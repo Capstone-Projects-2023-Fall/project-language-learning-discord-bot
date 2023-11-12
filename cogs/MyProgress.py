@@ -23,9 +23,7 @@ class MyProgress(commands.Cog):
         dbuser = database.findUser(username=username)
         if dbuser is not None and constant.USER_LANGUAGE in dbuser:
             language = dbuser[constant.USER_LANGUAGE]
-            await ctx.send("My progress called")
             dbuserprogress = database.readUserProgress(username=username)
-            print("dbprogress", dbuserprogress)
             dbprogress = dbuserprogress["progress"]
             practice_shown = False
             practice_id = ""
