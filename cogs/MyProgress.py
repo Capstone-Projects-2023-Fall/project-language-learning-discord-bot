@@ -58,8 +58,10 @@ class MyProgress(commands.Cog):
                 # mark done
                 if done_count == len(dblessons):
                     embed.set_thumbnail(url="attachment://trophy.png")
-               
-                await ctx.send(embed=embed)
+                    file = discord.File("images/trophy.png", filename="trophy.png")
+                    await ctx.send(file=file, embed=embed)
+                else:
+                    await ctx.send(embed=embed)
                 if done_count < len(dblessons) and practice_shown == False:
                     async def button_record_callback(interaction):
                         await interaction.response.send_message("Start practice!")
