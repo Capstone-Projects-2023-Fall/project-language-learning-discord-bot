@@ -296,6 +296,16 @@ class Database(object):
         users = [(doc[constant.COLLECTION_ID], doc[constant.USER_TOTALSCORE]) for doc in user_documents]
         return users
 
+    # prevent the user from retaking the same quiz if they already took it & got a perfect score
+    def has_taken_quiz(self, username, quiz):
+        dbuser = self.findUser(username)
+        if dbuser is not None:
+            if constant.USER_QUIZZES in dbuser:
+                quizzes = dbuser[constant.USER_QUIZZES]
+                for q in quizzes:
+                    if q[constant.QUIZ_NAME] == quiz[constant.QUIZ_NAME] and q[constant.QUIZ_SCORE] == 50:
+                        return True
+        return False
 
 
     
