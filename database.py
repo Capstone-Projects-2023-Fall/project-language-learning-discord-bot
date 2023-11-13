@@ -40,6 +40,7 @@ class Database(object):
             self.userCollection = self.db["users"]
             self.quizCollection = self.db["quizzes"]
             self.practiceCollection = self.db["pratices"]
+            self.cardCollection = self.db["flashcards"]
             self.progressCollection = self.db["progresses"]
             self.isOk = True
         except Exception as e:
@@ -143,6 +144,21 @@ class Database(object):
                 raise DatabaseProcessingException(e)
         else:
             raise DatabaseConnectionException("Cannot connect to database.")
+
+    def getFlashcards(self, language):
+        if self.isOk:
+            try:
+                query = {constant.USER_LANGUAGE: language}
+                cursor = self.cardCollection.find(query)
+                flashcards = []
+                for cardset in cursor:
+                    flashcards.append(cardset)
+                return flashcards
+            except Exception as e:
+                print(e)
+                raise DatabaseProcessingException(e)
+        else:
+            raise DatabaseConnectionException("Cannot connect to database.")
         
     def readProgress(self, language):
         if self.isOk:
@@ -181,6 +197,18 @@ class Database(object):
             else:
                 index = random.randrange(0, practiceCount)
                 return practices[index]
+        else:
+            raise DatabaseConnectionException("Cannot connect to database.")
+
+    def getRandomFlash(self, language):
+        if self.isOk:
+            flashcards = self.getFlashcards(language)
+            cardCount = len(flashcards)
+            if cardCount == 0:
+                return None
+            else:
+                index = random.randrange(0, cardCount)
+                return flashcards[index]
         else:
             raise DatabaseConnectionException("Cannot connect to database.")
 
