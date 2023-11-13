@@ -40,6 +40,7 @@ async def setup_hook():
         if filename.endswith('.py'):
             await bot.load_extension(f'cogs.{filename[:-3]}')
             print(f"Loaded Cog: {filename[:-3]}")
-setup_hook()
+            
+asyncio.run(setup_hook())
 asyncio.run(os.environ['BOT_TOKEN'])
 
