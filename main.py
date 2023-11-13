@@ -35,11 +35,11 @@ async def on_ready():
         await channel.send("Hello, I'm now online!")
 
 # Loads all the cogs (external commands organized in classes)
-def setup_hook():
+async def setup_hook():
     for filename in os.listdir('./cogs'):
         if filename.endswith('.py'):
-            bot.load_extension(f'cogs.{filename[:-3]}')
+            await bot.load_extension(f'cogs.{filename[:-3]}')
             print(f"Loaded Cog: {filename[:-3]}")
 setup_hook()
-bot.run(os.environ['BOT_TOKEN'])
+asyncio.run(os.environ['BOT_TOKEN'])
 
