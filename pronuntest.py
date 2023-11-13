@@ -79,7 +79,8 @@ class PronunTest(object):
             s2t = SpeechToText()
             text = s2t.speech_to_text(filename="temp.wav", language="n/a")
         #await channel.send(f"finished recording audio for: {', '.join(recorded_users)}.", files=files)  # Send a message with the accumulated files.
-        await channel.send(f"You said: {text}")
+        highlighted_text = MatchResult.highlight_errors(self.currentAnswer, text)
+        await channel.send(f"You said: {highlighted_text}")
         self.numOfFinishQuestion += 1
         # score
         percent = MatchResult.match_sentence(self.currentAnswer, text)
