@@ -58,6 +58,6 @@ class StartVocabQuiz(commands.Cog):
                                         color=0xFF0000)
             await ctx.send(embed=error_embed)
 
-def setup(bot):
-    bot.add_cog(StartVocabQuiz(bot))
+async def setup(bot):
+    await bot.add_cog(StartVocabQuiz(bot))
     print("StartVocabQuiz.py added")

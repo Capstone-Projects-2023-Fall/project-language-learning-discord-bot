@@ -28,6 +28,6 @@ class Leaderboard(commands.Cog):
         await ctx.send(file=file, embed=leaderboard_embed)
 
 
-def setup(bot):
-    bot.add_cog(Leaderboard(bot))
+async def setup(bot):
+    await bot.add_cog(Leaderboard(bot))
     print("Leaderboard.py added")

@@ -27,6 +27,6 @@ class ChangeLanguage(commands.Cog):
             embed.add_field(name="Available Languages", value=available_languages, inline=False)
             await ctx.send(embed=embed)
 
-def setup(bot):
-    bot.add_cog(ChangeLanguage(bot))
+async def setup(bot):
+    await bot.add_cog(ChangeLanguage(bot))
     print("ChangeLanguage.py added")

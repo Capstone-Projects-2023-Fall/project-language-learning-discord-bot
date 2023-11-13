@@ -40,8 +40,8 @@ class StartVoiceQuiz(commands.Cog):
             error_embed = discord.Embed(title="Language Not Selected", description=f"Please use command !changeLanguage [language] to select your language", color=0xFF0000)
             await ctx.send(embed=error_embed)
 
-def setup(bot):
-    bot.add_cog(StartVoiceQuiz(bot))
+async def setup(bot):
+    await bot.add_cog(StartVoiceQuiz(bot))
     print("StartVoiceQuiz.py added")
 
 """ legacy code

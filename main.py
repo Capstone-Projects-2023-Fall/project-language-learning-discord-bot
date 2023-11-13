@@ -53,12 +53,11 @@ async def on_ready():
 #         await message.channel.send('Hello! This is the content of help command')
 
 # Loads all the cogs (external commands organized in classes)
-def setup_hook():
+async def load_extensions():
     for filename in os.listdir('./cogs'):
         if filename.endswith('.py'):
-            bot.load_extension(f'cogs.{filename[:-3]}')
+            await bot.load_extension(f'cogs.{filename[:-3]}')
             print(f"Loaded Cog: {filename[:-3]}")
-setup_hook()
 
 # Disconnect command with a disconnect button
 @bot.command(name='disconnect')
@@ -93,4 +92,9 @@ async def disconnect(ctx):
     view.add_item(disconnect_button)
     await ctx.send(f"Bot disconnect has been initiated by {ctx.author.mention}. Please confirm by clicking the 'Disconnect Bot' button.", view=view)
 
-bot.run(os.environ['BOT_TOKEN'])
+async def main():
+    async with bot:
+        await load_extensions()
+        await bot.start(os.getenv('BOT_TOKEN'))
+
+asyncio.run(main())

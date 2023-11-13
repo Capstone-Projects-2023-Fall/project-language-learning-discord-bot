@@ -59,8 +59,8 @@ class Record(commands.Cog):
         else:
             await ctx.send("I am currently not recording here.")  # Respond with this if we aren't recording.
 
-def setup(bot):
-    bot.add_cog(Record(bot))
+async def setup(bot):
+    await bot.add_cog(Record(bot))
     print("Record.py added")
 
 
