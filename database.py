@@ -241,7 +241,7 @@ class Database(object):
                         }
                         self.userCollection.update_one(query, newValue)
                     # update progress if available
-                    if quiz["progress_id"] != "" and "progresses" in dbuser:
+                    if "progress_id" in quiz and quiz["progress_id"] != "" and "progresses" in dbuser:
                         language = dbuser["language"]
                         dbprogress = None
                         dbprocesses = dbuser["progresses"]
