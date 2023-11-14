@@ -18,7 +18,7 @@ class HelpCommand(commands.Cog):
         helpEmbed.add_field(name="!startVoiceQuiz", value="**User must be in a voice channel for this to work.**\nBot will join the user in the respective channel.", inline=False)
         helpEmbed.add_field(name="!leaderboard", value="Displays the top linguists in terms of overall rating.", inline=False)
         helpEmbed.add_field(name="!myScores", value="Displays personal scores on vocab and voice quizzes.", inline=False)
-
+        helpEmbed.add_field(name="!fillInTheBlanks [language]", value="Start a fill-in-the-blank exercise for the specified language.", inline=False)
         await ctx.send(embed=helpEmbed)
 
 def setup(bot):

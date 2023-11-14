@@ -41,6 +41,7 @@ class Database(object):
             self.quizCollection = self.db["quizzes"]
             self.practiceCollection = self.db["pratices"]
             self.progressCollection = self.db["progresses"]
+            self.fill_in_the_blanks_collection = self.db["fill_in_the_blanks"]
             self.isOk = True
         except Exception as e:
             self.isOk = False
@@ -271,8 +272,24 @@ class Database(object):
         user_documents = self.userCollection.find()
         users = [(doc[constant.COLLECTION_ID], doc[constant.USER_TOTALSCORE]) for doc in user_documents]
         return users
+    
+    def get_random_fill_in_the_blank_set(self, language):
+        if not self.isOk:
+            raise DatabaseConnectionException("Cannot connect to database.")
 
+        try:
+            print(f"Fetching fill-in-the-blank set for language: {language}")
+            sets = list(self.fill_in_the_blanks_collection.find({"language": language}))
+            if not sets:
+                print(f"No sets found for language: {language}")
+                return None
+            return random.choice(sets)
+        except Exception as e:
+            print(f"An error occurred while retrieving fill-in-the-blank sets: {e}")
+            raise DatabaseProcessingException(e)
 
+        else:
+            raise DatabaseConnectionException("Cannot connect to database.")
 
     
 

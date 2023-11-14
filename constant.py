@@ -16,6 +16,13 @@ QUIZ_SCORE = "score"
 QUIZ_NAME = "name"
 QUIZ_SCORE = "score"
 
+# Fill in the Blanks
+FILL_IN_THE_BLANKS_SET = "fill_in_the_blanks_set"
+FILL_IN_THE_BLANKS_QUESTION = "sentence_with_blank"
+FILL_IN_THE_BLANKS_CORRECT_ANSWER = "correct_answer"
+FILL_IN_THE_BLANKS_CHOICES = "choices"
+FILL_IN_THE_BLANKS_ENGLISH_MEANING = "english_meaning"
+
 COLLECTION_ID = "_id"
 
 DATE_FORMAT = "%d/%m/%Y %H:%M:%S"
