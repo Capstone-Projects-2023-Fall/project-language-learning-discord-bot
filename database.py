@@ -40,6 +40,7 @@ class Database(object):
             self.userCollection = self.db["users"]
             self.quizCollection = self.db["quizzes"]
             self.practiceCollection = self.db["pratices"]
+            self.cardCollection = self.db["flashcards"]
             self.progressCollection = self.db["progresses"]
             self.fill_in_the_blanks_collection = self.db["fill_in_the_blanks"]
             self.isOk = True
@@ -144,6 +145,21 @@ class Database(object):
                 raise DatabaseProcessingException(e)
         else:
             raise DatabaseConnectionException("Cannot connect to database.")
+
+    def getFlashcards(self, language):
+        if self.isOk:
+            try:
+                query = {constant.USER_LANGUAGE: language}
+                cursor = self.cardCollection.find(query)
+                flashcards = []
+                for cardset in cursor:
+                    flashcards.append(cardset)
+                return flashcards
+            except Exception as e:
+                print(e)
+                raise DatabaseProcessingException(e)
+        else:
+            raise DatabaseConnectionException("Cannot connect to database.")
         
     def readProgress(self, language):
         if self.isOk:
@@ -185,6 +201,18 @@ class Database(object):
         else:
             raise DatabaseConnectionException("Cannot connect to database.")
 
+    def getRandomFlash(self, language):
+        if self.isOk:
+            flashcards = self.getFlashcards(language)
+            cardCount = len(flashcards)
+            if cardCount == 0:
+                return None
+            else:
+                index = random.randrange(0, cardCount)
+                return flashcards[index]
+        else:
+            raise DatabaseConnectionException("Cannot connect to database.")
+
     def updateUserQuiz(self, username, quiz):
         if self.isOk:
             try:
@@ -204,13 +232,36 @@ class Database(object):
                                 constant.USER_QUIZZES: dbquizzes
                             }
                         }
+                        self.userCollection.update_one(query, newValue)
                     else:
                         newValue = {"$set": {
                                 constant.USER_TOTALSCORE: score,
                                 constant.USER_QUIZZES: [quiz]
                             }
                         }
-                    self.userCollection.update_one(query, newValue)
+                        self.userCollection.update_one(query, newValue)
+                    # update progress if available
+                    if quiz["progress_id"] != "" and "progresses" in dbuser:
+                        language = dbuser["language"]
+                        dbprogress = None
+                        dbprocesses = dbuser["progresses"]
+                        for item in dbprocesses:
+                            if item["language"] == language:
+                                dbprogress = item
+                                break
+                        print("dbprogress", dbprogress)
+                        if dbprogress is not None:
+                            for item in dbprogress["progress"]:
+                                print("item", item)
+                                dblessons = item["lessons"]
+                                for dblesson in dblessons:
+                                    if dblesson["id"] == quiz["progress_id"]:
+                                        dblesson["isDone"] = True
+                                        newValue = {"$set": {
+                                                "progresses": dbprocesses
+                                            }
+                                        }
+                                        self.userCollection.update_one(query, newValue)
                 else:
                     raise EntityNotFoundExcepton(f"Cannot find user with username: {username}")
             except EntityNotFoundExcepton as e:
@@ -247,14 +298,15 @@ class Database(object):
                                     "progresses": dbprogresses
                                 }
                             }
+                            self.userCollection.update_one(query, newValue)
                             progress = dbprogress
                     else:
                         newValue = {"$set": {
                                 "progresses": [dbprogress]
                             }
                         }
+                        self.userCollection.update_one(query, newValue)
                         progress = dbprogress
-                    self.userCollection.update_one(query, newValue)
                     return progress
                 else:
                     raise EntityNotFoundExcepton(f"Cannot read user with username: {username}")
@@ -287,9 +339,21 @@ class Database(object):
         except Exception as e:
             print(f"An error occurred while retrieving fill-in-the-blank sets: {e}")
             raise DatabaseProcessingException(e)
-
+            
+    # prevent the user from retaking the same quiz if they already took it & got a perfect score
+    def has_taken_quiz(self, username, quiz):
+        dbuser = self.findUser(username)
+        if dbuser is not None:
+            if constant.USER_QUIZZES in dbuser:
+                quizzes = dbuser[constant.USER_QUIZZES]
+                for q in quizzes:
+                    if q[constant.QUIZ_NAME] == quiz[constant.QUIZ_NAME] and q[constant.QUIZ_SCORE] == 50:
+                        return True
         else:
-            raise DatabaseConnectionException("Cannot connect to database.")
+          raise DatabaseConnectionException("Cannot connect to database.")
+        return False
+
+
 
     
 
