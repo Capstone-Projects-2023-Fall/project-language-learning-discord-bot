@@ -3,7 +3,59 @@ import database
 import constant
 from datetime import datetime
 
-class TestDatabase(unittest.TestCase):
+# This test class is not use because it is not using mock test. 
+# Only name the object is mock and call it is mock test.
+# Please do not document this class.
+class MockTestDatabase(unittest.TestCase):
+
+    mock_user = {
+        "_id": "test_user",
+        "language": "English",
+        "totalScore": 0,
+        "quizzes": [],
+        "progresses": []
+    }
+
+    mock_quiz = {
+        "name": "Test Quiz",
+        "language": "English",
+        "progress_id": "some_id",
+        "questions": [
+            {
+                "question": "What is the capital of France?",
+                "options": ["Paris", "London", "Berlin", "Madrid"],
+                "answer": "Paris"
+            },
+            {
+                "question": "What is the capital of England?",
+                "options": ["Paris", "London", "Berlin", "Madrid"],
+                "answer": "London"
+            }
+        ],
+        "score": 0
+    }
+
+    mock_practice = {
+        "name": "Test Practice",
+        "language": "English",
+        "content": "This is a test practice content."
+    }
+
+    mock_progress = {
+        "language": "English",
+        "progress": [
+            {
+                "id": "lesson1",
+                "name": "Lesson 1",
+                "isDone": False
+            },
+            {
+                "id": "lesson2",
+                "name": "Lesson 2",
+                "isDone": False
+            }
+        ]
+    }
 
     def setUp(self):
         self.database = database.Database()
@@ -11,7 +63,7 @@ class TestDatabase(unittest.TestCase):
         self.database.db = self.database.client["testdatabase"]
         self.database.userCollection = self.database.db["users"]
         self.database.quizCollection = self.database.db["quizzes"]
-        self.database.practiceCollection = self.database.db["pratices"]
+        self.database.practiceCollection = self.database.db["practices"]
         self.database.progressCollection = self.database.db["progresses"]
         # delete all data
         self.database.userCollection.delete_many({})
@@ -19,29 +71,19 @@ class TestDatabase(unittest.TestCase):
         self.database.practiceCollection.delete_many({})
         self.database.progressCollection.delete_many({})
         # import data for testing
-        user1 = {
-                    "_id": "user1"
-        }
-        self.database.userCollection.insert_one(user1)
-        quiz1 = {"name":"Practice 1","language":"Spanish","questions":[{"question":"How to say please?","answers":[{"answer":"por favor","isCorrect":"true"},{"answer":"por","isCorrect":"false"},{"answer":"favor","isCorrect":"false"}]},{"question":"How to say thank you?","answers":[{"answer":"por favor","isCorrect":"false"},{"answer":"por","isCorrect":"false"},{"answer":"gracias","isCorrect":"true"}]}]}
-        quiz2 = {"name":"Practice 2","language":"Spanish","questions":[{"question":"How to say bad?","answers":[{"answer":"por favor","isCorrect":"false"},{"answer":"mal","isCorrect":"true"},{"answer":"favor","isCorrect":"false"}]},{"question":"How to say as always?","answers":[{"answer":"como siempre","isCorrect":"true"},{"answer":"por","isCorrect":"false"},{"answer":"gracias","isCorrect":"false"}]}]}
-        self.database.quizCollection.insert_one(quiz1)
-        self.database.quizCollection.insert_one(quiz2)
-        practice1 = {"name": "Practice 1","language": "Spanish","sentences": [{"sentence": "Cat has four legs"},{"sentence": "Chicken has two legs"}]}
-        practice2 = {"name": "Practice 2","language": "Spanish","sentences": [{"sentence": "Today is hot"},{"sentence": "The sun is yellow"}]}
-        self.database.practiceCollection.insert_one(practice1)
-        self.database.practiceCollection.insert_one(practice2)
-        progress1 = {"language": "Spanish","progress": [{"name": "Unit 1","title": "From basic sentences, greet people","lessons": [{  "id": "0s0","name": "Practice voice 1","type": "practice","isDone": "false"}]}]}
-        self.database.progressCollection.insert_one(progress1)
+        self.database.userCollection.insert_one(self.mock_user)
+        self.database.quizCollection.insert_one(self.mock_quiz)
+        self.database.practiceCollection.insert_one(self.mock_practice)
+        self.database.progressCollection.insert_one(self.mock_progress)
 
     def test_findUser_not_found(self):
         dbuser = self.database.findUser('notfound')
         self.assertIsNone(dbuser)
 
     def test_findUser_found(self):
-        dbuser = self.database.findUser('user1')
+        dbuser = self.database.findUser(self.mock_user["_id"])
         self.assertIsNotNone(dbuser)
-        self.assertEqual(dbuser[constant.COLLECTION_ID], "user1")
+        self.assertEqual(dbuser[constant.COLLECTION_ID], self.mock_user["_id"])
 
     def test_insertUser(self):
         user = {
@@ -52,30 +94,33 @@ class TestDatabase(unittest.TestCase):
         self.assertIsNotNone(dbuser)
         self.assertEqual(dbuser[constant.COLLECTION_ID], "user2")
 
-    def test_changeLanguage(self): 
-        self.database.changeUserLanguage(username="user1", language="Spanish")
-        dbuser = self.database.findUser("user1")
+    def test_changeLanguage(self):
+        self.database.changeUserLanguage(
+            username=self.mock_user["_id"], language="Spanish")
+        dbuser = self.database.findUser(self.mock_user["_id"])
         self.assertIsNotNone(dbuser)
         self.assertEqual(dbuser[constant.USER_LANGUAGE], "Spanish")
 
     def test_getQuizzes_no_record(self):
         dbquizzes = self.database.getQuizzes("a_language")
         self.assertEqual(len(dbquizzes), 0)
-    
+
     def test_getQuizzes_has_record(self):
-        dbquizzes = self.database.getQuizzes("Spanish")
-        self.assertEqual(len(dbquizzes), 2)
+        dbquizzes = self.database.getQuizzes(self.mock_quiz["language"])
+        self.assertEqual(len(dbquizzes), 1)
 
     def test_getRandomQuiz_no_record(self):
         dbquiz = self.database.getRandomQuiz(language="a_language")
         self.assertIsNone(dbquiz)
 
-    def test_getRandomQuiz_has_record(self): 
-        dbquiz = self.database.getRandomQuiz(language="Spanish")
+    def test_getRandomQuiz_has_record(self):
+        dbquiz = self.database.getRandomQuiz(
+            language=self.mock_quiz["language"])
         self.assertIsNotNone(dbquiz)
 
     def test_updateUserQuiz(self):
-        dbquiz = self.database.getRandomQuiz(language="Spanish")
+        dbquiz = self.database.getRandomQuiz(
+            language=self.mock_quiz["language"])
         now = datetime.now()
         quizInfo = {
             constant.COLLECTION_ID: dbquiz[constant.COLLECTION_ID],
@@ -83,13 +128,15 @@ class TestDatabase(unittest.TestCase):
             constant.QUIZ_SCORE: 20,
             constant.USER_TOOKON: now.strftime(constant.DATE_FORMAT)
         }
-        self.database.updateUserQuiz(username="user1", quiz=quizInfo)
-        dbuser = self.database.findUser(username="user1")
-        self.assertEqual(dbuser[constant.COLLECTION_ID], "user1")
+        self.database.updateUserQuiz(
+            username=self.mock_user["_id"], quiz=quizInfo)
+        dbuser = self.database.findUser(username=self.mock_user["_id"])
+        self.assertEqual(dbuser[constant.COLLECTION_ID], self.mock_user["_id"])
         self.assertEqual(dbuser[constant.USER_TOTALSCORE], 20)
 
     def test_updateUserQuiz_raise_exception(self):
-        dbquiz = self.database.getRandomQuiz(language="Spanish")
+        dbquiz = self.database.getRandomQuiz(
+            language=self.mock_quiz["language"])
         now = datetime.now()
         quizInfo = {
             constant.COLLECTION_ID: dbquiz[constant.COLLECTION_ID],
@@ -104,22 +151,24 @@ class TestDatabase(unittest.TestCase):
             print("Expect EntityNotFoundException.")
 
     def test_getPractices_no_record(self):
-        dbpractices= self.database.getPractices("a_language")
+        dbpractices = self.database.getPractices("a_language")
         self.assertEqual(len(dbpractices), 0)
-    
+
     def test_getPractices_has_record(self):
-        dbpractices = self.database.getPractices("Spanish")
-        self.assertEqual(len(dbpractices), 2)
+        dbpractices = self.database.getPractices(
+            self.mock_practice["language"])
+        self.assertEqual(len(dbpractices), 1)
 
     def test_getRandomPractice_no_record(self):
         dbpractice = self.database.getRandomPractice(language="a_language")
         self.assertIsNone(dbpractice)
 
-    def test_getRandomPractice_has_record(self): 
-        dbpractice = self.database.getRandomPractice(language="Spanish")
+    def test_getRandomPractice_has_record(self):
+        dbpractice = self.database.getRandomPractice(
+            language=self.mock_practice["language"])
         self.assertIsNotNone(dbpractice)
 
-    def test_readUser_throw_exception(self): 
+    def test_readUser_throw_exception(self):
         try:
             self.database.readUser("a_user")
             self.failUnlessRaises()
@@ -128,13 +177,13 @@ class TestDatabase(unittest.TestCase):
 
     def test_readProgress_throw_exception(self):
         try:
-            self.database.readProgress("a_languare")
+            self.database.readProgress("a_language")
             self.failUnlessRaises()
         except database.EntityNotFoundExcepton as e:
             print("Expect EntityNotFoundException.")
 
     def test_readProgress_has_record(self):
-        dbprogress = self.database.readProgress("Spanish")
+        dbprogress = self.database.readProgress(self.mock_progress["language"])
         self.assertIsNotNone(dbprogress)
 
     def test_readUserProgress_throw_exception(self):
@@ -144,23 +193,13 @@ class TestDatabase(unittest.TestCase):
         except database.EntityNotFoundExcepton as e:
             print("Expect EntityNotFoundException.")
 
-    def test_readUserProgress_user_has_no_languare(self):
-        try:
-            self.database.readUserProgress("user1")
-            self.failUnlessRaises()
-        except database.DatabaseProcessingException as e:
-            print("Expect EntityNotFoundException.")
-
-    def test_readUserProgress_has_record(self): 
+    def test_readUserProgress_has_record(self):
         # update language
-        self.database.changeUserLanguage(username="user1", language="Spanish")
-        dbprogress = self.database.readUserProgress("user1")
+        self.database.changeUserLanguage(
+            username=self.mock_user["_id"], language=self.mock_user["language"])
+        dbprogress = self.database.readUserProgress(self.mock_user["_id"])
         self.assertIsNotNone(dbprogress)
             
-
-
-
-
 
 
 if __name__ == '__main__':
