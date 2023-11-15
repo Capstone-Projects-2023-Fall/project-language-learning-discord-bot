@@ -3,6 +3,9 @@ import database
 import constant
 from datetime import datetime
 
+# This test class is not use because it is not using mock test. 
+# Only name the object is mock and call it is mock test.
+# Please do not document this class.
 class MockTestDatabase(unittest.TestCase):
 
     mock_user = {
