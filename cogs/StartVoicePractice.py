@@ -8,7 +8,6 @@ import time
 
 database = Database()
 
-connections = {}
 
 class StartVoicePractice(commands.Cog):
     def __init__(self, bot):

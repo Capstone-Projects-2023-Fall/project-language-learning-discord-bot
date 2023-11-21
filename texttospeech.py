@@ -1,10 +1,5 @@
 from gtts import gTTS 
 
-
-language_map = {
-
-}
-
 class TextToSpeech(object):
     def __init__(self, language):
         self.language_map = {
