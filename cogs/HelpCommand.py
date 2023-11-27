@@ -22,6 +22,7 @@ class HelpCommand(commands.Cog):
         helpEmbed.add_field(name="!startFlash", value="Sharpen your language skills by studying flashcards.", inline=False)
         helpEmbed.add_field(name="!myProgress", value="Show study progress.", inline=False)
         helpEmbed.add_field(name="!startVoicePractice", value="**Help user to practice pronunciation**\n**User must be in a voice channel for this to work.**\nBot will join the user in the respective channel.", inline=False)
+
         await ctx.send(embed=helpEmbed)
 
 def setup(bot):

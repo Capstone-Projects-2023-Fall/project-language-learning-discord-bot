@@ -34,6 +34,32 @@ class FillInTheBlanks(commands.Cog):
         if fill_in_the_blank_set:
             total_score = 0
             question_number = 1
+            
+            for question in fill_in_the_blank_set['questions']:
+                if '(' in question['sentence'] and ')' in question['sentence']:
+                    
+                    start = question['sentence'].find('(')
+                    end = question['sentence'].find(')')
+                    options_text = question['sentence'][start+1:end] 
+                    options_list = options_text.split(',') 
+                    options_formatted = '\n'.join([f"• {option.strip()}" for option in options_list]) 
+                    sentence_with_blank = question['sentence'][:start] + "_ _ _" + question['sentence'][end+1:]
+                else:
+                    options_formatted = "• No options/hints available"
+                    sentence_with_blank = question['sentence'].replace('_ _ _', '_ _ _')  
+
+                
+                question_text = (
+                    f"**{sentence_with_blank}**\n\n"
+                    f"**Options:**\n{options_formatted}\n\n"
+                    f"*Type the correct answer in chat.*\n"
+                    f"\n*English equivalent:*\n"
+                    f"**{question['englishEquivalent']}**"
+                )
+
+                question_embed = discord.Embed(
+                    title=f"Question {question_number}: Fill in the Blanks!",
+                    description=question_text,
 
             for question in fill_in_the_blank_set['questions']:
                 question_embed = discord.Embed(
@@ -59,7 +85,7 @@ class FillInTheBlanks(commands.Cog):
                 else:
                     response_embed = discord.Embed(
                         title=f"Question {question_number}: Incorrect!",
-                        description=f"The correct answer was '{question['correctAnswer']}' ('{question['englishWord']}').\nThe full sentence in English is: '{question['englishSentence']}'",
+                        description=f"The correct answer was '{question['correctAnswer']}' ('{question['englishWord']}').\nThe full sentence in English is: '{question['englishEquivalent']}'",
                         color=0xE74C3C
                     )
                 await ctx.send(embed=response_embed)
