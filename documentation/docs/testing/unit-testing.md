@@ -2,9 +2,9 @@
 sidebar_position: 1
 ---
 
-# Unit tests
+# Unit Tests
 
-## Class: TestDatabase
+## Database Component
 
 **Method: test_findUser_not_found**
 - **Purpose:** Verify `findUser` returns `None` for a non-existent user.
@@ -66,5 +66,35 @@ sidebar_position: 1
 - **Purpose:** Verify `updateUserQuiz` updates user's quiz records.
 - **Input:** 'user1', quiz data with score 20.
 - **Expected Result:** User's `totalScore` updated to 20.
+
+---
+
+## Bot Component
+
+**Method: test_help**
+- **Purpose:** Verify that the `!help` command generates the expected help message embed.
+- **Input:** Sending the message "!help" to the bot.
+- **Expected Result:** An embed with title "Help command for Language Bot" and description "All commands for the bot."
+
+---
+
+**Method: test_changeLanguage**
+- **Purpose:** Verify that the `!changeLanguage` command correctly changes the language and produces the expected response embed.
+- **Input:** Sending the message "!changeLanguage Spanish" to the bot.
+- **Expected Result:** An embed with title "Language changed" and description "Language set to Spanish."
+
+---
+
+**Method: test_startVocabQuiz**
+- **Purpose:** Verify that the `!startVocabQuiz` command initiates a vocabulary quiz with the correct title and description.
+- **Input:** Sending the message "!startVocabQuiz" to the bot.
+- **Expected Result:** An embed with title "Vocabulary Quiz - Spanish" and description "Get ready to test your vocabulary!"
+
+---
+
+**Method: test_myScores**
+- **Purpose:** Verify that the `!myScores` command retrieves and displays the user's score correctly.
+- **Input:** Sending the message "!myScores" to the bot.
+- **Expected Result:** An embed with title "User score" and description "Your all score."
 
 ---
