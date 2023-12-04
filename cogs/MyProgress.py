@@ -102,12 +102,11 @@ class MyProgress(commands.Cog):
                 nonlocal idx, backbutton, nextbutton, progress_embed
                 idx += 1
 
+                dbunit = dbprogress[idx]
                 if idx == len(dbunit['title']) - 1:
                     nextbutton.disabled = True
                 if idx == 1:
                     backbutton.disabled = False
-
-                dbunit = dbprogress[idx]
                 progress_embed.title = dbunit['name'][idx]
                 progress_embed.description = dbunit['title'][idx]
                 dblessons = dbunit["lessons"]
@@ -152,7 +151,6 @@ class MyProgress(commands.Cog):
                     await interaction.response.defer()
                     await my_msg.edit(content='', embed=progress_embed, view=view)
 
-                button.callback = button_record_callback
                 practice_shown = True
                 print(f"{practice_id}    {practice_type}")
 
