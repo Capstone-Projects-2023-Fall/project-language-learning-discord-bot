@@ -25,21 +25,42 @@ class MyProgress(commands.Cog):
         if dbuser is not None and constant.USER_LANGUAGE in dbuser:
             language = dbuser[constant.USER_LANGUAGE]
             dbuserprogress = database.readUserProgress(username=username)
-            dbprogress = dbuserprogress["progress"]
             practice_shown = False
             practice_id = ""
             practice_type = ""
+
+
+            dbprogress = dbuserprogress["progress"]
             dbunit = dbprogress[0]
 
-            progress_embed = discord.Embed(
-                title=dbunit["name"],
-                description=dbunit["title"],
-                color=discord.Color.random()
-            )
+
             backbutton = discord.ui.Button(emoji='◀️', disabled=True)
             nextbutton = discord.ui.Button(emoji='▶️', disabled=len(dbunit['name']) == 1)
             endbutton = discord.ui.Button(emoji='❌')
             idx = 0
+
+            dblessons = dbunit["lessons"]
+
+            if dblessons[idx]["isDone"] == True: 
+                done_count += 1
+            if practice_id == "" and dblessons[idx]["isDone"] == False:
+                practice_id = dblessons[idx]["id"]
+                practice_type = dblessons[idx]["type"]
+
+            done = "Not completed"
+            if dblessons[idx]["isDone"] == True:
+                done = "Completed"
+
+            # progress_embed.title = f"Lesson {idx + 1}"
+            progress_embed.title = "Lesson " + str(dblessons[idx]["id"])
+            progress_embed.description = f"{dblessons[idx]['name']} {done}"
+
+            progress_embed = discord.Embed(
+                title=dbunit["name"],
+                description=f'{dbunit["title"]} \nLesson {str(dblessons[idx]["id"])}\*\*\n{dblessons[idx]["name"]} {done}
+                ',
+                color=discord.Color.random()
+            )
 
             async def backbutton_callback(interaction):
                 nonlocal idx, backbutton, nextbutton, progress_embed
@@ -67,9 +88,13 @@ class MyProgress(commands.Cog):
                 if dblessons[idx]["isDone"] == True:
                     done = "Completed"
 
-                progress_embed.title = f"Lesson {idx + 1}"
-                # progress_embed.title = "Lesson " + str(dblessons[idx]["id"])
-                progress_embed.description = f"{dblessons[idx]['name']} {done}"
+                # progress_embed.title = f"Lesson {idx + 1}"
+                progress_embed = discord.Embed(
+                    title=dbunit["name"],
+                    description=f'{dbunit["title"]} \nLesson {str(dblessons[idx]["id"])}\*\*\n{dblessons[idx]["name"]} {done}
+                    ',
+                    color=discord.Color.random()
+                )
                 # progress_embed.add_field(
                 #     name=f"Lesson {idx + 1}",
                 #     value=f"{dblesson['name']} {done}",
