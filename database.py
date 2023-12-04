@@ -160,6 +160,25 @@ class Database(object):
                 raise DatabaseProcessingException(e)
         else:
             raise DatabaseConnectionException("Cannot connect to database.")
+
+    def getUsrFlashcards(self, unit_choice, language):
+        if self.isOk:
+            try:
+                query = {constant.USER_LANGUAGE: language, "level": unit_choice}
+                cursor = self.cardCollection.find(query)
+                flashcards = []
+                for cardset in cursor:
+                    flashcards.append(cardset)
+
+                if len(flashcards) == 0:
+                    return None
+                else:
+                    return flashcards[0]
+            except Exception as e:
+                print(e)
+                raise DatabaseProcessingException(e)
+        else:
+            raise DatabaseConnectionException("Cannot connect to database.")
         
     def readProgress(self, language):
         if self.isOk:
@@ -203,6 +222,7 @@ class Database(object):
 
     def getRandomFlash(self, language):
         if self.isOk:
+            print("AIbOOOOOOOOOOOOOOOOOOO0000000000")
             flashcards = self.getFlashcards(language)
             cardCount = len(flashcards)
             if cardCount == 0:
