@@ -3,7 +3,7 @@ sidebar_position: 2
 ---
 
 # Component Descriptions
-A description the different components and their interfaces.
+A description the different components and their interfaces. See the [System Block Diagram](https://capstone-projects-2023-fall.github.io/project-language-learning-discord-bot/docs/requirements/system-block-diagram) for a visualization of how these components interact.
 
 ## Discord API
 An API that allows interactions with various features on Discord 
