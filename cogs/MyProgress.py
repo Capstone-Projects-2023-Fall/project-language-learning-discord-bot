@@ -90,8 +90,7 @@ class MyProgress(commands.Cog):
                 # progress_embed.title = f"Lesson {idx + 1}"
                 progress_embed = discord.Embed(
                     title=dbunit["name"],
-                    description=f'{dbunit["title"]} \nLesson {str(dblessons[idx]["id"])}\*\*\n{dblessons[idx]["name"]} {done}
-                    ',
+                    description=f'{dbunit["title"]} \nLesson {str(dblessons[idx]["id"])}\*\*\n{dblessons[idx]["name"]} {done}',
                     color=discord.Color.random()
                 )
                 # progress_embed.add_field(
