@@ -45,7 +45,9 @@ class MyProgress(commands.Cog):
                 nonlocal idx, backbutton, nextbutton, progress_embed
                 idx -= 1
                 done_count = 0
-
+                practice_shown = False
+                practice_id = ""
+                practice_type = ""
 
                 if idx == 0:
                     backbutton.disabled = True
@@ -105,6 +107,9 @@ class MyProgress(commands.Cog):
                 idx += 1
                 dbunit = dbprogress[idx]
                 done_count = 0
+                practice_shown = False
+                practice_id = ""
+                practice_type = ""
 
                 if idx == len(dbunit['title']) - 1:
                     nextbutton.disabled = True
