@@ -114,7 +114,7 @@ class PronunPractice(object):
         hasQuestion, sentence, view = self.get_question()
         if hasQuestion:
             self.textToSpeech.text_to_speech(text=sentence)
-            await self.ctx.send(sentence, view=view)
+            await self.ctx.send(f"Hint: ||{sentence}||", view=view)
             await self.play_sentence()
         else:
             practice_info = self.get_quiz_info()
