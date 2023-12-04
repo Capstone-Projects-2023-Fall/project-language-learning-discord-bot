@@ -24,7 +24,7 @@ class StartVoicePractice(commands.Cog):
         dbuser = database.findUser(username=username)
         if dbuser is not None and constant.USER_LANGUAGE in dbuser:
             language = dbuser[constant.USER_LANGUAGE]
-            quiz_embed = discord.Embed(title=f"Pronunciation Quiz - {language}", description=f"Get ready to test your pronunciation!", color=0xB6D7A8)
+            quiz_embed = discord.Embed(title=f"Pronunciation Practice - {language}", description=f"Try repeating the following audio!", color=0xB6D7A8)
             await ctx.send(embed=quiz_embed)
             practice = database.getRandomPractice(language)
             t2s = TextToSpeech(language=language)
@@ -33,7 +33,7 @@ class StartVoicePractice(commands.Cog):
             
             if hasQuestion:
                 t2s.text_to_speech(text=sentence)
-                await ctx.send(f"{sentence}", view=view)
+                await ctx.send(f"Hint: ||{sentence}||", view=view)
                 await pronunPractice.play_sentence()
             else:
                 practice_info = self.get_quiz_info()
