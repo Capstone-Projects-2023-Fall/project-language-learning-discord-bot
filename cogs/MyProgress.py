@@ -48,31 +48,34 @@ class MyProgress(commands.Cog):
                 practice_shown = False
                 practice_id = ""
                 practice_type = ""
+                dbunit = dbprogress[idx]
 
                 if idx == 0:
                     backbutton.disabled = True
                 if idx == len(dbunit['name']) - 2:
                     nextbutton.disabled = False
 
-                dbunit = dbprogress[idx]
-                progress_embed.title = dbunit['name'][idx]
-                progress_embed.description = dbunit['title'][idx]
                 dblessons = dbunit["lessons"]
-                for dblesson in dblessons:
-                    if dblesson["isDone"] == True: 
-                        done_count += 1
-                    if practice_id == "" and dblesson["isDone"] == False:
-                        practice_id = dblesson["id"]
-                        practice_type = dblesson["type"]
 
-                    done = "Not completed"
-                    if dblesson["isDone"] == True:
-                        done = "Completed"
-                    progress_embed.add_field(
-                        name=f"Lesson {idx + 1}",
-                        value=f"{dblesson['name']}{done}",
-                        inline=False
-                    )
+                if dblessons[idx]["isDone"] == True: 
+                    done_count += 1
+                if practice_id == "" and dblessons[idx]["isDone"] == False:
+                    practice_id = dblessons[idx]["id"]
+                    practice_type = dblessons[idx]["type"]
+
+                done = "Not completed"
+                if dblessons[idx]["isDone"] == True:
+                    done = "Completed"
+
+                progress_embed.title = f"Lesson {idx + 1}"
+                # progress_embed.title = "Lesson " + str(dblessons[idx]["id"])
+                progress_embed.description = f"{dblessons[idx]['name']} {done}"
+                # progress_embed.add_field(
+                #     name=f"Lesson {idx + 1}",
+                #     value=f"{dblesson['name']} {done}",
+                #     inline=False
+                # )
+                await my_msg.edit(content='', embed=progress_embed, view=view)
 
                 if done_count < len(dblessons) and practice_shown == False:
                     async def button_record_callback(interaction):
@@ -115,27 +118,28 @@ class MyProgress(commands.Cog):
                     nextbutton.disabled = True
                 if idx == 1:
                     backbutton.disabled = False
-                progress_embed.title = dbunit['name'][idx]
-                progress_embed.description = dbunit['title'][idx]
+
+
                 dblessons = dbunit["lessons"]
-                for dblesson in dblessons:
-                    practice_id = dblesson["id"]
-                    practice_type = dblesson["type"]
+                if dblessons[idx]["isDone"] == True: 
+                    done_count += 1
+                if practice_id == "" and dblessons[idx]["isDone"] == False:
+                    practice_id = dblessons[idx]["id"]
+                    practice_type = dblessons[idx]["type"]
 
-                    if dblesson["isDone"] == True: 
-                        done_count += 1
-                    if practice_id == "" and dblesson["isDone"] == False:
-                        practice_id = dblesson["id"]
-                        practice_type = dblesson["type"]
+                done = "Not completed"
+                if dblessons[idx]["isDone"] == True:
+                    done = "Completed"
 
-                    done = "Not completed"
-                    if dblesson["isDone"] == True:
-                        done = "Completed"
-                    progress_embed.add_field(
-                        name=f"Lesson {idx + 1}",
-                        value=f"{dblesson['name']}{done}",
-                        inline=False
-                    )
+                progress_embed.title = f"Lesson {idx + 1}"
+                # progress_embed.title = "Lesson " + str(dblessons[idx]["id"])
+                progress_embed.description = f"{dblessons[idx]['name']} {done}"
+                # progress_embed.add_field(
+                #     name=f"Lesson {idx + 1}",
+                #     value=f"{dblesson['name']} {done}",
+                #     inline=False
+                # )
+                await my_msg.edit(content='', embed=progress_embed, view=view)
 
                 if done_count < len(dblessons) and practice_shown == False:
                     async def button_record_callback(interaction):
