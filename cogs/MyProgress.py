@@ -29,10 +29,8 @@ class MyProgress(commands.Cog):
             practice_id = ""
             practice_type = ""
 
-
             dbprogress = dbuserprogress["progress"]
             dbunit = dbprogress[0]
-
 
             backbutton = discord.ui.Button(emoji='◀️', disabled=True)
             nextbutton = discord.ui.Button(emoji='▶️', disabled=len(dbunit['name']) == 1)
@@ -41,20 +39,20 @@ class MyProgress(commands.Cog):
 
             dblessons = dbunit["lessons"]
 
-            if dblessons[idx]["isDone"] == True: 
-                done_count += 1
-            if practice_id == "" and dblessons[idx]["isDone"] == False:
-                practice_id = dblessons[idx]["id"]
-                practice_type = dblessons[idx]["type"]
-
             done = "Not completed"
-            if dblessons[idx]["isDone"] == True:
-                done = "Completed"
+            for counter in range(2):
+                if dblessons[counter]["isDone"] == True: 
+                    done_count += 1
+                if practice_id == "" and dblessons[counter]["isDone"] == False:
+                    practice_id = dblessons[counter]["id"]
+                    practice_type = dblessons[counter]["type"]
+                if dblessons[counter]["isDone"] == True:
+                    done = "Completed"
 
             # progress_embed.title = f"Lesson {idx + 1}"
             progress_embed = discord.Embed(
                 title=dbunit["name"],
-                description=f'{dbunit["title"]} \n**Lesson {str(dblessons[idx]["id"])}**\n{dblessons[idx]["name"]} {done}',
+                description=f'{dbunit["title"]} \n**Lesson 1**\n{dblessons[idx]["name"]} {done}\n**Lesson 2**\n{dblessons[idx + 1]["name"]} {done}',
                 color=discord.Color.random()
             )
 
@@ -73,28 +71,22 @@ class MyProgress(commands.Cog):
                     nextbutton.disabled = False
 
                 dblessons = dbunit["lessons"]
-
-                if dblessons[idx]["isDone"] == True: 
-                    done_count += 1
-                if practice_id == "" and dblessons[idx]["isDone"] == False:
-                    practice_id = dblessons[idx]["id"]
-                    practice_type = dblessons[idx]["type"]
-
                 done = "Not completed"
-                if dblessons[idx]["isDone"] == True:
-                    done = "Completed"
+                for counter in range(2):
+                    if dblessons[counter]["isDone"] == True: 
+                        done_count += 1
+                    if practice_id == "" and dblessons[counter]["isDone"] == False:
+                        practice_id = dblessons[counter]["id"]
+                        practice_type = dblessons[counter]["type"]
+                    if dblessons[counter]["isDone"] == True:
+                        done = "Completed"
 
-                # progress_embed.title = f"Lesson {idx + 1}"
                 progress_embed = discord.Embed(
                     title=dbunit["name"],
-                    description=f'{dbunit["title"]} \nLesson {str(dblessons[idx]["id"])}\*\*\n{dblessons[idx]["name"]} {done}',
+                    description=f'{dbunit["title"]} \n**Lesson 1**\n{dblessons[0]["name"]} {done}\n**Lesson 2**\n{dblessons[1]["name"]} {done}',
                     color=discord.Color.random()
                 )
-                # progress_embed.add_field(
-                #     name=f"Lesson {idx + 1}",
-                #     value=f"{dblesson['name']} {done}",
-                #     inline=False
-                # )
+
                 await my_msg.edit(content='', embed=progress_embed, view=view)
 
                 if done_count < len(dblessons) and practice_shown == False:
@@ -140,25 +132,22 @@ class MyProgress(commands.Cog):
                     backbutton.disabled = False
 
 
-                dblessons = dbunit["lessons"]
-                if dblessons[idx]["isDone"] == True: 
-                    done_count += 1
-                if practice_id == "" and dblessons[idx]["isDone"] == False:
-                    practice_id = dblessons[idx]["id"]
-                    practice_type = dblessons[idx]["type"]
-
                 done = "Not completed"
-                if dblessons[idx]["isDone"] == True:
-                    done = "Completed"
+                for counter in range(2):
+                    if dblessons[counter]["isDone"] == True: 
+                        done_count += 1
+                    if practice_id == "" and dblessons[counter]["isDone"] == False:
+                        practice_id = dblessons[counter]["id"]
+                        practice_type = dblessons[counter]["type"]
+                    if dblessons[counter]["isDone"] == True:
+                        done = "Completed"
 
-                progress_embed.title = f"Lesson {idx + 1}"
-                # progress_embed.title = "Lesson " + str(dblessons[idx]["id"])
-                progress_embed.description = f"{dblessons[idx]['name']} {done}"
-                # progress_embed.add_field(
-                #     name=f"Lesson {idx + 1}",
-                #     value=f"{dblesson['name']} {done}",
-                #     inline=False
-                # )
+                progress_embed = discord.Embed(
+                    title=dbunit["name"],
+                    description=f'{dbunit["title"]} \n**Lesson 1**\n{dblessons[0]["name"]} {done}\n**Lesson 2**\n{dblessons[1]["name"]} {done}',
+                    color=discord.Color.random()
+                )
+                
                 await my_msg.edit(content='', embed=progress_embed, view=view)
 
                 if done_count < len(dblessons) and practice_shown == False:
