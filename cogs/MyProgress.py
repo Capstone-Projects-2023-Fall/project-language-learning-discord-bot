@@ -52,9 +52,6 @@ class MyProgress(commands.Cog):
                 done = "Completed"
 
             # progress_embed.title = f"Lesson {idx + 1}"
-            progress_embed.title = "Lesson " + str(dblessons[idx]["id"])
-            progress_embed.description = f"{dblessons[idx]['name']} {done}"
-
             progress_embed = discord.Embed(
                 title=dbunit["name"],
                 description=f'{dbunit["title"]} \n**Lesson {str(dblessons[idx]["id"])}**\n{dblessons[idx]["name"]} {done}',
