@@ -60,6 +60,7 @@ class FillInTheBlanks(commands.Cog):
                 question_embed = discord.Embed(
                     title=f"Question {question_number}: Fill in the Blanks!",
                     description=question_text,
+                )
 
             for question in fill_in_the_blank_set['questions']:
                 question_embed = discord.Embed(
