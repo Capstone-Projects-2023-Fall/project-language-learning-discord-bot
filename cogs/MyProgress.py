@@ -111,6 +111,9 @@ class MyProgress(commands.Cog):
                 progress_embed.description = dbunit['title'][idx]
                 dblessons = dbunit["lessons"]
                 for dblesson in dblessons:
+                    practice_id = dblesson["id"]
+                    practice_type = dblesson["type"]
+
                     if dblesson["isDone"] == True: 
                         done_count += 1
                     if practice_id == "" and dblesson["isDone"] == False:
