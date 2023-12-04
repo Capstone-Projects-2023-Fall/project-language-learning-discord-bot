@@ -34,7 +34,7 @@ class MyProgress(commands.Cog):
 
             backbutton = discord.ui.Button(emoji='◀️', disabled=True)
             nextbutton = discord.ui.Button(emoji='▶️', disabled=len(dbunit['name']) == 1)
-            endbutton = discord.ui.Button(emoji='❌')
+            startbutton = discord.ui.Button(emoji='📝')
             idx = 0
 
             dblessons = dbunit["lessons"]
@@ -55,6 +55,25 @@ class MyProgress(commands.Cog):
                 description=f'{dbunit["title"]} \n**Lesson 1**\n{dblessons[idx]["name"]} {done}\n**Lesson 2**\n{dblessons[idx + 1]["name"]} {done}',
                 color=discord.Color.random()
             )
+
+            if done_count == len(dblessons):
+                progress_embed.set_thumbnail(url="attachment://trophy.png")
+
+            if done_count < len(dblessons) and practice_shown == False:
+                async def startbutton_callback(interaction):
+                    await interaction.response.send_message("Start practice!")
+                    if practice_type == "quiz":
+                        quiz = database.getRandomQuiz(language)
+                        vocabQuiz = vocabquiz.VocabQuiz(ctx=ctx,user=username, quiz=quiz, progressId=practice_id)
+                        hasQuestion, question, view = vocabQuiz.get_question()
+                        if hasQuestion:
+                            await ctx.send(question, view=view)
+                    elif practice_type == "practice":
+                        practice = database.getRandomPractice(language)
+                        pronunTest = pronuntest.PronunTest(ctx=ctx, user=username, practice=practice, progressId=practice_id)
+                        hasQuestion, sentence, view = pronunTest.get_question()
+                        if hasQuestion:
+                            await ctx.send(f"How do you say: {sentence}", view=view)
 
             async def backbutton_callback(interaction):
                 nonlocal idx, backbutton, nextbutton, progress_embed
@@ -90,7 +109,7 @@ class MyProgress(commands.Cog):
                 await my_msg.edit(content='', embed=progress_embed, view=view)
 
                 if done_count < len(dblessons) and practice_shown == False:
-                    async def button_record_callback(interaction):
+                    async def startbutton_callback(interaction):
                         await interaction.response.send_message("Start practice!")
                         if practice_type == "quiz":
                             quiz = database.getRandomQuiz(language)
@@ -151,7 +170,7 @@ class MyProgress(commands.Cog):
                 await my_msg.edit(content='', embed=progress_embed, view=view)
 
                 if done_count < len(dblessons) and practice_shown == False:
-                    async def button_record_callback(interaction):
+                    async def startbutton_callback(interaction):
                         await interaction.response.send_message("Start practice!")
                         if practice_type == "quiz":
                             quiz = database.getRandomQuiz(language)
@@ -177,14 +196,6 @@ class MyProgress(commands.Cog):
 
                 practice_shown = True
                 print(f"{practice_id}    {practice_type}")
-
-
-            async def endbutton_callback(interaction):
-                nonlocal view
-                progress_embed = discord.Embed(title="Until Next Time!", description="", color=0x800020)
-                await interaction.response.defer()
-                await my_msg.edit(content='', embed=progress_embed, view=None)
-                view.stop()
 
             # for dbunit in dbprogress:
             #     embed = discord.Embed(
@@ -241,14 +252,15 @@ class MyProgress(commands.Cog):
             #         practice_shown = True
             #         print(f"{practice_id}    {practice_type}")
             #         await ctx.send(view=view)
+
             backbutton.callback = backbutton_callback
             nextbutton.callback = nextbutton_callback
-            endbutton.callback = endbutton_callback
+            startbutton.callback = startbutton_callback
 
             view = discord.ui.View()
             view.add_item(backbutton)
             view.add_item(nextbutton)
-            view.add_item(endbutton)
+            view.add_item(startbutton)
 
             await my_msg.edit(content='', embed=progress_embed, view=view)
 
