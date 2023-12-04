@@ -10,21 +10,21 @@ from pronunpractice import PronunPractice
 database = Database()
 
 
-class StartVoicePractice(commands.Cog):
+class StartListeningQuiz(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print("StartVoicePractice.py is online.")
+        print("StartListeningQuiz.py is online.")
 
     @commands.command()
-    async def startVoicePractice(self, ctx):
+    async def startListeningQuiz(self, ctx):
         username = str(ctx.message.author)
         dbuser = database.findUser(username=username)
         if dbuser is not None and constant.USER_LANGUAGE in dbuser:
             language = dbuser[constant.USER_LANGUAGE]
-            quiz_embed = discord.Embed(title=f"Pronunciation Practice - {language}", description=f"Try repeating the following audio!", color=0xB6D7A8)
+            quiz_embed = discord.Embed(title=f"Listening Quiz - {language}", description=f"Try repeating the following audio!", color=0xB6D7A8)
             await ctx.send(embed=quiz_embed)
             practice = database.getRandomPractice(language)
             t2s = TextToSpeech(language=language)
@@ -46,5 +46,5 @@ class StartVoicePractice(commands.Cog):
         
 
 def setup(bot):
-    bot.add_cog(StartVoicePractice(bot))
-    print("StartVoicePractice.py added")
+    bot.add_cog(StartListeningQuiz(bot))
+    print("StartListeningQuiz.py added")
