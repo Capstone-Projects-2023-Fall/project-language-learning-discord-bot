@@ -57,8 +57,7 @@ class MyProgress(commands.Cog):
 
             progress_embed = discord.Embed(
                 title=dbunit["name"],
-                description=f'{dbunit["title"]} \nLesson {str(dblessons[idx]["id"])}\*\*\n{dblessons[idx]["name"]} {done}
-                ',
+                description=f'{dbunit["title"]} \n**Lesson {str(dblessons[idx]["id"])}**\n{dblessons[idx]["name"]} {done}',
                 color=discord.Color.random()
             )
 
