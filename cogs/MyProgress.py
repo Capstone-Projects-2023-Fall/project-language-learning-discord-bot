@@ -28,6 +28,7 @@ class MyProgress(commands.Cog):
             practice_shown = False
             practice_id = ""
             practice_type = ""
+            done_count = 0
 
             dbprogress = dbuserprogress["progress"]
             dbunit = dbprogress[0]
