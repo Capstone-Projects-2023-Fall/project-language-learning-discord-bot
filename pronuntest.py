@@ -82,6 +82,7 @@ class PronunTest(object):
         #await channel.send(f"finished recording audio for: {', '.join(recorded_users)}.", files=files)  # Send a message with the accumulated files.
         highlighted_text = MatchResult.highlight_errors(self.currentAnswer, text)
         await channel.send(f"You said: {highlighted_text}")
+        await channel.send(f"Answer: {self.currentAnswer}") # MAKE SPOILER TEXT AND DO SIMILAR IN PRONUNPRAC
         self.numOfFinishQuestion += 1
         # score
         percent = MatchResult.match_sentence(self.currentAnswer, text)
