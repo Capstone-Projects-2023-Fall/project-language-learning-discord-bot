@@ -44,6 +44,8 @@ class MyProgress(commands.Cog):
             async def backbutton_callback(interaction):
                 nonlocal idx, backbutton, nextbutton, progress_embed
                 idx -= 1
+                done_count = 0
+
 
                 if idx == 0:
                     backbutton.disabled = True
@@ -101,8 +103,9 @@ class MyProgress(commands.Cog):
             async def nextbutton_callback(interaction):
                 nonlocal idx, backbutton, nextbutton, progress_embed
                 idx += 1
-
                 dbunit = dbprogress[idx]
+                done_count = 0
+
                 if idx == len(dbunit['title']) - 1:
                     nextbutton.disabled = True
                 if idx == 1:
