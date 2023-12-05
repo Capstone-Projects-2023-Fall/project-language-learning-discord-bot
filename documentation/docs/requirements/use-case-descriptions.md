@@ -2,10 +2,11 @@
 sidebar_position: 5
 ---
 
-# Use-case descriptions
+# Use-Case Descriptions
 
 ### Use Case 1: Account Creation and Bot Initialization
 <i>As a user, I want to create a Discord account and set up a language-learning bot to personalize my language-learning experience.</i>
+
 1. User opens Discord.
 2. The user selects the "Create an account" option.
 3. Discord prompts the user for account details.
@@ -24,6 +25,7 @@ sidebar_position: 5
 
 ### Use Case 2: Vocabulary Knowledge Test
 <i>As a user, I want to test my vocabulary knowledge for my selected language.</i>
+
 1. The user opens the Discord app.
 2. The user sends a command to initiate a vocabulary test.
 3. The bot retrieves vocabulary quizzes from the database in the user’s selected language.
@@ -35,6 +37,7 @@ sidebar_position: 5
 
 ### Use Case 3: Pronunciation Testing
 <i>As a user, I want to test my pronunciation skills in my chosen language.</i>
+
 1. The user opens the Discord app.
 2. The user sends a command, e.g., "!startPronunciationTest" to initiate the pronunciation test.
 3. The bot retrieves the user’s preferred language and related exercise from the database.
@@ -46,6 +49,7 @@ sidebar_position: 5
 
 ### Use Case 4: Tracking Progress
 <i>As a user, I want to track my progress.</i>
+
 1. The user opens the Discord App.
 2. The user sends the “!myScores” command to the bot.
 3. The bot fetches the user’s scores from the database.
@@ -53,6 +57,7 @@ sidebar_position: 5
 
 ### Use Case 5: Viewing Top Performers for Each Language
 <i>As a user, I want to view the top performers for each language to gauge my progress against peers.</i>
+
 1. The user opens the Discord App.
 2. The user sends the “!leaderboard” command to the bot.
 3. The bot retrieves the top aggregate scores for the currently selected language from the database.
@@ -60,6 +65,7 @@ sidebar_position: 5
 
 ### Use Case 6: Changing Current Learning Language
 <i>As a user, I want to change my current learning language to explore other languages.</i>
+
 1. The user opens the Discord App.
 2. The user sends the “!changeLanguage” command to the bot.
 3. The bot displays a list of available languages to the user on Discord.
