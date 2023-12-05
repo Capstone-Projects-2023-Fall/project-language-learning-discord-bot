@@ -34,7 +34,7 @@ sidebar_position: 5
 8. The user reviews the result, understanding their strengths and areas of improvement.
 
 ### Use Case 3: Pronunciation Testing
-</i>As a user, I want to test my pronunciation skills in my chosen language.</i>
+<i>As a user, I want to test my pronunciation skills in my chosen language.</i>
 1. The user opens the Discord app.
 2. The user sends a command, e.g., "!startPronunciationTest" to initiate the pronunciation test.
 3. The bot retrieves the user’s preferred language and related exercise from the database.
