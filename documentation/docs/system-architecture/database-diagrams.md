@@ -75,6 +75,29 @@ Sentences {
   String sentences
 }
 
+FillInTheBlank {
+  Int id PK
+  String name
+  Int Score
+}
+
+UserFillInTheBlank {
+  Int id PK
+  String username FK
+  Int fill_in_the_blank_id FK
+  Date took_on
+  Int score
+}
+
+BlankQuestion {
+  Int id PK
+  Int fill_in_the_blank_id FK
+  String sentences
+  String englishEquivalent
+  String correctAnswer
+  String englishWord
+}
+
 Questions ||--|{ Answers : ""
 Quizzes ||--|{ Questions : ""
 Users ||--|{ UserQuiz : ""
@@ -86,6 +109,12 @@ Users ||--|{ UserPractice : ""
 Practices ||--|{ UserPractice : ""
 Practices ||--|{ Sentences : ""
 Practices }|--|| Languages : ""
+
+
+Users ||--|{ UserFillInTheBlank : ""
+FillInTheBlank ||--|{ UserFillInTheBlank : ""
+FillInTheBlank ||--|{ BlankQuestion : ""
+FillInTheBlank }|--|| Languages : ""
 
 
 
