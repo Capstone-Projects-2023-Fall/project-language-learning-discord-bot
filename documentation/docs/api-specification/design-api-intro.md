@@ -7,7 +7,8 @@ Classes
 =============================
 
 ## Main
-### Class Purpose: The Main class will start and initialize the bot with its default parameters.
+### Class Purpose: 
+The Main class will start and initialize the bot with its default parameters.
 
 ### Data Fields:
 - bot: An instance of the Discord Bot
@@ -33,7 +34,8 @@ Classes
   - Returns: None
 
 ## Database
-### Class Purpose: To create a database of users with data about their performance within a specific language.
+### Class Purpose: 
+To create a database of users with data about their performance within a specific language.
 
 ### Data Fields: None
 
@@ -105,7 +107,8 @@ Classes
     - Returns: The array of all users
 
 ## VocabQuiz
-### Class Purpose: To generate a customized vocab quiz for the user based on their selected language
+### Class Purpose: 
+To generate a customized vocab quiz for the user based on their selected language
     
 ### Data Fields: None
 
@@ -129,7 +132,8 @@ Classes
     - Returns: Quiz ID #, Quiz Name, Quiz Score, User Token, User Language
 
 ## SpeechRecognition
-### Class Purpose: To show the user and display the result in a text channel and to be interpreted by other functions
+### Class Purpose: 
+To show the user and display the result in a text channel and to be interpreted by other functions
 
 ### Data Fields: None
 
@@ -153,7 +157,8 @@ Classes
     - Returns: An array with a transcript of the user voice text
 
 ## HelpCommand
-### Class Purpose: To allow the user to use the /help command
+### Class Purpose: 
+To allow the user to use the /help command
 
 ### Data Fields: None
 
@@ -183,7 +188,8 @@ Classes
     - Returns: Prints a success message to the console and adds feature to the cogs command archive
 
 ## MyScores
-### Class Purpose: To display the user scores of everyone on a server
+### Class Purpose: 
+To display the user scores of everyone on a server
 
 ### Data Fields:
 - database: An instance of the Database class
@@ -214,7 +220,8 @@ Classes
     - Returns: Prints a success message to the console and adds feature to the cogs command archive
 
 ## Leaderboard
-### Class Purpose: To display the top user scores on a given server
+### Class Purpose: 
+To display the top user scores on a given server
 
 ### Data Fields:
 - database: An instance of the Database class
@@ -239,7 +246,8 @@ Classes
     - Returns: Prints a success message to the console and adds feature to the cogs command archive
 
 ## ChangeLanguage
-### Class Purpose: To allow the user to change its current learning language to any other on the "constant.py" file (either Spanish or French).
+### Class Purpose: 
+To allow the user to change its current learning language to any other on the "constant.py" file (either Spanish or French).
 
 ### Data Fields:
 - database: An instance of the Database class
@@ -270,7 +278,8 @@ Classes
     - Returns: Prints a success message to the console and adds feature to the cogs command archive
 
 ## StartVocabQuiz
-### Class Purpose: To start the vocab quiz practice for a user in a text channel
+### Class Purpose: 
+To start the vocab quiz practice for a user in a text channel
 
 ### Data Fields:
 - database: An instance of the Database class
@@ -301,7 +310,8 @@ Classes
     - Returns: Prints a success message to the console and adds the feature to the cogs command archive
 
 ## StartVoiceQuiz
-### Class Purpose: To start the voice quiz practice for a user in a voice channel
+### Class Purpose: 
+To start the voice quiz practice for a user in a voice channel
 
 ### Data Fields:
 - database: An instance of the Database class
@@ -332,7 +342,8 @@ Classes
     - Returns: Prints a success message to the console and adds the feature to the cogs command archive
 
 ## Constant
-### Class Purpose: Display all attributes that are considered constants throughout the entire codespace
+### Class Purpose: 
+Display all attributes that are considered constants throughout the entire codespace
 
 ### Data Fields:
 - LANGUAGE: What languages are available to the user
@@ -353,7 +364,8 @@ Classes
 ### Methods: none
 
 ## MatchResult
-### Class Purpose: To calculate the number of correct words that a user said during a given pronunciation quiz
+### Class Purpose: 
+To calculate the number of correct words that a user said during a given pronunciation quiz
 
 ### Data Fields: None
 
@@ -371,7 +383,8 @@ Classes
     - Returns: True if the user said word is a match
 
 ## PronounTest
-### Class Purpose: To scan the waveform and parse the user voice input into comparable strings 
+### Class Purpose: 
+To scan the waveform and parse the user voice input into comparable strings 
 
 ### Data Fields:
 - database: An instance of the Database class
@@ -402,7 +415,8 @@ Classes
     - Returns: returns a full index of the current quiz
 
 ## Test_Database
-### Class Purpose: To test the different attributes of the database
+### Class Purpose: 
+To test the different attributes of the database
 
 ### Data Fields: None
 
@@ -504,7 +518,8 @@ Classes
     - Returns: a successful test case
 
 ## Test_HelpCommand
-### Class Purpose: To test the different attributes of the help command
+### Class Purpose: 
+To test the different attributes of the help command
 
 ### Data Fields: None
 
@@ -540,7 +555,8 @@ Classes
     - Returns: Send successful echo test to the bot
 
 ## Test_Match
-### Class Purpose: To test the attributes of the pronunciation test input
+### Class Purpose: 
+To test the attributes of the pronunciation test input
 
 ### Data Fields: None
 
@@ -558,7 +574,8 @@ Classes
     - Returns: A successful score between the two exact strings
 
 ## Test_Voice
-### Class Purpose: To test the attributes of the user voice input
+### Class Purpose: 
+To test the attributes of the user voice input
 
 ### Data Fields: None
 
@@ -600,7 +617,8 @@ Classes
     - Returns: Display successfully in the console that the user is in a channel
 
 ## Record
-### Class Purpose: To record the user voice input and store it as a .wav file in the current instance
+### Class Purpose: 
+To record the user voice input and store it as a .wav file in the current instance
 
 ### Data Fields: None
 
