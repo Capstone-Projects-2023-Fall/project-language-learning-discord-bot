@@ -98,6 +98,21 @@ BlankQuestion {
   String englishWord
 }
 
+FlashCard {
+  Int id PK
+  String name
+  Int Score
+}
+
+Card {
+  Int id PK
+  Int flash_card_id FK
+  String front
+  String back
+}
+
+
+
 Questions ||--|{ Answers : ""
 Quizzes ||--|{ Questions : ""
 Users ||--|{ UserQuiz : ""
@@ -115,6 +130,10 @@ Users ||--|{ UserFillInTheBlank : ""
 FillInTheBlank ||--|{ UserFillInTheBlank : ""
 FillInTheBlank ||--|{ BlankQuestion : ""
 FillInTheBlank }|--|| Languages : ""
+
+
+FlashCard ||--|{ Card : ""
+FlashCard }|--|| Languages : ""
 
 
 
