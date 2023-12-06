@@ -155,16 +155,14 @@ FlashCard }|--|| Languages : ""
 			name: "Quizz 1",
 			score: 5
 			tookOn: "2023/10/01",
-		}
-	],
-	practices: [
+		},
 		{
 			_id: "1",
 			name: "Practice 1",
 			score: "5",
 			tookOn: "2023/10/01"
 		}
-	]
+	],
 }
 
 # Practice document
@@ -211,5 +209,45 @@ FlashCard }|--|| Languages : ""
 		}
 	]
 }
+
+# fill_in_the_blank document
+{
+	"name": "Spanish Numbers Set 1",
+  	"language": "Spanish",
+  	"level": 1,
+  	"questions": [
+    			{
+      				"sentence": "Uno más uno es ___. (dos, tres, cuatro, cinco)",
+			      	"englishEquivalent": "One plus one is ___.",
+			      	"correctAnswer": "dos",
+			      	"englishWord": "two"
+			},
+			{
+			      	"sentence": "Tres menos dos es ___. (uno, dos, tres, cuatro)",
+			      	"englishEquivalent": "Three minus two is ___.",
+			      	"correctAnswer": "uno",
+			      	"englishWord": "one"
+			},
+			{
+			      	"sentence": "Cuatro más uno es ___. (cinco, seis, siete, ocho)",
+			      	"englishEquivalent": "Four plus one is ___.",
+			      	"correctAnswer": "cinco",
+			      	"englishWord": "five"
+			},
+			{
+			      	"sentence": "Cinco más cuatro es ___. (nueve, diez, once, doce)",
+			      	"englishEquivalent": "Five plus four is ___.",
+			      	"correctAnswer": "nueve",
+			      	"englishWord": "nine"
+			},
+			{
+			      	"sentence": "Seis más dos es ___. (ocho, nueve, diez, once)",
+			      	"englishEquivalent": "Six plus two is ___.",
+			      	"correctAnswer": "ocho",
+			      	"englishWord": "eight"
+			}
+  		]
+}
+
 
 ```
