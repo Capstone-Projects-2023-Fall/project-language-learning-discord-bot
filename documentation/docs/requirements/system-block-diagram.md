@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # System Block Diagram
 
-![Block Diagram](https://github.com/Capstone-Projects-2023-Fall/project-language-learning-discord-bot/assets/89528532/98a4116f-e66e-472f-becd-78146593cc8c)
+![Block Diagram](https://github.com/Capstone-Projects-2023-Fall/project-language-learning-discord-bot/blob/main/diagram/system%20block%20diagram.drawio.png)
 
 ## Key Interactions:
 ### Users
