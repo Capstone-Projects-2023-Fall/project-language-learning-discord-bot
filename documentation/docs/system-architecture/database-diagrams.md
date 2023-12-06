@@ -251,5 +251,34 @@ FlashCard }|--|| Languages : ""
   		]
 }
 
+# FlashCard document
+{
+  	"name": "Unit 2 Set 3",
+  	"language": "Spanish",
+  	"cards": [
+    			{
+      				"front": "Which phrase means How much is the subway ticket? in Spanish?",
+	      			"back": "¿Cuánto cuesta el boleto de metro?"
+	    		},
+	    		{
+	      			"front": "What is the Spanish word for beer?",
+	      			"back": "Cerveza"
+	    		},
+	    		{
+	      			"front": "How would you ask Where is the nearest ATM? in Spanish?",
+	      			"back": "¿Dónde puedo encontrar un cajero automático?"
+	    		},
+	    		{
+	      			"front": "What does arroz con pollo mean in English when ordering food in Spanish?",
+	      			"back": "Rice with chicken"
+	    		},
+	    		{
+	      			"front": "Which phrase means Excuse me, how do I get to the museum? in Spanish?",
+	      			"back": "¿Cómo llego al museo?"
+	    		}
+  		],
+  	"level": 2
+}
+
 
 ```
