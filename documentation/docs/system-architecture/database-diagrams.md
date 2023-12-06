@@ -18,7 +18,6 @@ Users {
   String language_id FK
   String email
   Int totalScore
-  Int level
 }
 
 Languages {
@@ -39,6 +38,7 @@ Quizzes {
   Int id PK
   String name
   Int score
+  Int level
 }
 
 Questions {
@@ -79,6 +79,7 @@ FillInTheBlank {
   Int id PK
   String name
   Int Score
+  Int level
 }
 
 UserFillInTheBlank {
@@ -102,6 +103,7 @@ FlashCard {
   Int id PK
   String name
   Int Score
+  Int level
 }
 
 Card {
@@ -147,7 +149,6 @@ FlashCard }|--|| Languages : ""
 	_id: "barrydoan#8032",
 	email: "tun70473@temple.edu",
 	totalScore: 10,
-	level: 1,
 	language: "Spanish",
 	quizzes: [
 		{
@@ -185,6 +186,7 @@ FlashCard }|--|| Languages : ""
 	_id: "1",
 	name: "Quiz 1",
 	language: "Spanish",
+        level: 2
 	questions: [
 		{
 			question: "How many planets are there in the solar system?"
