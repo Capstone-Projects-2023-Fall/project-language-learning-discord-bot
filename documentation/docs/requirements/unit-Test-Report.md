@@ -1,24 +1,10 @@
 ## Test Report
 
-
-### Acceptance Criteria
-In adherence to the requirements specified, this document includes:
-
-- Output from the unit test runs.
-- Output from the integration test runs.
-- Output from automated acceptance tests.
-- A copy of the manual acceptance test procedures annotated to indicate test execution and observed results.
-- A list of known problems with descriptions for each failed test.
-
----
+# Test Report for Database Test Cases
 
 ## Purpose
 
 This test suite validates the functionality of the database module's methods within the context of the defined test cases. It examines different scenarios and verifies the expected behavior of the database operations.
-
-
-
-# Test Report for Database Test Cases
 
 ### 1. `test_findUser_not_found`
 
@@ -84,7 +70,6 @@ This test suite validates the functionality of the database module's methods wit
 
 No known problems or failed tests were observed during the test execution.
 
---------------------------------------------------------
 
 # Test Report for Discord Bot Commands
 
@@ -121,14 +106,12 @@ No known problems or failed tests were observed during the test execution.
 #### Known Problems
 No known problems or failed tests were observed during the test execution.
 
----------------------------------------------------------------------------
+
 # Test Report for test_helpcommand
 
 ## Purpose
 
 This test suite aims to validate the functionality of miscellaneous commands within a Discord bot. It verifies the behavior of commands like `ping` and `echo`.
-
-## Test Cases Documentation
 
 ### 1. `test_ping`
 
@@ -146,14 +129,12 @@ This test suite aims to validate the functionality of miscellaneous commands wit
 
 During the test execution, no known problems or failed tests were observed.
 
---------------------------------------------------------------------
+
 # Test Report for MatchResult Class
 
 ## Purpose
 
 The test suite aims to validate the functionality of the `MatchResult` class for sentence matching.
-
-## Test Cases Documentation
 
 ### 1. `test_score`
 
@@ -177,8 +158,6 @@ During the test execution, no known problems or failed tests were observed.
 ## Purpose
 
 This test suite aims to validate the functionality of the voice-related commands within the `Voice` cog.
-
-## Test Cases Documentation
 
 ### 1. `test_ping`
 
