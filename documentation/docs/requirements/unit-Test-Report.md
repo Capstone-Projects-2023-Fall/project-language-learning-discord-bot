@@ -1,10 +1,10 @@
 <div align="center">
-  <h1> Test Report:</h1>
+  <h1> Test Report</h1>
 </div>
 
 ## Test Report for Database Test Cases
 
-## Purpose
+### Purpose
 
 This test suite validates the functionality of the database module's methods within the context of the defined test cases. It examines different scenarios and verifies the expected behavior of the database operations.
 
@@ -75,7 +75,7 @@ No known problems or failed tests were observed during the test execution.
 
 ## Test Report for Discord Bot Commands
 
-## Purpose
+### Purpose
 
 This test suite aims to validate the functionality of various commands implemented within the Discord bot.
 
@@ -128,7 +128,7 @@ No known problems or failed tests were observed during the test execution.
 
 ## Test Report for test_helpcommand
 
-## Purpose
+### Purpose
 
 This test suite aims to validate the functionality of miscellaneous commands within a Discord bot. It verifies the behavior of commands like `ping` and `echo`.
 
@@ -151,7 +151,7 @@ During the test execution, no known problems or failed tests were observed.
 
 ## Test Report for MatchResult Class
 
-## Purpose
+### Purpose
 
 The test suite aims to validate the functionality of the `MatchResult` class for sentence matching.
 
@@ -174,7 +174,7 @@ During the test execution, no known problems or failed tests were observed.
 
 ## Test Report for Voice Commands Testing
 
-## Purpose
+### Purpose
 
 This test suite aims to validate the functionality of the voice-related commands within the `Voice` cog.
 
