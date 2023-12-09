@@ -1,6 +1,6 @@
-## Test Report
+### Test Report
 
-# Test Report for Database Test Cases
+## Test Report for Database Test Cases
 
 ## Purpose
 
@@ -102,6 +102,18 @@ No known problems or failed tests were observed during the test execution.
 - **Purpose:** Assesses the functionality of the `myScores` command.
 - **Outcome:** Checks if the command generates user score-related data.
 - **Result:** Successful execution with user-specific score information.
+
+### 6. `test_leaderboard`
+
+- **Purpose:** Tests the 'Leaderboard' command.
+- **Expected Outcome:** Expects a response in the form of an embed displaying the leaderboard.
+- **Result:** Validates the title and description of the embed message.
+
+### 7. `test_myProgress`
+
+- **Purpose:** Tests the 'Myprogress' command.
+- **Expected Outcome:** Expects a response in the form of an embed displaying the user's progress.
+- **Result:** Validates the title and description of the embed message.
 
 #### Known Problems
 No known problems or failed tests were observed during the test execution.
