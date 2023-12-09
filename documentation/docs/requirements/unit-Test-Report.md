@@ -1,4 +1,6 @@
-# Test Report
+<div align="center">
+  <h1> Test Report:</h1>
+</div>
 
 ## Test Report for Database Test Cases
 
@@ -72,6 +74,11 @@ No known problems or failed tests were observed during the test execution.
 
 
 ## Test Report for Discord Bot Commands
+
+## Purpose
+
+This test suite aims to validate the functionality of various commands implemented within the Discord bot.
+
 
 #### 1. Test: `test_ping`
 
