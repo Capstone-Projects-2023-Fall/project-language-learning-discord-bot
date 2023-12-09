@@ -1,4 +1,4 @@
-### Test Report
+# Test Report
 
 ## Test Report for Database Test Cases
 
@@ -71,7 +71,7 @@ This test suite validates the functionality of the database module's methods wit
 No known problems or failed tests were observed during the test execution.
 
 
-# Test Report for Discord Bot Commands
+## Test Report for Discord Bot Commands
 
 #### 1. Test: `test_ping`
 
@@ -103,13 +103,13 @@ No known problems or failed tests were observed during the test execution.
 - **Outcome:** Checks if the command generates user score-related data.
 - **Result:** Successful execution with user-specific score information.
 
-### 6. `test_leaderboard`
+#### 6. `test_leaderboard`
 
 - **Purpose:** Tests the 'Leaderboard' command.
 - **Expected Outcome:** Expects a response in the form of an embed displaying the leaderboard.
 - **Result:** Validates the title and description of the embed message.
 
-### 7. `test_myProgress`
+#### 7. `test_myProgress`
 
 - **Purpose:** Tests the 'Myprogress' command.
 - **Expected Outcome:** Expects a response in the form of an embed displaying the user's progress.
@@ -119,7 +119,7 @@ No known problems or failed tests were observed during the test execution.
 No known problems or failed tests were observed during the test execution.
 
 
-# Test Report for test_helpcommand
+## Test Report for test_helpcommand
 
 ## Purpose
 
@@ -142,7 +142,7 @@ This test suite aims to validate the functionality of miscellaneous commands wit
 During the test execution, no known problems or failed tests were observed.
 
 
-# Test Report for MatchResult Class
+## Test Report for MatchResult Class
 
 ## Purpose
 
@@ -165,7 +165,7 @@ The test suite aims to validate the functionality of the `MatchResult` class for
 During the test execution, no known problems or failed tests were observed.
 
 
-# Test Report for Voice Commands Testing
+## Test Report for Voice Commands Testing
 
 ## Purpose
 
