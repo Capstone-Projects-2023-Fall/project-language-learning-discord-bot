@@ -9,7 +9,7 @@ A description the different components and their interfaces. See the [System Blo
 
 	An API that allows interactions with various features on Discord 
  	such as chatting and user authentication. We will use Discord's API 
-	to facilitate communication with users and recieve commands. 
+  	to facilitate communication with users and recieve commands. 
  
 ## Py-cord (Discord API Wrapper)
 
@@ -40,4 +40,3 @@ A description the different components and their interfaces. See the [System Blo
 	Python library which provides access to OpenAi's APIs. This project will
  	make use of OpenAi's Audio API trained on their automatic speech recognition 
   	system Whisper to transcribe user audio. 
-	
