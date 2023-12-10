@@ -56,13 +56,31 @@ This test suite validates the functionality of the database module's methods wit
 - **Outcome:** The test verifies the successful retrieval of a quiz.
 - **Result:** Test passed successfully.
 
-### 9. `test_updateUserQuiz`
+### 9. `test_getFlashcards_has_record`
+
+- **Purpose:** Checks retrieval of flashcards when at least one record exists.
+- **Outcome:** The test confirms retrieval when quizzes are found.
+- **Result:** Test passed successfully.
+
+### 10. `test_RandomFlash_has_no_record`
+
+- **Purpose:** Checks retrieval of random flashcards with no records.
+- **Outcome:** The test ensures that `None` is returned when no cards are found.
+- **Result:** Test passed successfully.
+
+### 11. `test_getUsrFlashcards_has_fake_unit`
+
+- **Purpose:** Checks retrieval of user specified flashcards with no records.
+- **Outcome:** The test ensures that `None` is returned when no cards are found.
+- **Result:** Test passed successfully.
+
+### 12. `test_updateUserQuiz`
 
 - **Purpose:** Validates the updating of user quiz information.
 - **Outcome:** The test checks if the user's quiz information is updated successfully.
 - **Result:** Test passed successfully.
 
-### 10. `test_updateUserQuiz_raise_exception`
+### 13. `test_updateUserQuiz_raise_exception`
 
 - **Purpose:** Examines the scenario when updating user quiz information raises an exception.
 - **Outcome:** The test verifies the correct handling of expected exceptions.
