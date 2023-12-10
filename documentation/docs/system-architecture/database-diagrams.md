@@ -141,7 +141,7 @@ FlashCard }|--|| Languages : ""
 
 ```
 
-## NoSQL translated example
+## NoSQL translation
 
 ```
 # Users document
