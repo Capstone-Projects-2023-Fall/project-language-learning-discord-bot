@@ -3,19 +3,7 @@ sidebar_position: 2
 ---
 
 # System Block Diagram
-
-![Block Diagram](https://github.com/Capstone-Projects-2023-Fall/project-language-learning-discord-bot/blob/main/diagram/system%20block%20diagram.drawio.png)
+<img src ="https://raw.githubusercontent.com/Capstone-Projects-2023-Fall/project-language-learning-discord-bot/main/images/sysbloc.png" alt="System Block Diagram"/>
 
 ## Key Interactions:
-### Users
-Users will interact with Language Learning bot by sending or clicking commands within the Discord UI.
-
-### Discord
-THe Discord Client will pass a user's commands or requests to the python script where it will be processed depending on the appropriate function.
-
-### Python Script
-The script determines which commands/messages were issued and routes them to the respective functionality, sending the response back to the bot. 
-The python script will retreive relevant user data from the database.
-
-### Database
-User data will be managed by the MongoDB database,
+The diagram above depicts the high level design of services and their interactions in the Language Learning Discord Bot. The project can be seperated into a few distinct sections including: the client side, server side, and finally external API usage. The client side consists of the only the Discord application, which will serve as the only point of interaction between users and the bot. All course interactions including quizzes and lesson practice will sent as messages from the bot within Discord. On the serverside of this project consists of the bot and the MongoDB database. The bot will generate the user's learning experience within embeds and discord messages while accessing the database to retrieve course materials and update a user's lesson progress. Finally in terms of external APIs, this application makes use of both OpenAI and gTTS. Whisper from the OpenAi library will be used to produce text from user audio files while gTTS will be used to interface with Google Translate's API and create audio files from lesson text. 
