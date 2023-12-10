@@ -111,6 +111,7 @@ After listening to the sentence audio from the bot, type the correct translation
 Enter the command "!studyFlash" into the chat.</td>
       <td>The bot will generate a selec menu for you to choose the unit you want to practice.. </td>
     </tr>
+    <tr>
       <td>16</td>
       <td>Select Flash card Unit:
 Select a Unit or choose to randomize card set</td>
