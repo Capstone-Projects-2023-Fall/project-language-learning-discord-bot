@@ -26,7 +26,13 @@ The Main class will start and initialize the bot with its default parameters.
   - Pre-conditions: None
   - Parameters: None
   - Returns: Prints string of cog commands to the console.
-
+ 
+- disconnect(ctx):
+  - Creates a disconnect command with a disconnect button when activated 
+  - Pre-conditions: None
+  - Parameters: ctx
+  - Returns: Returns a disconnect command to be used by the user in the discord server.
+ 
 - main(): void
   - The main entry point for the bot, where it sets up the bot, loads cogs, and starts the bot using asyncio.
   - Pre-conditions: None
@@ -51,6 +57,12 @@ To create a database of users with data about their performance within a specifi
     - Pre-conditions: none
     - Parameters: self
     - Returns: Prints a success string if the client successfully to the MongoDB
+
+- readUser(self, username):
+    - Reads the user's conditions and determines if the user is valid or not in the database.
+    - Pre-conditions: none
+    - Parameters: self, username
+    - Returns: Prints a success string if the client can read the user in the database
 
 - findUser(self, username):
     - Finds a user in the database based on the username.
@@ -82,6 +94,24 @@ To create a database of users with data about their performance within a specifi
     - Parameters: self, language
     - Returns: An array of practice activities
 
+- getFlashcards(self, language):
+    - Retrieves flashcards based on the specified language.
+    - Pre-conditions: None
+    - Parameters: self, language
+    - Returns: An array of flashcard activities
+ 
+- getUsrFlashcards(self, unit_choice, language):
+    - Confirms with the database that it can successfully access a user's flashcard data.
+    - Pre-conditions: None
+    - Parameters: self, unit_choice, language
+    - Returns: A success string if the database could find a user's flashcard data
+ 
+- readProgress(self, language):
+    - Reads the user's conditions and determines if the user's progress is valid or not in the database.
+    - Pre-conditions: None
+    - Parameters: self, language
+    - Returns: Prints a success string if the client can read the user's progress in the database
+
 - getRandomQuiz(self, language):
     - Selects and returns a random quiz for the specified language.
     - Pre-conditions: None
@@ -93,18 +123,36 @@ To create a database of users with data about their performance within a specifi
     - Pre-conditions: None
     - Parameters: self, language
     - Returns: The specific index (practices[index]) of the requested practice activity
+ 
+- getRandomFlash(self, language):
+    - Selects and returns a random flashcard for the specified language.
+    - Pre-conditions: None
+    - Parameters: self, language
+    - Returns: The specific index (practices[index]) of the requested flashcard activity
 
 - updateUserQuiz(self, username, quiz):
     - Updates the user's quiz score in the user collection.
     - Pre-conditions: None
     - Parameters: self, username, quiz
     - Returns: A successful call to the database when a specific user score is updated
+ 
+- readUserProgress(self, username):
+    - Reads the user's conditions and prints out the user's contents of their progress from the database.
+    - Pre-conditions: None
+    - Parameters: self, username
+    - Returns: Prints a success string if the client can print the user's progress in the database
 
 - get_all_users(self):
     - Selects and returns all of the users regardless of language
     - Pre-conditions: None
     - Parameters: self
     - Returns: The array of all users
+
+- get_random_fill_in_the_blank_set(self, language):
+    - Selects and returns a random fill-in-the-blank set of any language
+    - Pre-conditions: None
+    - Parameters: self, language
+    - Returns: The array of all fill-in-the-blank sets
 
 ## VocabQuiz
 ### Class Purpose: 
@@ -237,7 +285,7 @@ To display the top user scores on a given server
     - Displays a leaderboard trophy next to the user with the highest score
     - Pre-conditions: None
     - Parameters: self, ctx
-    - Returns: A displayed image to the Discord UI indicating the highest scored user
+    - Returns: A displayed image to the Discord UI indicating the highest-scored user
 
 - setup(bot):
     - Internal method for setting up the cog.
@@ -358,6 +406,11 @@ Display all attributes that are considered constants throughout the entire codes
 - QUIZ_ISCORRECT: A boolean on whether a quiz answer was true or false
 - QUIZ_SCORE: An integer on what the user score was after a quiz is completed
 - QUIZ_NAME: The string name of a specific quiz
+- FILL_IN_THE_BLANKS_SET: The string name of the FITB set
+- FILL_IN_THE_BLANKS_QUESTION: The string name of the FITB question
+- FILL_IN_THE_BLANKS_CORRECT_ANSWER: The string answer of the FITB question
+- FILL_IN_THE_BLANKS_CHOICES: The string choices of the FITB choices
+- FILL_IN_THE_BLANKS_ENGLISH_MEANING: The string of the final FITB meaning
 - COLLECTION_ID: The integer ID of a specific user
 - DATE_FORMAT = "%d/%m/%Y %H:%M:%S": The string date format for date-based instances
 
@@ -375,6 +428,12 @@ To calculate the number of correct words that a user said during a given pronunc
     - Pre-conditions: None
     - Parameters: expected_sentence, actual_sentence
     - Returns: The number of correct words said by the user divided by the length of the expected words in the given phrase
+
+- highlight_errors(expected_sentence,actual_sentence):
+    - A method that highlights the errors present in user input within a pronunciation test
+    - Pre-conditions: None
+    - Parameters: expected_sentence, actual_sentence
+    - Returns: Displays all errors occurring in user input on-screen
 
 - match_word(word, words):
     - A method that sends a boolean if the word is a match or not
