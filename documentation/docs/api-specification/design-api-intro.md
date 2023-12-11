@@ -757,7 +757,7 @@ To activate the text-to-speech for a given text (regardless of language) to be a
     - Returns: a setup instance of the method with pre-assigned languages like "English"
 
 - text_to_speech(self, text):
-    - Activates the OpenAI gTTS instance of that text given to the user
+    - Activates the Google gTTS instance of that text given to the user
     - Pre-conditions: None
     - Parameters: self, text
     - Returns: A successful save of the TTS recording saved to "audios/voice.mp3"
