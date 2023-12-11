@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 ---
-# Acceptance Tests:
+# Acceptance Tests
 The table below outlines a series of manual acceptance tests performed by test users to demonstrate that all functional and non-functional requirements that have been specified for this project have been satisfied.
 
 ### Spreadsheet Link:
