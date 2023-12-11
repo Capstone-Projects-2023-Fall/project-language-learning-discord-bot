@@ -342,8 +342,14 @@ class Database(object):
 
     def get_all_users(self):
         user_documents = self.userCollection.find()
-        users = [(doc[constant.COLLECTION_ID], doc[constant.USER_TOTALSCORE]) for doc in user_documents]
+        users = []
+        for doc in user_documents:
+            user_id = doc.get(constant.COLLECTION_ID, 'Unknown User')
+            user_total_score = doc.get(constant.USER_TOTALSCORE, 0)
+            users.append((user_id, user_total_score))
         return users
+        #users = [(doc[constant.COLLECTION_ID], doc[constant.USER_TOTALSCORE]) for doc in user_documents]
+        #return users
     
     def get_random_fill_in_the_blank_set(self, language):
         if not self.isOk:
