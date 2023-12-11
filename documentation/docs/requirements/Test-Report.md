@@ -1,4 +1,4 @@
-# Test Report for Database Test Cases
+## Test Report for Database Test Cases
 
 ### Purpose
 
@@ -87,7 +87,7 @@ This test suite validates the functionality of the database module's methods wit
 No known problems or failed tests were observed during the test execution.
 
 
-# Test Report for Discord Bot Commands
+## Test Report for Discord Bot Commands
 
 ### Purpose
 
@@ -140,7 +140,7 @@ This test suite aims to validate the functionality of various commands implement
 No known problems or failed tests were observed during the test execution.
 
 
-# Test Report for test_helpcommand
+## Test Report for test_helpcommand
 
 ### Purpose
 
@@ -163,7 +163,7 @@ This test suite aims to validate the functionality of miscellaneous commands wit
 During the test execution, no known problems or failed tests were observed.
 
 
-# Test Report for MatchResult Class
+## Test Report for MatchResult Class
 
 ### Purpose
 
@@ -186,7 +186,7 @@ The test suite aims to validate the functionality of the `MatchResult` class for
 During the test execution, no known problems or failed tests were observed.
 
 
-# Test Report for Voice Commands Testing
+## Test Report for Voice Commands Testing
 
 ### Purpose
 
