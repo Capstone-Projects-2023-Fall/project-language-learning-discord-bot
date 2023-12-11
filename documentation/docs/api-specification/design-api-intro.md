@@ -823,3 +823,34 @@ To generate the current progression for a specific user.
     - Pre-conditions: None
     - Parameters: bot
     - Returns: Prints a success message to the console and adds the feature to the cogs command archive
+
+## StartFlash
+### Class Purpose: 
+To generate the Flashcard activity for the user to interact with via the bot.
+
+### Data Fields: None
+
+### Methods:
+- __init__(self, bot):
+    - Initializes the cog with a reference to the bot.
+    - Pre-conditions: None
+    - Parameters: self, bot
+    - Returns: a setup instance of the bot with pre-assigned values aka "self"
+ 
+- on_ready(self):
+  - An event handler called when the Discord bot is ready. It prints a message to the console and sends a message to a specific channel.
+  - Pre-conditions: None
+  - Parameters: self
+  - Returns: Prints "MyProgress command is online." string if the channel is active for the bot to enter.
+ 
+- startFlash(self, ctx):
+    - Presents the flashcard activity for a user in their current text channel.
+    - Pre-conditions: None
+    - Parameters: self, ctx, *, language: str = None
+    - Returns: Successfully prints the user's current progress of the course within their text channel
+
+- setup(bot):
+    - Internal method for setting up the cog.
+    - Pre-conditions: None
+    - Parameters: bot
+    - Returns: Prints a success message to the console and adds the feature to the cogs command archive
