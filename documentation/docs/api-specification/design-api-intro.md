@@ -7,8 +7,8 @@ Classes
 =============================
 
 ## Main
-### Class Purpose: 
-The Main class will start and initialize the bot with its default parameters.
+<details open="True">
+<summary>The Main class will start and initialize the bot with its default parameters.</summary>
 
 ### Data Fields:
 - bot: An instance of the Discord Bot
@@ -38,6 +38,10 @@ The Main class will start and initialize the bot with its default parameters.
   - Pre-conditions: None
   - Parameters: None
   - Returns: None
+
+</details>
+
+<br></br>
 
 ## Database
 ### Class Purpose: 
