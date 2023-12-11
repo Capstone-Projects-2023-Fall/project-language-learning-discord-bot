@@ -30,7 +30,7 @@ Create a new user and store it in the database.
       "tookOn": String
     }
   ],
-  "totalScore": int
+  "totalScore": Integer
 }
 ```
 
@@ -47,6 +47,8 @@ class DatabaseProcessingException(Exception):
     "Raised when having error while process"
     pass
 ```
+
+
 
 ### POST /users/quizzes
 **Description:**    
@@ -119,6 +121,128 @@ class EntityNotFoundExcepton(Exception):
 ```
 
 **Exception thrown when database can't update the practice entity**     
+```json
+class DatabaseProcessingException(Exception):
+    "Raised when having error while process"
+    pass
+```
+
+### POST /users/fill_in_the_blanks
+**Description:**    
+Create a new fill-in-the-blank and store it in the database.
+  
+**Valid Request Body:**     
+```json
+{
+  "_id": {
+    "$oid": String
+  },
+  "name": String,
+  "language": String,
+  "level": Integer,
+  "questions": [
+    {
+      "sentence": String,
+      "englishEquivalent": String,
+      "correctAnswer": String,
+      "englishWord": String
+    },
+  ]
+}
+```
+
+**Exception thrown when database can't find fill-in-the-blank entity**     
+```json
+class EntityNotFoundExcepton(Exception):
+    "Raised when cannot find object by id"
+    pass
+```
+
+**Exception thrown when database can't update the fill-in-the-blank entity**     
+```json
+class DatabaseProcessingException(Exception):
+    "Raised when having error while process"
+    pass
+```
+
+### POST /users/flashcards
+**Description:**    
+Create a new flashcard and store it in the database.
+  
+**Valid Request Body:**     
+```json
+{
+  "_id": {
+    "$oid": String
+  },
+  "name": String,
+  "language": String,
+  "cards": [
+    {
+      "front": String,
+      "back": String
+    },
+  ],
+  "level": Integer
+}
+```
+
+**Exception thrown when database can't find flashcard entity**     
+```json
+class EntityNotFoundExcepton(Exception):
+    "Raised when cannot find object by id"
+    pass
+```
+
+**Exception thrown when database can't update the flashcard entity**     
+```json
+class DatabaseProcessingException(Exception):
+    "Raised when having error while process"
+    pass
+```
+
+### POST /users/progresses
+**Description:**    
+Create a new progression for a user and store it in the database.
+  
+**Valid Request Body:**     
+```json
+{
+  "_id": {
+    "$oid": String
+  },
+  "language": String,
+  "progress": [
+    {
+      "name": String,
+      "title": String,
+      "lessons": [
+        {
+          "id": String,
+          "name": String,
+          "type": String,
+          "isDone": Boolean
+        },
+        {
+          "id": String,
+          "name": String,
+          "type": String,
+          "isDone": Boolean
+        }
+      ]
+    },
+  ]
+}
+```
+
+**Exception thrown when database can't find the progression entity**     
+```json
+class EntityNotFoundExcepton(Exception):
+    "Raised when cannot find object by id"
+    pass
+```
+
+**Exception thrown when database can't update the progression entity**     
 ```json
 class DatabaseProcessingException(Exception):
     "Raised when having error while process"
