@@ -109,48 +109,72 @@ After listening to the sentence audio from the bot, type the correct translation
       <td>15</td>
       <td>View Flash Cards:
 Enter the command "!studyFlash" into the chat.</td>
-      <td>The bot will generate a number of flashcards that include information featured on quizzes. </td>
+      <td>The bot will generate a selec menu for you to choose the unit you want to practice.. </td>
     </tr>
     <tr>
       <td>16</td>
+      <td>Select Flash card Unit:
+Select a Unit or choose to randomize card set</td>
+      <td>The embed will update to display a set of cards from the unit you have selected".</td>
+    </tr>
+    <tr>
+      <td>17</td>
       <td>Flip Flash card:
 Click the flip button on the flash card embed.</td>
       <td>The bot will show the phrase in english</td>
     </tr>
     <tr>
-      <td>17</td>
+      <td>18</td>
+      <td>Progress Flash card:
+Click the right arrow button and then left arrow button on the flash card embed.</td>
+      <td>The embed will update to display the next and then previous cards.</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>End Flash card:
+Click the red "X" button on the flash card embed.</td>
+      <td>The embed will update to display the message "Great Work!, and this flashcard session will end".</td>
+    </tr>
+    <tr>
+      <td>20</td>
       <td>Practice Fill in the Blank:
 Enter the command to start fill in the blank practice in the text channel.</td>
       <td>The bot will generate sentences in your selected language with one word omitted. </td>
     </tr>
     <tr>
-      <td>18</td>
+      <td>21</td>
       <td>Fill in the Wrong Answer:
 Type an answer which would not work in the given blank.</td>
       <td>The bot will notify you your response was incorrect.</td>
     </tr>
     <tr>
-      <td>19</td>
+      <td>22</td>
       <td>Fill in the Right Answer:
 Type an answer that fits the blank. </td>
       <td>The bot will notify you your response is appropriate.  </td>
     </tr>
      <tr>
-          <td>20</td>
+      <td>23</td>
+      <td>Complete Fill in The Blank:
+Complete all fill in the blank practice problems. </td>
+      <td>The bot will notify you that the session is over and present you with a total score.  </td>
+    </tr>
+     <tr>
+          <td>24</td>
           <td>Track Personal Progress:
 Type the command "!myScores" into the chat. 
 </td>
           <td>The bot will respond with your scores for both vocab and voice quizzes. </td>
         </tr>
         <tr>
-          <td>21</td>
+          <td>25</td>
           <td>Check Server Leaderboard:
 Enter the command "!leaderboard" into the chat. 
 </td>
           <td>The bot will reply with a display of the top aggregate scores of all users on the server. </td>
         </tr>
         <tr>
-          <td>22</td>
+          <td>26</td>
           <td>Practice Reminders:
 After inviting the bot to a discord server, wait a few moments without practice any quizzes. (reminder interval maybe shortened for testing)
 </td>

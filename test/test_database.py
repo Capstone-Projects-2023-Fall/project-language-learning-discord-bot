@@ -74,6 +74,18 @@ class TestDatabase(unittest.TestCase):
         dbquiz = self.database.getRandomQuiz(language="Spanish")
         self.assertIsNotNone(dbquiz)
 
+    def test_getFlashcards_has_record(self):
+        dbflash = self.database.getFlashcards("Spanish")
+        self.assertEqual(len(dbflash), 25)
+
+    def test_getRandomFLash_has_no_record(self):
+        dbflash = self.database.getRandomFlash("rando")
+        self.assertIsNone(dbflash)
+
+    def test_getUsrFlashcards_has_fake_unit(self):
+        dbflash = self.database.getUsrFlashcards(9, "Spanish")
+        self.assertIsNone(dbflash)
+
     def test_updateUserQuiz(self):
         dbquiz = self.database.getRandomQuiz(language="Spanish")
         now = datetime.now()

@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# Use-case descriptions
+# Use-Case Descriptions
 
 ### Use Case 1: Account Creation and Bot Initialization
 <i>As a user, I want to set up a language-learning discord bot to personalize my language-learning experience.</i>

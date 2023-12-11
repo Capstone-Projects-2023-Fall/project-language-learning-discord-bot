@@ -7,7 +7,8 @@ Classes
 =============================
 
 ## Main
-### Class Purpose: The Main class will start and initialize the bot with its default parameters.
+### Class Purpose: 
+The Main class will start and initialize the bot with its default parameters.
 
 ### Data Fields:
 - bot: An instance of the Discord Bot
@@ -25,7 +26,13 @@ Classes
   - Pre-conditions: None
   - Parameters: None
   - Returns: Prints string of cog commands to the console.
-
+ 
+- disconnect(ctx):
+  - Creates a disconnect command with a disconnect button when activated 
+  - Pre-conditions: None
+  - Parameters: ctx
+  - Returns: Returns a disconnect command to be used by the user in the discord server.
+ 
 - main(): void
   - The main entry point for the bot, where it sets up the bot, loads cogs, and starts the bot using asyncio.
   - Pre-conditions: None
@@ -33,7 +40,8 @@ Classes
   - Returns: None
 
 ## Database
-### Class Purpose: To create a database of users with data about their performance within a specific language.
+### Class Purpose: 
+To create a database of users with data about their performance within a specific language.
 
 ### Data Fields: None
 
@@ -49,6 +57,12 @@ Classes
     - Pre-conditions: none
     - Parameters: self
     - Returns: Prints a success string if the client successfully to the MongoDB
+
+- readUser(self, username):
+    - Reads the user's conditions and determines if the user is valid or not in the database.
+    - Pre-conditions: none
+    - Parameters: self, username
+    - Returns: Prints a success string if the client can read the user in the database
 
 - findUser(self, username):
     - Finds a user in the database based on the username.
@@ -80,6 +94,24 @@ Classes
     - Parameters: self, language
     - Returns: An array of practice activities
 
+- getFlashcards(self, language):
+    - Retrieves flashcards based on the specified language.
+    - Pre-conditions: None
+    - Parameters: self, language
+    - Returns: An array of flashcard activities
+ 
+- getUsrFlashcards(self, unit_choice, language):
+    - Confirms with the database that it can successfully access a user's flashcard data.
+    - Pre-conditions: None
+    - Parameters: self, unit_choice, language
+    - Returns: A success string if the database could find a user's flashcard data
+ 
+- readProgress(self, language):
+    - Reads the user's conditions and determines if the user's progress is valid or not in the database.
+    - Pre-conditions: None
+    - Parameters: self, language
+    - Returns: Prints a success string if the client can read the user's progress in the database
+
 - getRandomQuiz(self, language):
     - Selects and returns a random quiz for the specified language.
     - Pre-conditions: None
@@ -91,12 +123,24 @@ Classes
     - Pre-conditions: None
     - Parameters: self, language
     - Returns: The specific index (practices[index]) of the requested practice activity
+ 
+- getRandomFlash(self, language):
+    - Selects and returns a random flashcard for the specified language.
+    - Pre-conditions: None
+    - Parameters: self, language
+    - Returns: The specific index (practices[index]) of the requested flashcard activity
 
 - updateUserQuiz(self, username, quiz):
     - Updates the user's quiz score in the user collection.
     - Pre-conditions: None
     - Parameters: self, username, quiz
     - Returns: A successful call to the database when a specific user score is updated
+ 
+- readUserProgress(self, username):
+    - Reads the user's conditions and prints out the user's contents of their progress from the database.
+    - Pre-conditions: None
+    - Parameters: self, username
+    - Returns: Prints a success string if the client can print the user's progress in the database
 
 - get_all_users(self):
     - Selects and returns all of the users regardless of language
@@ -104,8 +148,15 @@ Classes
     - Parameters: self
     - Returns: The array of all users
 
+- get_random_fill_in_the_blank_set(self, language):
+    - Selects and returns a random fill-in-the-blank set of any language
+    - Pre-conditions: None
+    - Parameters: self, language
+    - Returns: The array of all fill-in-the-blank sets
+
 ## VocabQuiz
-### Class Purpose: To generate a customized vocab quiz for the user based on their selected language
+### Class Purpose: 
+To generate a customized vocab quiz for the user based on their selected language
     
 ### Data Fields: None
 
@@ -129,7 +180,8 @@ Classes
     - Returns: Quiz ID #, Quiz Name, Quiz Score, User Token, User Language
 
 ## SpeechRecognition
-### Class Purpose: To show the user and display the result in a text channel and to be interpreted by other functions
+### Class Purpose: 
+To show the user and display the result in a text channel and to be interpreted by other functions
 
 ### Data Fields: None
 
@@ -153,7 +205,8 @@ Classes
     - Returns: An array with a transcript of the user voice text
 
 ## HelpCommand
-### Class Purpose: To allow the user to use the /help command
+### Class Purpose: 
+To allow the user to use the /help command
 
 ### Data Fields: None
 
@@ -183,7 +236,8 @@ Classes
     - Returns: Prints a success message to the console and adds feature to the cogs command archive
 
 ## MyScores
-### Class Purpose: To display the user scores of everyone on a server
+### Class Purpose: 
+To display the user scores of everyone on a server
 
 ### Data Fields:
 - database: An instance of the Database class
@@ -214,7 +268,8 @@ Classes
     - Returns: Prints a success message to the console and adds feature to the cogs command archive
 
 ## Leaderboard
-### Class Purpose: To display the top user scores on a given server
+### Class Purpose: 
+To display the top user scores on a given server
 
 ### Data Fields:
 - database: An instance of the Database class
@@ -230,7 +285,7 @@ Classes
     - Displays a leaderboard trophy next to the user with the highest score
     - Pre-conditions: None
     - Parameters: self, ctx
-    - Returns: A displayed image to the Discord UI indicating the highest scored user
+    - Returns: A displayed image to the Discord UI indicating the highest-scored user
 
 - setup(bot):
     - Internal method for setting up the cog.
@@ -239,7 +294,8 @@ Classes
     - Returns: Prints a success message to the console and adds feature to the cogs command archive
 
 ## ChangeLanguage
-### Class Purpose: To allow the user to change its current learning language to any other on the "constant.py" file (either Spanish or French).
+### Class Purpose: 
+To allow the user to change its current learning language to any other on the "constant.py" file (either Spanish or French).
 
 ### Data Fields:
 - database: An instance of the Database class
@@ -270,7 +326,8 @@ Classes
     - Returns: Prints a success message to the console and adds feature to the cogs command archive
 
 ## StartVocabQuiz
-### Class Purpose: To start the vocab quiz practice for a user in a text channel
+### Class Purpose: 
+To start the vocab quiz practice for a user in a text channel
 
 ### Data Fields:
 - database: An instance of the Database class
@@ -301,7 +358,8 @@ Classes
     - Returns: Prints a success message to the console and adds the feature to the cogs command archive
 
 ## StartVoiceQuiz
-### Class Purpose: To start the voice quiz practice for a user in a voice channel
+### Class Purpose: 
+To start the voice quiz practice for a user in a voice channel
 
 ### Data Fields:
 - database: An instance of the Database class
@@ -332,7 +390,8 @@ Classes
     - Returns: Prints a success message to the console and adds the feature to the cogs command archive
 
 ## Constant
-### Class Purpose: Display all attributes that are considered constants throughout the entire codespace
+### Class Purpose: 
+Display all attributes that are considered constants throughout the entire codespace
 
 ### Data Fields:
 - LANGUAGE: What languages are available to the user
@@ -347,13 +406,19 @@ Classes
 - QUIZ_ISCORRECT: A boolean on whether a quiz answer was true or false
 - QUIZ_SCORE: An integer on what the user score was after a quiz is completed
 - QUIZ_NAME: The string name of a specific quiz
+- FILL_IN_THE_BLANKS_SET: The string name of the FITB set
+- FILL_IN_THE_BLANKS_QUESTION: The string name of the FITB question
+- FILL_IN_THE_BLANKS_CORRECT_ANSWER: The string answer of the FITB question
+- FILL_IN_THE_BLANKS_CHOICES: The string choices of the FITB choices
+- FILL_IN_THE_BLANKS_ENGLISH_MEANING: The string of the final FITB meaning
 - COLLECTION_ID: The integer ID of a specific user
 - DATE_FORMAT = "%d/%m/%Y %H:%M:%S": The string date format for date-based instances
 
 ### Methods: none
 
 ## MatchResult
-### Class Purpose: To calculate the number of correct words that a user said during a given pronunciation quiz
+### Class Purpose: 
+To calculate the number of correct words that a user said during a given pronunciation quiz
 
 ### Data Fields: None
 
@@ -364,6 +429,12 @@ Classes
     - Parameters: expected_sentence, actual_sentence
     - Returns: The number of correct words said by the user divided by the length of the expected words in the given phrase
 
+- highlight_errors(expected_sentence,actual_sentence):
+    - A method that highlights the errors present in user input within a pronunciation test
+    - Pre-conditions: None
+    - Parameters: expected_sentence, actual_sentence
+    - Returns: Displays all errors occurring in user input on-screen
+
 - match_word(word, words):
     - A method that sends a boolean if the word is a match or not
     - Pre-conditions: None
@@ -371,7 +442,8 @@ Classes
     - Returns: True if the user said word is a match
 
 ## PronounTest
-### Class Purpose: To scan the waveform and parse the user voice input into comparable strings 
+### Class Purpose: 
+To scan the waveform and parse the user voice input into comparable strings 
 
 ### Data Fields:
 - database: An instance of the Database class
@@ -402,7 +474,8 @@ Classes
     - Returns: returns a full index of the current quiz
 
 ## Test_Database
-### Class Purpose: To test the different attributes of the database
+### Class Purpose: 
+To test the different attributes of the database
 
 ### Data Fields: None
 
@@ -504,7 +577,8 @@ Classes
     - Returns: a successful test case
 
 ## Test_HelpCommand
-### Class Purpose: To test the different attributes of the help command
+### Class Purpose: 
+To test the different attributes of the help command
 
 ### Data Fields: None
 
@@ -540,7 +614,8 @@ Classes
     - Returns: Send successful echo test to the bot
 
 ## Test_Match
-### Class Purpose: To test the attributes of the pronunciation test input
+### Class Purpose: 
+To test the attributes of the pronunciation test input
 
 ### Data Fields: None
 
@@ -558,7 +633,8 @@ Classes
     - Returns: A successful score between the two exact strings
 
 ## Test_Voice
-### Class Purpose: To test the attributes of the user voice input
+### Class Purpose: 
+To test the attributes of the user voice input
 
 ### Data Fields: None
 
@@ -600,7 +676,8 @@ Classes
     - Returns: Display successfully in the console that the user is in a channel
 
 ## Record
-### Class Purpose: To record the user voice input and store it as a .wav file in the current instance
+### Class Purpose: 
+To record the user voice input and store it as a .wav file in the current instance
 
 ### Data Fields: None
 
