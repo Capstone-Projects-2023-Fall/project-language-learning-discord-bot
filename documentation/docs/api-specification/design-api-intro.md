@@ -761,3 +761,65 @@ To activate the text-to-speech for a given text (regardless of language) to be a
     - Pre-conditions: None
     - Parameters: self, text
     - Returns: A successful save of the TTS recording saved to "audios/voice.mp3"
+
+## FillInTheBlanks
+### Class Purpose: 
+To generate the Fill-in-the-blank activity for the user to interact with via the bot.
+
+### Data Fields: None
+
+### Methods:
+- __init__(self, bot):
+    - Initializes the cog with a reference to the bot.
+    - Pre-conditions: None
+    - Parameters: self, bot
+    - Returns: a setup instance of the bot with pre-assigned values aka "self"
+ 
+- on_ready(): void
+  - An event handler called when the Discord bot is ready. It prints a message to the console and sends a message to a specific channel.
+  - Pre-conditions: None
+  - Parameters: None
+  - Returns: Prints "Hello, I'm now online!" string if the channel is active for the bot to enter.
+ 
+- fill_in_the_blanks(self, ctx, *, language: str = None):
+    - Presents the fill-in-the-blanks ordered question to the user in the current discord text channel.
+    - Pre-conditions: None
+    - Parameters: self, ctx, *, language: str = None
+    - Returns: Successfully prints to the user's current text channel
+
+- setup(bot):
+    - Internal method for setting up the cog.
+    - Pre-conditions: None
+    - Parameters: bot
+    - Returns: Prints a success message to the console and adds the feature to the cogs command archive
+ 
+## MyProgress
+### Class Purpose: 
+To generate the current progression for a specific user.
+
+### Data Fields: None
+
+### Methods:
+- __init__(self, bot):
+    - Initializes the cog with a reference to the bot.
+    - Pre-conditions: None
+    - Parameters: self, bot
+    - Returns: a setup instance of the bot with pre-assigned values aka "self"
+ 
+- on_ready(): void
+  - An event handler called when the Discord bot is ready. It prints a message to the console and sends a message to a specific channel.
+  - Pre-conditions: None
+  - Parameters: None
+  - Returns: Prints "MyProgress command is online." string if the channel is active for the bot to enter.
+ 
+- myProgress(self, ctx):
+    - Presents the current progress in the language course for a user.
+    - Pre-conditions: None
+    - Parameters: self, ctx, *, language: str = None
+    - Returns: Successfully prints the user's current progress of the course within their text channel
+
+- setup(bot):
+    - Internal method for setting up the cog.
+    - Pre-conditions: None
+    - Parameters: bot
+    - Returns: Prints a success message to the console and adds the feature to the cogs command archive
