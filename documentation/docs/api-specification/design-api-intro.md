@@ -441,6 +441,37 @@ To calculate the number of correct words that a user said during a given pronunc
     - Parameters: word, words
     - Returns: True if the user said word is a match
 
+## PronounPractice
+### Class Purpose: 
+A method that displays the Pronunciation Practice for the user for a given language.
+
+### Data Fields: None
+
+### Methods:
+- __init__(self, ctx, user, practice, textToSpeech, progressId = ""):
+    - Initializes the cog with a reference to the bot.
+    - Pre-conditions: None
+    - Parameters: self, ctx, user, practice, textToSpeech, progressId = ""
+    - Returns: a setup instance of the bot with pre-assigned values aka "self"
+
+- play_sentence(self):
+    - A method that played the selected sentence through the current user's voice channel
+    - Pre-conditions: None
+    - Parameters: self
+    - Returns: Successfully plays the text-to-speech audio back to the user
+ 
+- get_question(self):
+    - A method that collects a question response from the user's voice input
+    - Pre-conditions: None
+    - Parameters: self
+    - Returns: True, the current sentence that the bot displayed for the user and displaying it on the Discord UI
+
+- once_done(self, sink: discord.sinks, channel: discord.TextChannel, *args):
+    - A method to scan for user input during a pronunciation quiz to present the next question to the user.
+    - Pre-conditions: None
+    - Parameters: self, sink: discord.sinks, channel: discord.TextChannel, *args
+    - Returns: Sends the next question to the user on the Discord UI
+
 ## PronounTest
 ### Class Purpose: 
 To scan the waveform and parse the user voice input into comparable strings 
