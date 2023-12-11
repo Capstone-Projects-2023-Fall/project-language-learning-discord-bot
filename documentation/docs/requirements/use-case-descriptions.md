@@ -38,7 +38,7 @@ sidebar_position: 5
 ```
 
 ### Use Case 3: Pronunciation Testing
-</i>As a user, I want to test my pronunciation skills in my chosen language.</i>
+<i>As a user, I want to test my pronunciation skills in my chosen language.</i>
 ```
         1. The user opens the Discord app.
         2. The user sends a command, e.g., "!startPronunciationTest" to initiate the pronunciation test.
