@@ -6,7 +6,7 @@ sidebar_position: 5
 
 ### Use Case 1: Account Creation and Bot Initialization
 <i>As a user, I want to set up a language-learning discord bot to personalize my language-learning experience.</i>
-```
+
         1. User opens Discord.
         2. The user selects the "Create an account" option.
         3. Discord prompts the user for account details.
@@ -22,11 +22,10 @@ sidebar_position: 5
         13. Bot updates the user’s language preference in the database.
         14. The database confirms the preference has been updated.
         15. Bot sends a confirmation message in the user's selected language.
-```
 
 ### Use Case 2: Vocabulary Knowledge Test
 <i>As a user, I want to test my vocabulary knowledge for my selected language.</i>
-```
+
         1. The user opens the Discord app.
         2. The user sends a command to initiate a vocabulary test.
         3. The bot retrieves vocabulary quizzes from the database in the user’s selected language.
@@ -35,11 +34,10 @@ sidebar_position: 5
         6. The bot updates the database with the user's quiz results.
         7. The bot sends a message to the user, presenting the quiz results.
         8. The user reviews the result, understanding their strengths and areas of improvement.
-```
 
 ### Use Case 3: Pronunciation Testing
 <i>As a user, I want to test my pronunciation skills in my chosen language.</i>
-```
+
         1. The user opens the Discord app.
         2. The user sends a command, e.g., "!startPronunciationTest" to initiate the pronunciation test.
         3. The bot retrieves the user’s preferred language and related exercise from the database.
@@ -48,33 +46,29 @@ sidebar_position: 5
         6. The bot updates the database with the transcription and performance metrics.
         7. The bot provides feedback on pronunciation accuracy and areas for improvement.
         8. The user reviews the feedback to understand their pronunciation accuracy and areas of improvement.
-```
 
 ### Use Case 4: Tracking Progress
 <i>As a user, I want to track my progress.</i>
-```
+
         1. The user opens the Discord App.
         2. The user sends the “!myScores” command to the bot.
         3. The bot fetches the user’s scores from the database.
         4. The bot presents the user with their scores for vocabulary quizzes, pronunciation tests, and overprogress on Discord.
-```
 
 ### Use Case 5: Viewing Top Performers for Each Language
 <i>As a user, I want to view the top performers for each language to gauge my progress against peers.</i>
-```
+
         1. The user opens the Discord App.
         2. The user sends the “!leaderboard” command to the bot.
         3. The bot retrieves the top aggregate scores for the currently selected language from the database.
         4. The bot displays the leaderboard to the user on Discord.
-```
 
 ### Use Case 6: Changing Current Learning Language
 <i>As a user, I want to change my current learning language to explore other languages.</i>
-```
+
         1. The user opens the Discord App.
         2. The user sends the “!changeLanguage” command to the bot.
         3. The bot displays a list of available languages to the user on Discord.
         4. The user selects a new language from the list.
         5. The bot updates the user’s preferred language in the database.
         6. The bot confirms the change to the user on Discord.
-```
