@@ -68,10 +68,6 @@ This test suite validates the functionality of the database module's methods wit
 - **Outcome:** The test verifies the correct handling of expected exceptions.
 - **Result:** Test passed successfully with exception handling.
 
-## Known Problems
-
-No known problems or failed tests were observed during the test execution.
-
 
 ## Test Report for Discord Bot Commands
 
@@ -122,9 +118,6 @@ This test suite aims to validate the functionality of various commands implement
 - **Expected Outcome:** Expects a response in the form of an embed displaying the user's progress.
 - **Result:** Validates the title and description of the embed message.
 
-#### Known Problems
-No known problems or failed tests were observed during the test execution.
-
 
 ## Test Report for test_helpcommand
 
@@ -144,10 +137,6 @@ This test suite aims to validate the functionality of miscellaneous commands wit
 - **Outcome:** Tests if the bot responds with "Hello" after receiving the `!echo Hello world` command.
 - **Result:** Test passed successfully.
 
-## Known Problems
-
-During the test execution, no known problems or failed tests were observed.
-
 
 ## Test Report for MatchResult Class
 
@@ -166,11 +155,6 @@ The test suite aims to validate the functionality of the `MatchResult` class for
 - **Purpose:** Verifies the sentence matching score for an exact match.
 - **Expected Outcome:** Compares the similarity between the expected sentence "today is hot" and the actual sentence "today is hot."
 - **Result:** The calculated score for the exact matching sentences is printed.
-
-## Known Problems
-
-During the test execution, no known problems or failed tests were observed.
-
 
 ## Test Report for Voice Commands Testing
 
@@ -196,6 +180,11 @@ This test suite aims to validate the functionality of the voice-related commands
 - **Expected Outcome:** Executes the command and checks if a voice client exists after execution.
 - **Result:** Asserts the presence of voice clients after executing the command.
 
-## Known Problems
+## Description of failed tests
 
-During the test execution, no known problems or failed tests were observed.
+- **bot.py (line 83) represents a test failure within the _startVocabQuiz function. This test utilizes the dpytest framework to simulate a user command (!startVocabQuiz) sent to the bot and checks the response for an embedded message. The expected outcome was to receive a message containing an embed, but the actual result didn't contain any embed, leading to an assertion error. The given output reflects an assertion failure at line 90 (test.bot.py:90) where the test expected to find an embed in the response message, yet it discovered none, causing the test to fail with the error message "No embeds found in the response message". This failure highlights that the bot's response to the command !startVocabQuiz lacked the expected embedded message, resulting in the test's unsuccessful completion due to the absence of the anticipated content.**
+
+
+## Output
+![Alt Text](image.png)
+![Alt Text](Screenshot_1115.png)
