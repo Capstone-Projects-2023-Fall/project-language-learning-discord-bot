@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
  * The URL or reference to your projects logo!
  * @type {string}
  */
-const logo = 'https://upload.wikimedia.org/wikipedia/commons/1/17/Temple_T_logo.svg';
+const logo = 'https://i0.wp.com/www.michigandaily.com/wp-content/uploads/2021/03/0-1.jpg?fit=1500%2C1200&ssl=1';
 
 const main_template_jira_scripts = () => {
   if (process.env.ORG_NAME === 'ApplebaumIan'){
@@ -28,7 +28,7 @@ const title = ''+process.env.PROJECT_NAME.replaceAll('-',' ').split(' ').map((wo
 const config = {
   /*TODO: Change to your project's title and tagline*/
   title: title,
-  tagline: 'Owls are cool',
+  tagline: 'Learn any new language of your choice from the comfort of Discord!',
   /*Unless you move this website to a seperate repo don't change url and baseurl.*/
   url: 'https://'+process.env.ORG_NAME+'.github.io/',
   baseUrl: '/'+process.env.PROJECT_NAME+'/',
@@ -118,11 +118,6 @@ const config = {
             docId: 'intro',
             position: 'left',
             label: 'Documentation',
-          },{
-            to: '/tutorial/Intro',
-            label: 'Docusaurus Tutorial',
-            position: 'left',
-            activeBaseRegex: `/tutorial/`,
           },
           {
             href: 'https://github.com/'+process.env.ORG_NAME+'/'+process.env.PROJECT_NAME,
