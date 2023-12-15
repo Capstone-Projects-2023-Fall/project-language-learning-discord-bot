@@ -86,7 +86,6 @@ This test suite validates the functionality of the database module's methods wit
 
 No known problems or failed tests were observed during the test execution.
 
-
 ## Test Report for Discord Bot Commands
 
 ### Purpose
@@ -139,7 +138,6 @@ This test suite aims to validate the functionality of various commands implement
 ### Known Problems
 No known problems or failed tests were observed during the test execution.
 
-
 ## Test Report for test_helpcommand
 
 ### Purpose
@@ -162,7 +160,6 @@ This test suite aims to validate the functionality of miscellaneous commands wit
 
 During the test execution, no known problems or failed tests were observed.
 
-
 ## Test Report for MatchResult Class
 
 ### Purpose
@@ -184,7 +181,6 @@ The test suite aims to validate the functionality of the `MatchResult` class for
 ### Known Problems
 
 During the test execution, no known problems or failed tests were observed.
-
 
 ## Test Report for Voice Commands Testing
 
@@ -210,6 +206,12 @@ This test suite aims to validate the functionality of the voice-related commands
 - **Expected Outcome:** Executes the command and checks if a voice client exists after execution.
 - **Result:** Asserts the presence of voice clients after executing the command.
 
+## Description of failed tests
+
+- **bot.py (line 83) represents a test failure within the _startVocabQuiz function. This test utilizes the dpytest framework to simulate a user command (!startVocabQuiz) sent to the bot and checks the response for an embedded message. The expected outcome was to receive a message containing an embed, but the actual result didn't contain any embed, leading to an assertion error. The given output reflects an assertion failure at line 90 (test.bot.py:90) where the test expected to find an embed in the response message, yet it discovered none, causing the test to fail with the error message "No embeds found in the response message". This failure highlights that the bot's response to the command !startVocabQuiz lacked the expected embedded message, resulting in the test's unsuccessful completion due to the absence of the anticipated content.**
+
 ### Known Problems
 
-During the test execution, no known problems or failed tests were observed.
+## Output
+![Alt Text](image.png)
+![Alt Text](Screenshot_1115.png)
