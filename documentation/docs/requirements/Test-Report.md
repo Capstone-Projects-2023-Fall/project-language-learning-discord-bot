@@ -1,7 +1,3 @@
-<div align="center">
-  <h1> Test Report</h1>
-</div>
-
 ## Test Report for Database Test Cases
 
 ### Purpose
@@ -28,7 +24,7 @@ This test suite validates the functionality of the database module's methods wit
 
 ### 4. `test_changeLanguage`
 
-- **Purpose:** Evaluates the functionality of changing the user's language.
+- **Purpose:** Evaluate the functionality of changing the user's language.
 - **Outcome:** The test ensures the user's language is updated to the provided language.
 - **Result:** Test passed successfully.
 
@@ -70,7 +66,7 @@ This test suite validates the functionality of the database module's methods wit
 
 ### 11. `test_getUsrFlashcards_has_fake_unit`
 
-- **Purpose:** Checks retrieval of user specified flashcards with no records.
+- **Purpose:** Checks retrieval of user-specified flashcards with no records.
 - **Outcome:** The test ensures that `None` is returned when no cards are found.
 - **Result:** Test passed successfully.
 
@@ -86,10 +82,9 @@ This test suite validates the functionality of the database module's methods wit
 - **Outcome:** The test verifies the correct handling of expected exceptions.
 - **Result:** Test passed successfully with exception handling.
 
-## Known Problems
+### Known Problems
 
 No known problems or failed tests were observed during the test execution.
-
 
 ## Test Report for Discord Bot Commands
 
@@ -106,7 +101,7 @@ This test suite aims to validate the functionality of various commands implement
 
 #### 2. Test: `test_help`
 
-- **Purpose:** Evaluates the behavior of the `help` command.
+- **Purpose:** Evaluate the behavior of the `help` command.
 - **Outcome:** Checks if the command generates an embedded response.
 - **Result:** Successful execution with the expected embed title and description.
 
@@ -131,18 +126,17 @@ This test suite aims to validate the functionality of various commands implement
 #### 6. `test_leaderboard`
 
 - **Purpose:** Tests the 'Leaderboard' command.
-- **Expected Outcome:** Expects a response in the form of an embed displaying the leaderboard.
-- **Result:** Validates the title and description of the embed message.
+- **Expected Outcome:** Expect a response in the form of an embed displaying the leaderboard.
+- **Result:** Validates the title and description of the embedded message.
 
 #### 7. `test_myProgress`
 
 - **Purpose:** Tests the 'Myprogress' command.
-- **Expected Outcome:** Expects a response in the form of an embed displaying the user's progress.
-- **Result:** Validates the title and description of the embed message.
+- **Expected Outcome:** Expect a response in the form of an embed displaying the user's progress.
+- **Result:** Validates the title and description of the embedded message.
 
-#### Known Problems
+### Known Problems
 No known problems or failed tests were observed during the test execution.
-
 
 ## Test Report for test_helpcommand
 
@@ -162,10 +156,9 @@ This test suite aims to validate the functionality of miscellaneous commands wit
 - **Outcome:** Tests if the bot responds with "Hello" after receiving the `!echo Hello world` command.
 - **Result:** Test passed successfully.
 
-## Known Problems
+### Known Problems
 
 During the test execution, no known problems or failed tests were observed.
-
 
 ## Test Report for MatchResult Class
 
@@ -175,7 +168,7 @@ The test suite aims to validate the functionality of the `MatchResult` class for
 
 ### 1. `test_score`
 
-- **Purpose:** Evaluates the sentence matching score.
+- **Purpose:** Evaluate the sentence matching score.
 - **Expected Outcome:** Compares the similarity between the expected sentence "how are you" and the actual sentence "how is it going."
 - **Result:** The calculated score based on the matching similarity is printed.
 
@@ -185,10 +178,9 @@ The test suite aims to validate the functionality of the `MatchResult` class for
 - **Expected Outcome:** Compares the similarity between the expected sentence "today is hot" and the actual sentence "today is hot."
 - **Result:** The calculated score for the exact matching sentences is printed.
 
-## Known Problems
+### Known Problems
 
 During the test execution, no known problems or failed tests were observed.
-
 
 ## Test Report for Voice Commands Testing
 
@@ -205,7 +197,7 @@ This test suite aims to validate the functionality of the voice-related commands
 ### 2. `test_startVoiceQuiz_notinvc`
 
 - **Purpose:** Tests the 'startVoiceQuiz' command when the user is not in a voice channel.
-- **Expected Outcome:** Expects a message stating "You need to be in a voice channel to use this command."
+- **Expected Outcome:** Expect a message stating "You need to be in a voice channel to use this command."
 - **Result:** Asserts that no voice clients exist and checks for the expected response message.
 
 ### 3. `test_startVoiceQuiz_invc`
@@ -214,6 +206,12 @@ This test suite aims to validate the functionality of the voice-related commands
 - **Expected Outcome:** Executes the command and checks if a voice client exists after execution.
 - **Result:** Asserts the presence of voice clients after executing the command.
 
-## Known Problems
+## Description of failed tests
 
-During the test execution, no known problems or failed tests were observed.
+- **bot.py (line 83) represents a test failure within the _startVocabQuiz function. This test utilizes the dpytest framework to simulate a user command (!startVocabQuiz) sent to the bot and checks the response for an embedded message. The expected outcome was to receive a message containing an embed, but the actual result didn't contain any embed, leading to an assertion error. The given output reflects an assertion failure at line 90 (test.bot.py:90) where the test expected to find an embed in the response message, yet it discovered none, causing the test to fail with the error message "No embeds found in the response message". This failure highlights that the bot's response to the command !startVocabQuiz lacked the expected embedded message, resulting in the test's unsuccessful completion due to the absence of the anticipated content.**
+
+### Known Problems
+
+## Output
+![Alt Text](image.png)
+![Alt Text](Screenshot_1115.png)

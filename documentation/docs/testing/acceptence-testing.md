@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 ---
-# Acceptance Tests:
+# Acceptance Tests
 The table below outlines a series of manual acceptance tests performed by test users to demonstrate that all functional and non-functional requirements that have been specified for this project have been satisfied.
 
 ### Spreadsheet Link:
@@ -40,14 +40,14 @@ Type "!changeLanguage" followed by the language you wish to start learning into 
          <td>Start Vocab Quiz:
 Enter !startVocabQuiz into the chat to initiate a vocab quiz.
 </td>
-         <td>The bot will ask the you to select a difficulty level, and then generate questions in the selected language.</td>
+         <td>The bot will ask user to select a difficulty level, and then generate questions in the selected language.</td>
        </tr>
        <tr>
          <td>5</td>
          <td>Quiz Response - Right Answer:
 Select the correct response from the list of choices provided by the bot.
 </td>
-         <td>The bot will confirm that your response was accurate.</td>
+         <td>The bot will confirm user response was accurate.</td>
        </tr>
        <tr>
          <td>6</td>

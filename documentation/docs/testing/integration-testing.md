@@ -3,7 +3,7 @@ sidebar_position: 2
 ---
 # Integration tests
 
-Tests to demonstrate each use-case based on the use-case descriptions and the sequence diagrams. External input should be provided via mock objects and results verified via mock objects. Integration tests should not require manual entry of data nor require manual interpretation of results.
+This section details the integration tests designed to validate the Language Learning Discord Bot (LDB) use cases against their functional requirements. The tests are constructed around the user journey within the Discord environment, ensuring that all interactions with the bot yield the expected outcomes. Mock objects are employed to simulate user inputs and server responses, facilitating an automated and repeatable testing process without manual data entry or result interpretation.
 
 ## Use Case Integration Tests
 

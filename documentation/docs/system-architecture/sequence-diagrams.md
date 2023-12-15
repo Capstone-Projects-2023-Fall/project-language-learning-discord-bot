@@ -1,8 +1,6 @@
 # Sequence Diagram
 
-## Use Case 1: Account Creation and Bot Initialization
-
-**As a user, I want to create a Discord account and set up a language-learning bot so that I can personalize my language learning experience.**
+## Use Case 1: Account Creation and Language Selection
 
 ```mermaid
 sequenceDiagram
@@ -24,11 +22,8 @@ sequenceDiagram
     activate B
     B-->>D: Sends introductory message
     D->>U: Display message
-    U->>D: Sends command to set language preferences
+    U->>D: "!changeLanguage" command with chosen language
     D-->>B: Command received
-    B-->>U: Requests user’s language preference
-    U->>D: Responds with preferred language
-    D-->>B: Preferred language received
     B->>DB: Updates user’s language preference in BotDatabase
     activate DB
     DB-->>B: Confirm preference updated
@@ -40,25 +35,20 @@ sequenceDiagram
     deactivate U
 
 ```
-    1: User opens Discord.
-    2: User selects the "Create an account" option.
-    3: Discord prompts the user for account details.
-    4: User provides required details such as email, display name, username, password, and date of birth.
-    5: Discord stores the provided account details in its database.
-    6: Database confirms successful account creation.
-    7: Discord confirms to the user that the account is created, and the user is logged in.
-    8: User invites the bot to their server.
-    9: Bot sends an introductory message upon joining the server.
-    10: User sends a command to the bot to set language preferences.
-    11: Bot requests the user’s preferred language for interaction.
-    12: User responds with their language of choice.
-    13: Bot updates the user’s language preference in the database.
-    14: Database confirms the preference has been updated.
-    15: Bot sends a confirmation message in the user's selected language.
+**User wants to create a Discord account to try out the language-learning bot and select a language.**
+
+    1: User opens Discord and selects the "Create an account" option.
+    2: User provides required details such as email, display name, username, password, and date of birth.
+    3: Discord stores the provided account details in its database and confirms successful account creation.
+    4: Discord confirms to the user that the account is created, and the user is logged in.
+    5: User invites the bot to their server.
+    6: Bot sends an introductory message upon joining the server.
+    7: User sends a command to the bot to set language preferences.
+    8: Bot updates the user’s language preference in the database.
+    9: Database confirms the preference has been updated.
+    10: Bot sends a confirmation message in the user's selected language.
 
 ## Use Case 2: Vocabulary Testing
-
-**As a user, I want to test my vocabulary knowledge for my selected language.**
 
 ```mermaid
 sequenceDiagram
@@ -71,7 +61,7 @@ sequenceDiagram
 
     U->>D: Opens App
     activate D
-    U->>D: Command for vocabulary test
+    U->>D: "!startVocabQuiz" command
     D-->>B: Request for vocabulary quiz
     activate B
     B->>DB: Retrieve vocabulary quiz based on user's language
@@ -87,6 +77,8 @@ sequenceDiagram
     deactivate U
 
 ```
+**User wants to improve their language skills by taking a vocabulary quiz.**
+
     1: User opens the Discord app.
     2: User sends a command to initiate a vocabulary test.
     3: Bot retrieves vocabulary quizzes from the database in the user’s selected language.
@@ -98,8 +90,6 @@ sequenceDiagram
 
 ## Use Case 3: Pronunciation Testing
 
-**As a user, I want to test my pronunciation skills in my chosen language.**
-
 ```mermaid
 sequenceDiagram
     actor U as User
@@ -110,7 +100,7 @@ sequenceDiagram
     activate U
     U->>D: Opens App
     activate D
-    U->>D: "!startPronunciationTest" command
+    U->>D: "!startVoiceQuiz" command
     D-->>B: Request for pronunciation exercise
     activate B
     B->>DB: Retrieve language & exercise
@@ -127,9 +117,10 @@ sequenceDiagram
     deactivate U
 
 ```
+**User wants to improve their speaking skills by taking a pronunciation quiz.**
 
     1: User opens the Discord app.
-    2: User sends a command, e.g., "!startPronunciationTest" to initiate the pronunciation test.
+    2: User sends a command, e.g., "!startVoiceQuiz" to initiate the pronunciation quiz.
     3: Bot retrieves the user’s preferred language and related exercise from the database.
     4: User sends an audio message with the given text or sentences' pronunciation.
     5: As the user speaks, the bot listens and transcribes the user’s audio.
@@ -138,8 +129,6 @@ sequenceDiagram
     8: User review the feedback to understand their pronunciation accuracy and areas of improvement.
 
 ## Use Case 4: Tracking Progress
-
-**As a user, I want to track my progress.**
 
 ```mermaid
 sequenceDiagram
@@ -163,6 +152,7 @@ sequenceDiagram
     deactivate U
 
 ```
+**User wants to review their scores thus far from using the bot.**
 
     1: User opens the Discord app.
     2: User sends the “!myScores” command to the bot.
@@ -171,8 +161,6 @@ sequenceDiagram
 
 
 ## Use Case 5: Viewing Top Performers for Each Language
-
-**As a user, I want to view the top performers for each language to gauge my progress against peers.**
 
 ```mermaid
 sequenceDiagram
@@ -196,6 +184,7 @@ sequenceDiagram
     deactivate U
 
 ```
+**User wants to view top performers for each language to gauge their progress against peers.**
 
     1: User opens the Discord app.
     2: User sends the “!leaderboard” command to the bot.
@@ -203,8 +192,6 @@ sequenceDiagram
     4: Bot displays the leaderboard to the user on Discord.
 
 ## Use Case 6: Changing Current Learning Language
-
-**As a user, I want to change my current learning language to explore other languages.**
 
 ```mermaid
 sequenceDiagram
@@ -230,6 +217,7 @@ actor U as User
     deactivate U
 
 ```
+**User wants to change their current learning language to explore other languages.**
 
     1: User opens the Discord app.
     2: User sends the “!changeLanguage” command to the bot.

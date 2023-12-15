@@ -3,11 +3,10 @@ sidebar_position: 1
 description: Documentation
 ---
 
-Classes
+Classes:
 =============================
 
 ## Main
-### Class Purpose: 
 The Main class will start and initialize the bot with its default parameters.
 
 ### Data Fields:
@@ -40,8 +39,8 @@ The Main class will start and initialize the bot with its default parameters.
   - Returns: None
 
 ## Database
-### Class Purpose: 
-To create a database of users with data about their performance within a specific language.
+<details open="True">
+<summary>To create a database of users with data about their performance within a specific language.</summary>
 
 ### Data Fields: None
 
@@ -153,10 +152,13 @@ To create a database of users with data about their performance within a specifi
     - Pre-conditions: None
     - Parameters: self, language
     - Returns: The array of all fill-in-the-blank sets
+</details>
+
+<br></br>
 
 ## VocabQuiz
-### Class Purpose: 
-To generate a customized vocab quiz for the user based on their selected language
+<details open="True">
+<summary>To generate a customized vocab quiz for the user based on their selected language</summary>
     
 ### Data Fields: None
 
@@ -178,10 +180,13 @@ To generate a customized vocab quiz for the user based on their selected languag
     - Pre-conditions: None
     - Parameters: self
     - Returns: Quiz ID #, Quiz Name, Quiz Score, User Token, User Language
+</details>
+
+<br></br>
 
 ## SpeechRecognition
-### Class Purpose: 
-To show the user and display the result in a text channel and to be interpreted by other functions
+<details open="True">
+<summary>To show the user and display the result in a text channel and to be interpreted by other functions</summary>
 
 ### Data Fields: None
 
@@ -203,10 +208,13 @@ To show the user and display the result in a text channel and to be interpreted 
     - Pre-conditions: None
     - Parameters: self, filename, language
     - Returns: An array with a transcript of the user voice text
+</details>
+
+<br></br>
 
 ## HelpCommand
-### Class Purpose: 
-To allow the user to use the /help command
+<details open="True">
+<summary>To allow the user to use the /help command</summary>
 
 ### Data Fields: None
 
@@ -234,10 +242,13 @@ To allow the user to use the /help command
     - Pre-conditions: None
     - Parameters: bot
     - Returns: Prints a success message to the console and adds feature to the cogs command archive
+</details>
+
+<br></br>
 
 ## MyScores
-### Class Purpose: 
-To display the user scores of everyone on a server
+<details open="True">
+<summary>To display the user scores of everyone on a server</summary>
 
 ### Data Fields:
 - database: An instance of the Database class
@@ -266,10 +277,13 @@ To display the user scores of everyone on a server
     - Pre-conditions: None
     - Parameters: bot
     - Returns: Prints a success message to the console and adds feature to the cogs command archive
+</details>
+
+<br></br>
 
 ## Leaderboard
-### Class Purpose: 
-To display the top user scores on a given server
+<details open="True">
+<summary>To display the top user scores on a given server</summary>
 
 ### Data Fields:
 - database: An instance of the Database class
@@ -292,10 +306,13 @@ To display the top user scores on a given server
     - Pre-conditions: None
     - Parameters: bot
     - Returns: Prints a success message to the console and adds feature to the cogs command archive
+</details>
+
+<br></br>
 
 ## ChangeLanguage
-### Class Purpose: 
-To allow the user to change its current learning language to any other on the "constant.py" file (either Spanish or French).
+<details open="True">
+<summary>To allow the user to change its current learning language to any other on the "constant.py" file (either Spanish or French).</summary>
 
 ### Data Fields:
 - database: An instance of the Database class
@@ -324,10 +341,13 @@ To allow the user to change its current learning language to any other on the "c
     - Pre-conditions: None
     - Parameters: bot
     - Returns: Prints a success message to the console and adds feature to the cogs command archive
+</details>
+
+<br></br>
 
 ## StartVocabQuiz
-### Class Purpose: 
-To start the vocab quiz practice for a user in a text channel
+<details open="True">
+<summary>To start the vocab quiz practice for a user in a text channel</summary>
 
 ### Data Fields:
 - database: An instance of the Database class
@@ -356,10 +376,13 @@ To start the vocab quiz practice for a user in a text channel
     - Pre-conditions: None
     - Parameters: bot
     - Returns: Prints a success message to the console and adds the feature to the cogs command archive
+</details>
+
+<br></br>
 
 ## StartVoiceQuiz
-### Class Purpose: 
-To start the voice quiz practice for a user in a voice channel
+<details open="True">
+<summary>To start the voice quiz practice for a user in a voice channel</summary>
 
 ### Data Fields:
 - database: An instance of the Database class
@@ -388,10 +411,13 @@ To start the voice quiz practice for a user in a voice channel
     - Pre-conditions: None
     - Parameters: bot
     - Returns: Prints a success message to the console and adds the feature to the cogs command archive
+</details>
+
+<br></br>
 
 ## Constant
-### Class Purpose: 
-Display all attributes that are considered constants throughout the entire codespace
+<details open="True">
+<summary>Display all attributes that are considered constants throughout the entire codespace</summary>
 
 ### Data Fields:
 - LANGUAGE: What languages are available to the user
@@ -415,10 +441,13 @@ Display all attributes that are considered constants throughout the entire codes
 - DATE_FORMAT = "%d/%m/%Y %H:%M:%S": The string date format for date-based instances
 
 ### Methods: none
+</details>
+
+<br></br>
 
 ## MatchResult
-### Class Purpose: 
-To calculate the number of correct words that a user said during a given pronunciation quiz
+<details open="True">
+<summary>To calculate the number of correct words that a user said during a given pronunciation quiz</summary>
 
 ### Data Fields: None
 
@@ -440,10 +469,47 @@ To calculate the number of correct words that a user said during a given pronunc
     - Pre-conditions: None
     - Parameters: word, words
     - Returns: True if the user said word is a match
+</details>
+
+<br></br>
+
+## PronounPractice
+<details open="True">
+<summary>A method that displays the Pronunciation Practice for the user for a given language.</summary>
+
+### Data Fields: None
+
+### Methods:
+- __init__(self, ctx, user, practice, textToSpeech, progressId = ""):
+    - Initializes the cog with a reference to the bot.
+    - Pre-conditions: None
+    - Parameters: self, ctx, user, practice, textToSpeech, progressId = ""
+    - Returns: a setup instance of the bot with pre-assigned values aka "self"
+
+- play_sentence(self):
+    - A method that played the selected sentence through the current user's voice channel
+    - Pre-conditions: None
+    - Parameters: self
+    - Returns: Successfully plays the text-to-speech audio back to the user
+ 
+- get_question(self):
+    - A method that collects a question response from the user's voice input
+    - Pre-conditions: None
+    - Parameters: self
+    - Returns: True, the current sentence that the bot displayed for the user and displaying it on the Discord UI
+
+- once_done(self, sink: discord.sinks, channel: discord.TextChannel, *args):
+    - A method to scan for user input during a pronunciation quiz to present the next question to the user.
+    - Pre-conditions: None
+    - Parameters: self, sink: discord.sinks, channel: discord.TextChannel, *args
+    - Returns: Sends the next question to the user on the Discord UI
+</details>
+
+<br></br>
 
 ## PronounTest
-### Class Purpose: 
-To scan the waveform and parse the user voice input into comparable strings 
+<details open="True">
+<summary>To scan the waveform and parse the user voice input into comparable strings</summary> 
 
 ### Data Fields:
 - database: An instance of the Database class
@@ -472,10 +538,13 @@ To scan the waveform and parse the user voice input into comparable strings
     - Pre-conditions: None
     - Parameters: self
     - Returns: returns a full index of the current quiz
+</details>
+
+<br></br>
 
 ## Test_Database
-### Class Purpose: 
-To test the different attributes of the database
+<details open="True">
+<summary>To test the different attributes of the database</summary>
 
 ### Data Fields: None
 
@@ -575,10 +644,13 @@ To test the different attributes of the database
     - Pre-conditions: None
     - Parameters: self
     - Returns: a successful test case
+</details>
+
+<br></br>
 
 ## Test_HelpCommand
-### Class Purpose: 
-To test the different attributes of the help command
+<details open="True">
+<summary>To test the different attributes of the help command</summary>
 
 ### Data Fields: None
 
@@ -612,10 +684,13 @@ To test the different attributes of the help command
     - Pre-conditions: None
     - Parameters: bot
     - Returns: Send successful echo test to the bot
+</details>
+
+<br></br>
 
 ## Test_Match
-### Class Purpose: 
-To test the attributes of the pronunciation test input
+<details open="True">
+<summary>To test the attributes of the pronunciation test input</summary>
 
 ### Data Fields: None
 
@@ -631,10 +706,13 @@ To test the attributes of the pronunciation test input
     - Pre-conditions: None
     - Parameters: self
     - Returns: A successful score between the two exact strings
+</details>
+
+<br></br>
 
 ## Test_Voice
-### Class Purpose: 
-To test the attributes of the user voice input
+<details open="True">
+<summary>To test the attributes of the user voice input</summary>
 
 ### Data Fields: None
 
@@ -674,10 +752,13 @@ To test the attributes of the user voice input
     - Pre-conditions: None
     - Parameters: bot
     - Returns: Display successfully in the console that the user is in a channel
+</details>
+
+<br></br>
 
 ## Record
-### Class Purpose: 
-To record the user voice input and store it as a .wav file in the current instance
+<details open="True">
+<summary>To record the user voice input and store it as a .wav file in the current instance</summary>
 
 ### Data Fields: None
 
@@ -711,3 +792,164 @@ To record the user voice input and store it as a .wav file in the current instan
     - Pre-conditions: None
     - Parameters: bot
     - Returns: Prints a success message to the console and adds the feature to the cogs command archive
+</details>
+
+<br></br>
+
+## TextToSpeech
+<details open="True">
+<summary>To activate the text-to-speech for a given text (regardless of language) to be audited to the user.</summary>
+
+### Data Fields: None
+
+### Methods:
+- __init__(self, language):
+    - Initializes the method with a reference to all possible language output.
+    - Pre-conditions: None
+    - Parameters: self, language
+    - Returns: a setup instance of the method with pre-assigned languages like "English"
+
+- text_to_speech(self, text):
+    - Activates the Google gTTS instance of that text given to the user
+    - Pre-conditions: None
+    - Parameters: self, text
+    - Returns: A successful save of the TTS recording saved to "audios/voice.mp3"
+</details>
+
+<br></br>
+
+## FillInTheBlanks
+<details open="True">
+<summary>To generate the Fill-in-the-blank activity for the user to interact with via the bot.</summary>
+
+### Data Fields: None
+
+### Methods:
+- __init__(self, bot):
+    - Initializes the cog with a reference to the bot.
+    - Pre-conditions: None
+    - Parameters: self, bot
+    - Returns: a setup instance of the bot with pre-assigned values aka "self"
+ 
+- on_ready(): void
+  - An event handler called when the Discord bot is ready. It prints a message to the console and sends a message to a specific channel.
+  - Pre-conditions: None
+  - Parameters: None
+  - Returns: Prints "Hello, I'm now online!" string if the channel is active for the bot to enter.
+ 
+- fill_in_the_blanks(self, ctx, *, language: str = None):
+    - Presents the fill-in-the-blanks ordered question to the user in the current discord text channel.
+    - Pre-conditions: None
+    - Parameters: self, ctx, *, language: str = None
+    - Returns: Successfully prints to the user's current text channel
+
+- setup(bot):
+    - Internal method for setting up the cog.
+    - Pre-conditions: None
+    - Parameters: bot
+    - Returns: Prints a success message to the console and adds the feature to the cogs command archive
+</details>
+
+<br></br>
+
+## MyProgress
+<details open="True">
+<summary>To generate the current progression for a specific user.</summary>
+
+### Data Fields: None
+
+### Methods:
+- __init__(self, bot):
+    - Initializes the cog with a reference to the bot.
+    - Pre-conditions: None
+    - Parameters: self, bot
+    - Returns: a setup instance of the bot with pre-assigned values aka "self"
+ 
+- on_ready(): void
+  - An event handler called when the Discord bot is ready. It prints a message to the console and sends a message to a specific channel.
+  - Pre-conditions: None
+  - Parameters: None
+  - Returns: Prints "MyProgress command is online." string if the channel is active for the bot to enter.
+ 
+- myProgress(self, ctx):
+    - Presents the current progress in the language course for a user.
+    - Pre-conditions: None
+    - Parameters: self, ctx
+    - Returns: Successfully prints the user's current progress of the course within their text channel
+
+- setup(bot):
+    - Internal method for setting up the cog.
+    - Pre-conditions: None
+    - Parameters: bot
+    - Returns: Prints a success message to the console and adds the feature to the cogs command archive
+</details>
+
+<br></br>
+
+## StartFlash
+<details open="True">
+<summary>To generate the Flashcard activity for the user to interact with via the bot.</summary>
+
+### Data Fields: None
+
+### Methods:
+- __init__(self, bot):
+    - Initializes the cog with a reference to the bot.
+    - Pre-conditions: None
+    - Parameters: self, bot
+    - Returns: a setup instance of the bot with pre-assigned values aka "self"
+ 
+- on_ready(self):
+  - An event handler called when the Discord bot is ready. It prints a message to the console and sends a message to a specific channel.
+  - Pre-conditions: None
+  - Parameters: self
+  - Returns: Prints "MyProgress command is online." string if the channel is active for the bot to enter.
+ 
+- startFlash(self, ctx):
+    - Presents the flashcard activity for a user in their current text channel.
+    - Pre-conditions: None
+    - Parameters: self, ctx
+    - Returns: Successfully prints the user's current progress of the course within their text channel
+
+- setup(bot):
+    - Internal method for setting up the cog.
+    - Pre-conditions: None
+    - Parameters: bot
+    - Returns: Prints a success message to the console and adds the feature to the cogs command archive
+</details>
+
+<br></br>
+
+## StartListeningQuiz
+<details open="True">
+<summary>To generate the Listening Quiz activity for the user to interact with via the bot.</summary>
+
+### Data Fields: None
+
+### Methods:
+- __init__(self, bot):
+    - Initializes the cog with a reference to the bot.
+    - Pre-conditions: None
+    - Parameters: self, bot
+    - Returns: a setup instance of the bot with pre-assigned values aka "self"
+ 
+- on_ready(self):
+  - An event handler called when the Discord bot is ready. It prints a message to the console and sends a message to a specific channel.
+  - Pre-conditions: None
+  - Parameters: self
+  - Returns: Prints "MyProgress command is online." string if the channel is active for the bot to enter.
+ 
+- startListeningQuiz(self, ctx):
+    - Presents the listening quiz activity for a user in their current text channel.
+    - Pre-conditions: None
+    - Parameters: self, ctx
+    - Returns: Successfully presents the listening quiz activity to the user
+
+- setup(bot):
+    - Internal method for setting up the cog.
+    - Pre-conditions: None
+    - Parameters: bot
+    - Returns: Prints a success message to the console and adds the feature to the cogs command archive
+</details>
+
+<br></br>
