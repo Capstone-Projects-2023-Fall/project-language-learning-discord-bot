@@ -213,5 +213,5 @@ This test suite aims to validate the functionality of the voice-related commands
 ### Known Problems
 
 ## Output
-![Alt Text](https://github.com/Capstone-Projects-2023-Fall/project-language-learning-discord-bot/blob/main/documentation/docs/requirements/image.png)
-![Alt Text](https://github.com/Capstone-Projects-2023-Fall/project-language-learning-discord-bot/blob/main/documentation/docs/requirements/Screenshot_1115.png)
+<img src ="https://raw.githubusercontent.com/Capstone-Projects-2023-Fall/project-language-learning-discord-bot/main/images/image.png" alt="System Block Diagram"/>
+<img src ="https://raw.githubusercontent.com/Capstone-Projects-2023-Fall/project-language-learning-discord-bot/main/images/Screenshot_1115.png" alt="System Block Diagram"/>
