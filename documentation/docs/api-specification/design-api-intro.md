@@ -7,8 +7,7 @@ Classes:
 =============================
 
 ## Main
-<details open="True">
-<summary>The Main class will start and initialize the bot with its default parameters.</summary>
+The Main class will start and initialize the bot with its default parameters.
 
 ### Data Fields:
 - bot: An instance of the Discord Bot
@@ -38,9 +37,6 @@ Classes:
   - Pre-conditions: None
   - Parameters: None
   - Returns: None
-</details>
-
-<br></br>
 
 ## Database
 <details open="True">
