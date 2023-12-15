@@ -13,7 +13,7 @@ class HelpCommand(commands.Cog):
     async def help(self, ctx):
         helpEmbed = discord.Embed(title="Help command for Language Bot", description="All commands for the bot.", color=discord.Color.random())
         helpEmbed.set_author(name="NewLangBot")
-        helpEmbed.add_field(name="!changeLanguage [LANGUAGE]", value="Change desired language to learn. Currently only Spanish or French.", inline=False)
+        helpEmbed.add_field(name="!changeLanguage", value="Change desired language to learn.", inline=False)
 
         helpEmbed.add_field(name="​", value="​", inline=False)
 
