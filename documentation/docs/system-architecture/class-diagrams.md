@@ -1,5 +1,9 @@
 # Class Diagram
+:::note
 
+The highlighted classes represent implemented Discord commands, commonly referred to as cogs, within the system.
+
+:::
 ## Command Diagram
 
 ![Cog drawio](https://github.com/cis3296s23/DungeonHuntingRPG/assets/74037708/36508a00-ee5c-4b36-9328-85a0057c53c5)
@@ -20,7 +24,7 @@ The Database Diagram depicts a set of classes, including the Database class, whi
 
 ![Voice Class Diagram](https://github.com/cis3296s23/DungeonHuntingRPG/assets/74037708/39435038-a78a-4559-8f9b-c087a40e1d1e)
 ##### Figure 1.3 Voice Diagram
-Figure 1.3 represents the structure of the voice functionality, highlighting the essential classes required for the proper functioning of voice commands.
+Figure 1.3 represents the structure of the voice functionality, highlighting the essential classes required for the proper functioning of the voice cogs.
 ### Description
 This diagram depicts the functionality of classes pertaining to voice management. The dependency relationship indicates that the voice cogs depend on commands from other classes to execute specific actions.
 
