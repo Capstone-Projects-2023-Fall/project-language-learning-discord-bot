@@ -1,7 +1,7 @@
 # Class Diagram
 :::note
 
-The highlighted classes represent implemented Discord commands, commonly referred to as cogs, within the system.
+The highlighted classes represent implemented Discord commands, commonly referred to as [cogs](https://discordpy.readthedocs.io/en/v2.3.2/ext/commands/cogs.html), within the system.
 
 :::
 ## Command Diagram
@@ -9,8 +9,10 @@ The highlighted classes represent implemented Discord commands, commonly referre
 ![Cog drawio](https://github.com/cis3296s23/DungeonHuntingRPG/assets/74037708/36508a00-ee5c-4b36-9328-85a0057c53c5)
 ##### Figure 1.1 Command Diagram
 Figure 1.1 represents the commands users will use within the Discord environment. 
-### Description
-The association arrows denote a dependency, underscoring that instances of 'main' are essential for executing Discord cog classes, i.e., the Discord commands. Specifically, 'main' enables these cog classes to run as a central coordinator for Discord-related functionalities. Each Discord cog class contributes specific features or commands to execute operations within the system.
+<details>
+  <summary>Description</summary>
+  The association arrows denote a dependency, underscoring that instances of 'main' are essential for executing Discord cog classes, i.e., the Discord commands. Specifically, 'main' enables these cog classes to run as a central coordinator for Discord-related functionalities. Each Discord cog class contributes specific features or commands to execute operations within the system.
+</details>
 
 ## Database Diagram
 
